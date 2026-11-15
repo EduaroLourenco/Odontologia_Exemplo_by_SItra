@@ -1,0 +1,12 @@
+# Exemplo. Na demonstração, todas as páginas usam meta robots noindex.
+# Em site real: remova o noindex das páginas públicas e troque o domínio abaixo.
+User-agent: *
+Allow: /
+Disallow: /login.html
+Disallow: /paciente.html
+Disallow: /anamnese.html
+Disallow: /documento.html
+
+Sitemap: https://www.exemplo.com.br/sitemap.xml
+Disallow: /para-dentistas.html
+Disallow: /offline.html

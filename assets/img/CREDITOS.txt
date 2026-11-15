@@ -1,0 +1,42 @@
+CRÉDITOS E LICENÇAS
+
+FOTOGRAFIAS
+Fonte: Unsplash (https://unsplash.com), Unsplash License: uso comercial livre, sem atribuição obrigatória.
+Recortadas e convertidas para WebP (qualidade 78) pela CDN do Unsplash.
+São imagens ilustrativas: as pessoas e os ambientes NÃO são a equipe nem a clínica Lume (fictícia).
+Em um site real, substituir por fotos da própria clínica, com autorização de uso de imagem.
+
+hero-atendimento-*.webp   https://unsplash.com/photos/qW3DLnehg9w
+recepcao-*.webp           https://unsplash.com/photos/B_sK_xgzwVA
+recepcao-v-*.webp         https://unsplash.com/photos/B_sK_xgzwVA (recorte vertical)
+sala-atendimento-*.webp   https://unsplash.com/photos/e7MJLM5VGjY
+sala-2-*.webp             https://unsplash.com/photos/Fdku_oMrDvk
+esterilizacao-*.webp      https://unsplash.com/photos/1lbvRjeF2JE
+doutora-helena-*.webp     https://unsplash.com/photos/z8BIWPwV3zo
+equipe-*.webp             https://unsplash.com/photos/hl6uG9cHW5A
+doutor-rafael-*.webp      https://unsplash.com/photos/QA9fRIi6sFw
+raio-x-*.webp             https://unsplash.com/photos/v_2FRXEba94
+og-lume.jpg               composição sobre a foto do hero (qW3DLnehg9w)
+
+ILUSTRAÇÕES
+Comparador de sorrisos e esquema do implante: desenhos vetoriais (SVG) criados para este site.
+Não representam pacientes reais nem resultados de tratamento.
+
+FONTES
+Newsreader (Production Type) e Hanken Grotesk (Alfredo Marco Pradil), via Google Fonts,
+licença SIL Open Font License 1.1.
+
+VERSÃO 3 (novas fotos, Unsplash License)
+alinhador-*.webp          https://images.unsplash.com/photo-1609840114035-3c981b782dfe
+aparelhos-*.webp          https://images.unsplash.com/photo-1720685193942-5a1c5ac7fd80
+crianca-*.webp            https://images.unsplash.com/photo-1631051104176-4fb841f41c9f
+escovas-*.webp            https://images.unsplash.com/photo-1777446523856-e7acffa844a7
+helena-2-*.webp           https://images.unsplash.com/photo-1681939278218-a755fb2bf2d3 (mesma sessão de doutora-helena)
+lentes-*.webp             https://images.unsplash.com/photo-1756364405980-e705da6a3da6
+clareamento-*.webp        https://images.unsplash.com/photo-1662837625421-5fd8ed6131a0
+urgencia-*.webp           https://images.unsplash.com/photo-1588776813941-dcf9c55e84d2 (mesma sessão de equipe)
+hero-atendimento-m2-800.webp  recorte 4:5 da foto do hero
+
+MARCA E TELAS
+favicon.svg, icone-*.png, apple-touch-icon.png, og-lume.jpg: símbolo (sorriso com ponto de luz) criado para este site.
+telas/*.jpg: capturas do próprio site, usadas na página "Para dentistas".

@@ -1,0 +1,738 @@
+NOTA (12/11/2026): este documento descreve a PRIMEIRA versão do site.
+A versão 2 acrescentou agendamento, login, área do paciente, anamnese e documento,
+trocou o rodapé para verde-petróleo escuro, a equipe para Dr. Rafael Mota e Camila Nogueira,
+o CRO para "CRO-SP 00000 (exemplo, não válido)" e o sábado para 8h às 13h.
+As mudanças e o motivo de cada uma estão em RELATORIO.md e design-notes.md.
+
+======================================================================
+LUME ODONTOLOGIA: ESPECIFICAÇÃO COMPLETA DO FRONT-END
+Documento para reconstruir o site com fidelidade visual e funcional
+======================================================================
+
+Unidades: px salvo indicação. 1rem = 16px.
+"Celular" = abaixo de 768px. "Tablet" = 768px a 1023px. "Desktop" = 1024px ou mais.
+Projeto mobile-first: as regras valem para o celular e são sobrescritas nos breakpoints 600, 768 e 1024.
+
+SUMÁRIO
+ 1. Stack e estrutura de arquivos
+ 2. Tokens de design (cores, fontes, medidas)
+ 3. Tipografia
+ 4. Grid, container e ritmo vertical
+ 5. Componentes globais (botões, links, ícones, foco)
+ 6. Elementos fixos de todas as páginas (faixa demo, cabeçalho, menu mobile, rodapé, barra fixa, cookies)
+ 7. Página inicial (index.html), seção por seção
+ 8. implantes.html
+ 9. primeira-consulta.html
+10. sobre.html
+11. contato.html (formulário)
+12. privacidade.html
+13. Imagens: arquivos, proporções, recortes
+14. Comportamento em JavaScript
+15. SEO, head e dados estruturados
+16. Acessibilidade
+17. Movimento
+18. O que nunca usar
+
+
+======================================================================
+1. STACK E ESTRUTURA DE ARQUIVOS
+======================================================================
+
+HTML, CSS e JavaScript puros. Sem framework, sem build, sem biblioteca.
+Abre direto pelo arquivo (file://) e em qualquer hospedagem estática.
+
+/index.html
+/implantes.html
+/primeira-consulta.html
+/sobre.html
+/contato.html
+/privacidade.html
+/robots.txt
+/sitemap.xml
+/assets/css/style.css      (único CSS, ~18 KB)
+/assets/js/config.js       (dados trocáveis, objeto global window.CLINICA)
+/assets/js/main.js         (todo o comportamento, ~8 KB)
+/assets/img/               (WebP, favicon.svg, og-lume.jpg, CREDITOS.txt)
+
+Ordem dos scripts no fim do <body>, ambos com defer:
+  <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+
+
+======================================================================
+2. TOKENS DE DESIGN
+======================================================================
+
+2.1 Cores (variáveis no :root)
+  --cor-ancora          #0F4A4E   verde-petróleo. Botões, links, filete da linha do tempo, rótulos em itálico
+  --cor-ancora-escura   #0A3639   hover dos botões, fundo da faixa de demonstração
+  --cor-fundo           #F6F7F6   fundo da página (branco levemente frio, nunca creme)
+  --cor-faixa           #E3E8E4   fundo de faixas alternadas e espaços reservados
+  --cor-texto           #16222A   texto principal e títulos
+  --cor-foco            #B26A2C   SOMENTE o anel de foco
+  --cor-superficie      #FFFFFF   cartões, formulário, rodapé, barra fixa, aviso de cookies
+  --cor-texto-suave     #4A5963   textos secundários, legendas, bordas de campos
+  --cor-linha           #D5DCDC   todos os filetes de 1px
+  Cor de erro (fixa, não é variável): #A3261B, só no texto e na borda de campos inválidos.
+  Trocar a paleta = mexer só nas 6 primeiras variáveis.
+
+  Contrastes: texto #16222A sobre #F6F7F6 ≈ 15:1; #4A5963 sobre #F6F7F6 ≈ 6.9:1;
+  branco sobre #0F4A4E ≈ 10:1. Todos passam WCAG AA.
+
+2.2 Fontes
+  --fonte-titulo: "Newsreader", Georgia, serif
+  --fonte-texto:  "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif
+
+  Google Fonts (uma única URL, display=swap):
+  https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..500;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600&display=swap
+  - Newsreader: normal 400 a 500 (eixo de tamanho óptico 6..72) e itálico 400
+  - Hanken Grotesk: 400, 500, 600
+  Preconnect em fonts.googleapis.com e fonts.gstatic.com (crossorigin).
+  Preload apenas da Newsreader normal (latin):
+  https://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjA.woff2
+
+2.3 Medidas
+  --margem   20px no celular, 48px no desktop (margem lateral do container)
+  --larg     1240px (largura máxima do conteúdo)
+  --barra    68px (altura reservada para a barra fixa do celular)
+
+2.4 Cantos
+  Botões e campos: 4px. Imagens e cartões: 2px. Faixas: 0. Favicon: 6px (em 64x64).
+  Nunca cantos grandes.
+
+2.5 Sombras
+  Nenhuma. Separação sempre por filete de 1px (--cor-linha) ou troca de fundo.
+
+
+======================================================================
+3. TIPOGRAFIA
+======================================================================
+
+Corpo (body): Hanken Grotesk 400, 17px (1.0625rem), line-height 1.65, cor --cor-texto.
+Parágrafos: margem inferior 1em, largura máxima 66ch (≈ 62 a 68 caracteres por linha).
+
+h1  Newsreader 400, clamp(2.5rem, 5vw, 4.25rem) = 40px no celular até 68px no desktop,
+    line-height 1.05, letter-spacing -0.02em, margem inferior 0.5em.
+h2  Newsreader 400, clamp(1.75rem, 3vw, 2.5rem) = 28px a 40px,
+    line-height 1.15, letter-spacing -0.01em.
+h3  Newsreader 500, 22px (1.375rem), line-height 1.3.
+Todos os títulos: font-optical-sizing auto, margem 0 0 0.5em.
+
+Classes de texto:
+  .pequeno   15px, --cor-texto-suave
+  .cargo     15px, --cor-texto-suave, margem superior -4px (cola no título acima)
+  figcaption 13px, line-height 1.4, --cor-texto-suave, margem superior 10px
+  .sr        visível só para leitor de tela (1x1px, clip)
+
+Regras:
+  - Tudo alinhado à esquerda. Centralizado só a linha legal do rodapé.
+  - Itálico só em citações (avaliações) e nos rótulos de tempo (Newsreader itálico).
+  - Nunca caixa alta, nunca peso 600 em texto corrido.
+  - Peso 600 só em botões e títulos do rodapé. Peso 500 em links de destaque, perguntas do FAQ e rótulos de campos.
+
+
+======================================================================
+4. GRID, CONTAINER E RITMO VERTICAL
+======================================================================
+
+4.1 Container (.wrap)
+  max-width: 1240px + 2 x margem (1336px no desktop)
+  margin-inline: auto
+  padding-inline: 20px (celular) / 48px (desktop)
+
+4.2 Grid de duas colunas assimétricas (.duas)
+  Celular e tablet: uma coluna, gap 32px.
+  Desktop: 12 colunas, column-gap 24px.
+    .c4-8  primeira coluna 1 a 4, segunda 5 a 12
+    .c5-7  primeira 1 a 5, segunda 7 a 12 (coluna 6 fica vazia como respiro)
+    .c7-5  primeira 1 a 6, segunda 8 a 12 (coluna 7 vazia)
+  .fixo (só desktop): position sticky, top 112px, align-self start.
+
+4.3 Espaçamento vertical entre seções (varia de propósito)
+  Classe   Celular   Desktop
+  .py-a    48px      72px
+  .py-b    64px      96px
+  .py-c    72px      120px
+  .py-d    80px      144px
+  (valores aplicados em cima E embaixo da seção)
+
+  .faixa = fundo --cor-faixa (#E3E8E4), sem borda, canto 0.
+
+
+======================================================================
+5. COMPONENTES GLOBAIS
+======================================================================
+
+5.1 Botão primário (.btn)
+  display inline-flex, alinhado ao centro, gap 10px entre ícone e texto
+  altura mínima 48px, padding 14px 22px
+  borda 1px --cor-ancora, raio 4px, fundo --cor-ancora, texto branco
+  Hanken Grotesk 600, 16px, line-height 1.2, sem sublinhado
+  Sem seta, sem sombra.
+  Hover: fundo e borda --cor-ancora-escura. Transição 150ms em background-color e border-color.
+  Botões de WhatsApp: ícone de balão (20x20) à esquerda do texto.
+  Celular (até 599px): botões dentro de .acoes ocupam 100% da largura.
+
+5.2 Botão de contorno (.btn .btn-contorno)
+  Mesmo tamanho. Fundo branco, texto --cor-ancora, borda 1px --cor-ancora.
+  Hover: fundo --cor-faixa.
+  Usado em: "Ligar" da barra fixa, "Aceitar" e "Recusar" dos cookies.
+
+5.3 Link secundário (.link e links em geral)
+  Cor --cor-ancora, sublinhado 1px, text-underline-offset 4px.
+  .link tem peso 500.
+  Hover: sublinhado passa a 2px (diferente do hover dos botões, que troca o fundo).
+
+5.4 Grupo de ações (.acoes)
+  flex, quebra de linha, alinhado ao centro, gap 16px (vertical) x 28px (horizontal), margem superior 28px.
+
+5.5 Ícones (SVG inline, todos iguais em estilo)
+  Classe .ico: 20x20, viewBox 0 0 24 24, fill none, stroke currentColor,
+  stroke-width 1.5, pontas e junções arredondadas, aria-hidden="true".
+  São apenas 6 desenhos no site inteiro:
+   - menu:     três linhas horizontais (M4 7h16 M4 12h16 M4 17h16), 26x26 no botão
+   - mais:     linha horizontal + linha vertical (a vertical tem class "v")
+               vira "menos" no acordeão (a vertical encolhe com scaleY(0))
+               vira "fechar" no menu mobile (girado 45°)
+               vira ícone de erro no formulário (girado 45°, 16x16)
+   - telefone: fone de gancho
+   - pino:     gota de mapa com círculo r 2.5 no centro
+   - balão:    retângulo arredondado com rabicho embaixo à esquerda (inserido via JS nos botões de WhatsApp)
+  Nenhuma biblioteca de ícones. Nenhum ícone decorativo em lista.
+
+5.6 Foco
+  :focus-visible em tudo: outline 2px sólido --cor-foco, offset 2px.
+  Campos de formulário: offset 0 e borda passa a --cor-ancora.
+
+5.7 Link "Pular para o conteúdo" (.pular)
+  Primeiro elemento do body. Posição absoluta em left 8px, top -60px (escondido).
+  Ao receber foco: top 8px. Fundo branco, padding 12px 16px, raio 4px, z-index 30.
+
+
+======================================================================
+6. ELEMENTOS FIXOS DE TODAS AS PÁGINAS
+======================================================================
+
+Ordem no body:
+  link pular > faixa demo (JS) > header.topo > div#menu.painel > main#conteudo >
+  footer.rodape > div.mbar > div.cookies > scripts
+
+----------------------------------------------------------------------
+6.1 Faixa de demonstração (.demo), criada pelo JS se mostrarFaixaDemo = true
+----------------------------------------------------------------------
+  Fundo --cor-ancora-escura, texto branco 13px, line-height 1.4.
+  Container .wrap em flex, quebra de linha, espaço entre os itens,
+  gap 4px x 16px, padding vertical 8px.
+  Esquerda: "Site de demonstração com conteúdo fictício. Veja como ficaria o site do seu consultório."
+  Direita: link branco sublinhado "Falar com a agência" (WhatsApp da agência).
+  Não fica fixa na rolagem. Altura ≈ 34px no desktop (1 linha) e ≈ 75px no celular (3 linhas).
+
+----------------------------------------------------------------------
+6.2 Cabeçalho (header.topo)
+----------------------------------------------------------------------
+  Fundo --cor-fundo, filete inferior 1px --cor-linha, sem sombra.
+  Desktop: position sticky, top 0, z-index 10. Celular: rola com a página.
+  Container em flex, itens centralizados verticalmente, espaço entre, gap 24px, altura mínima 72px.
+
+  Wordmark (.marca), à esquerda, é um link para index.html:
+    inline-flex, alinhado pela linha de base, gap 8px, cor --cor-texto, sem sublinhado.
+    "Lume"        Newsreader 500, 28px, line-height 1, letter-spacing -0.01em
+    "Odontologia" Hanken Grotesk 500, 13px, --cor-texto-suave
+    Sem símbolo, sem ícone de dente.
+
+  Navegação (desktop, nav.nav): flex com gap 28px.
+    Tratamentos | A clínica | Primeira consulta | Contato | [botão Agendar pelo WhatsApp]
+    Links: 16px, cor --cor-texto, sem sublinhado, padding vertical 12px.
+    Hover e página atual (aria-current="page"): sublinhado de 1px.
+  Celular e tablet: nav escondida. Botão de menu (.menu-btn): 48x48, sem fundo, sem borda,
+    raio 4px, margem direita -12px (alinha o ícone com a margem), ícone de menu 26x26.
+
+----------------------------------------------------------------------
+6.3 Menu mobile em tela cheia (div#menu.painel)
+----------------------------------------------------------------------
+  role="dialog", aria-modal="true", começa com hidden.
+  position fixed, cobre a tela toda (inset 0), z-index 40, fundo --cor-fundo.
+  flex em coluna, padding 12px (topo) 20px (lados) 24px + área segura (base), rolagem vertical se precisar.
+  Topo (.painel-topo): altura mínima 60px, wordmark à esquerda, botão fechar à direita
+    (ícone "mais" girado 45°).
+  Lista: margem 24px em cima e 32px embaixo. Itens: Início, Tratamentos, A clínica,
+    Primeira consulta, Contato. Cada item com filete inferior 1px --cor-linha.
+    Links: bloco, padding 16px 0, Newsreader 400, 28px, line-height 1.2, cor --cor-texto.
+  Botão "Agendar pelo WhatsApp" empurrado para o fundo do painel (margin-top auto), largura cheia.
+  Com o menu aberto o body recebe a classe .travado (overflow hidden).
+
+----------------------------------------------------------------------
+6.4 Rodapé (footer.rodape)
+----------------------------------------------------------------------
+  Fundo branco, filete superior 1px --cor-linha, padding 56px em cima e 24px embaixo, texto 15px.
+  Colunas: celular uma coluna com gap 36px; a partir de 768px, grid 5fr 3fr 4fr com gap 48px.
+  Parágrafos: margem inferior 8px, --cor-texto-suave.
+  Títulos das colunas (h2): Hanken Grotesk 600, 15px, line-height 1.4, margem inferior 12px.
+  Links da lista: inline-block, padding 8px 0, cor --cor-texto, sublinhados.
+
+  Coluna 1: wordmark (margem inferior 16px)
+            "Responsável técnica: Dra. Helena Prado, CRO-XX 00000 (exemplo), Implantodontia"
+            endereço / horário
+  Coluna 2: "Páginas": Tratamentos, A clínica, Primeira consulta, Contato, Política de privacidade
+  Coluna 3: "Fale com a clínica": Telefone (16) 90000-0000 / WhatsApp / contato@exemplo.com.br
+
+  Linha legal (.legal): filete superior 1px, margem superior 40px, padding superior 20px,
+  centralizada, 13px, --cor-texto-suave.
+    "CNPJ 00.000.000/0001-00 (exemplo). Site de demonstração. Imagens ilustrativas. Em um site real, entram fotos da própria clínica."
+    "Criado por [nome da agência]." (só com a flag de demonstração ligada)
+
+----------------------------------------------------------------------
+6.5 Barra fixa do celular (div.mbar)
+----------------------------------------------------------------------
+  position fixed, base da tela, largura total, z-index 20.
+  grid de 2 colunas iguais, gap 8px.
+  padding 8px 20px e, embaixo, 8px + env(safe-area-inset-bottom) (iPhone).
+  Fundo branco, filete superior 1px --cor-linha.
+  Botões com 52px de altura (padding vertical 0):
+    esquerda "WhatsApp" (primário, com balão), direita "Ligar" (contorno, com telefone).
+  Escondida por padrão: transform translateY(110%), transição 200ms.
+  Aparece (classe .on) quando o hero (ou o topo .cabeca das páginas internas) sai da tela.
+  Some quando um campo de texto, select ou textarea recebe foco (teclado aberto).
+  Desktop: display none.
+  O body tem padding-bottom de 68px + área segura no celular para a barra não cobrir o rodapé.
+  NÃO existe botão flutuante redondo de WhatsApp.
+
+----------------------------------------------------------------------
+6.6 Aviso de cookies (div.cookies)
+----------------------------------------------------------------------
+  role="region", aria-label="Aviso de cookies". Começa com hidden; o JS mostra se não houver escolha salva.
+  position fixed, z-index 25.
+  Celular: left 12px, right 12px, bottom = 68px + 12px + área segura (fica acima da barra fixa).
+  Desktop: right 24px, bottom 24px, largura máxima 380px.
+  Fundo branco, borda 1px --cor-texto-suave, raio 4px, padding 16px, texto 14px, line-height 1.5.
+  Texto: "Usamos cookies essenciais e, com a sua autorização, cookies de medição de audiência. Saiba mais na Política de privacidade." (link)
+  Dois botões de contorno lado a lado, mesmo peso visual, flex 1, altura 44px, padding 8px 18px, gap 8px:
+  "Aceitar" e "Recusar". Escolha salva em localStorage (chave "lume-cookies") com try/catch.
+
+
+======================================================================
+7. PÁGINA INICIAL (index.html)
+======================================================================
+
+Sequência de fundos e espaçamentos:
+  A Hero ............... fundo claro
+  B Tratamentos ........ fundo claro   .py-c (72 / 120)
+  C Atendimento sem pressa  FAIXA     .py-b (64 / 96)
+  D Primeira consulta .. fundo claro   .py-c (72 / 120)
+  E A doutora .......... fundo claro   .py-b (64 / 96)
+  F A clínica (galeria)  FAIXA         .py-d (80 / 144)
+  G Casos clínicos ..... fundo claro   .py-a (48 / 72)
+  H Avaliações ......... fundo claro   .py-b (64 / 96)
+  I Perguntas .......... fundo claro   .py-c (72 / 120)
+  J Como chegar ........ FAIXA         .py-b (64 / 96)
+
+----------------------------------------------------------------------
+[A] HERO (section.hero)
+----------------------------------------------------------------------
+CELULAR (título antes da foto):
+  padding superior 32px.
+  Bloco de texto (.hero-texto, com .wrap): margens laterais de 20px.
+    h1 "Odontologia com plano, do primeiro exame ao acompanhamento." (40px, sem largura máxima)
+    Parágrafo 19px (1.1875rem), --cor-texto-suave, máx. 46ch:
+      "Na Lume, cada tratamento começa com uma conversa e um diagnóstico explicado com calma. Você entende o que será feito antes de decidir qualquer coisa."
+    .acoes: botão "Agendar pelo WhatsApp" (largura cheia) + link "Ver tratamentos" (vai para #tratamentos)
+    Linha discreta (.hero-linha): 14px, --cor-texto-suave, margem superior 32px:
+      "Dra. Helena Prado, CRO-XX 00000 (exemplo) · Ribeirão Preto, SP · Seg a sex, 8h às 19h"
+      (separada por pontos médios, NÃO é faixa de estatísticas)
+  Foto (.hero-foto): margem superior 40px, largura total da tela (sem margens), proporção 4:3,
+    object-fit cover, raio 2px. Legenda "Sala de atendimento 1" com margens de 20px.
+
+DESKTOP (assimétrico 7/5, foto sangrando até a borda direita):
+  Grid de 4 colunas:
+    minmax(48px, 1fr) | minmax(0, 1240 x 7/12 ≈ 723px) | minmax(0, 1240 x 5/12 ≈ 517px) | minmax(0, 1fr)
+  Texto na coluna 2, centralizado na vertical, padding 96px em cima e embaixo, 64px à direita.
+  h1 com largura máxima de 19ch (até ~22 caracteres por linha), 68px a 1280px de largura.
+  Foto ocupa as colunas 3 e 4 (vai até a borda da janela), sem margem, proporção 4:5,
+  altura máxima 100vh menos 72px, altura mínima 560px, raio 0.
+  Legenda logo abaixo da foto, alinhada à esquerda da foto.
+  Imagem com <picture>: desktop usa o recorte 4:5, celular usa o recorte 4:3.
+
+----------------------------------------------------------------------
+[B] TRATAMENTOS (section#tratamentos) .duas .c4-8
+----------------------------------------------------------------------
+  Coluna esquerda (.fixo, sticky no desktop a 112px do topo):
+    h2 "Tratamentos"
+    "Cada indicação depende de uma avaliação clínica. Conheça as áreas em que atendemos."
+  Coluna direita: lista (ul.tratamentos), SEM cartões. Cada item (li):
+    padding 28px 0, filete superior 1px; o último também tem filete inferior.
+    h3 em Newsreader 400, 24px, margem 0
+    descrição em --cor-texto-suave, margem 0
+    link sublinhado com padding vertical 10px
+    Celular: tudo empilhado, gap 8px.
+    A partir de 768px: grid 1fr auto, column-gap 40px; título e descrição na coluna 1;
+      o link na coluna 2, ocupando as duas linhas, centralizado na vertical, sem quebra.
+  Itens:
+    Implantes dentários: "Reposição de dentes ausentes, com planejamento digital e acompanhamento depois da cirurgia." Link "Ver detalhes" para implantes.html
+    Ortodontia e alinhadores: "Aparelho fixo ou alinhadores transparentes, conforme o que a avaliação indicar para o seu caso." Link "Perguntar pelo WhatsApp"
+    Clareamento dental: "Indicado depois de avaliar a saúde dos dentes e das gengivas. Pode ser feito no consultório ou em casa, com supervisão." Link "Perguntar pelo WhatsApp"
+    Lentes e facetas: "Ajustes de forma, cor e alinhamento quando há indicação clínica." Link "Perguntar pelo WhatsApp"
+    Prevenção e limpeza: "Revisões periódicas, limpeza profissional e orientação de higiene." Link "Perguntar pelo WhatsApp"
+    Urgência odontológica: "Dor, dente quebrado ou inchaço. Chame no WhatsApp e conte o que está acontecendo." Link "Chamar agora"
+  Cada link de WhatsApp tem um complemento invisível para leitor de tela (ex.: "sobre ortodontia").
+
+----------------------------------------------------------------------
+[C] ATENDIMENTO SEM PRESSA (section.faixa, .calma)
+----------------------------------------------------------------------
+  Celular: texto e depois foto, gap 40px.
+  Desktop: 12 colunas, gap 24px, centralizado na vertical.
+    Texto nas colunas 1 a 5. Foto nas colunas 8 a 11 (coluna 12 fica livre).
+  h2 "Atendimento sem pressa"
+  "Muita gente adia o dentista por medo ou por já ter passado por uma consulta corrida. Aqui a primeira consulta serve para ouvir você e examinar com calma."
+  Lista com filetes (ul.filetes), sem ícones: cada item padding 14px 0, filete inferior 1px,
+  o primeiro também com filete superior, largura máxima 60ch.
+    "Explicamos cada etapa antes de começar."
+    "Você pode pedir uma pausa a qualquer momento."
+    "Falamos sobre o que te deixa inseguro antes do primeiro procedimento."
+    "Dúvidas depois da consulta? Respondemos pelo WhatsApp em horário comercial."
+  Foto sala-atendimento, proporção 3:4, cover, raio 2px.
+
+----------------------------------------------------------------------
+[D] COMO É A PRIMEIRA CONSULTA .duas .c4-8
+----------------------------------------------------------------------
+  Esquerda: h2 "Como é a primeira consulta"
+  Direita: lista de definição (dl.tempos), SEM círculos numerados.
+    Cada par (div): padding 22px 0, filete superior 1px; o último com filete inferior.
+    Celular: rótulo em cima, texto embaixo, gap 4px.
+    A partir de 768px: grid 220px | 1fr, gap 32px.
+    dt (rótulo): Newsreader itálico 400, 19px, line-height 1.35, --cor-ancora
+    dd (texto): margem 0, largura máxima 56ch
+      "Antes" / "Você conta pelo WhatsApp o que te trouxe até aqui e envia exames recentes, se tiver."
+      "Na consulta, cerca de 50 minutos" / "Conversa, exame clínico e, se necessário, radiografias. Sem procedimentos no primeiro dia, a não ser em caso de urgência."
+      "Depois" / "A dentista apresenta o diagnóstico e as opções de tratamento. Você decide no seu tempo."
+  Abaixo: link "Ver a página completa da primeira consulta" (margem superior 28px).
+
+----------------------------------------------------------------------
+[E] A DOUTORA .duas .c5-7
+----------------------------------------------------------------------
+  Esquerda: retrato doutora-helena, proporção 4:5, cover, raio 2px.
+  Direita:
+    h2 "Dra. Helena Prado"
+    .cargo "Cirurgiã-dentista, especialista em Implantodontia. CRO-XX 00000 (exemplo)."
+    Dois parágrafos:
+      "Escolhi a odontologia depois de acompanhar minha avó em um tratamento longo, em que ninguém explicava o que viria a seguir. Desde então, minha regra é simples: o paciente precisa entender o plano antes de aceitá-lo."
+      "Atendo na Lume desde a abertura, com uma equipe pequena, o que me permite acompanhar cada caso de perto."
+    .pequeno "Formação e especializações: [preencher com os dados reais do profissional]."
+    Link "Conhecer a equipe" para sobre.html.
+
+----------------------------------------------------------------------
+[F] A CLÍNICA: GALERIA IRREGULAR (section.faixa)
+----------------------------------------------------------------------
+  h2 "A clínica" + "Ambiente tranquilo, com luz natural e acesso sem degraus."
+  Galeria (.galeria): margem superior 40px.
+    Celular: empilhada, gap 20px.
+    A partir de 768px: 12 colunas, column-gap 24px, row-gap 32px:
+      Foto ALTA (3:4) colunas 1 a 5, ocupando 2 linhas: sala de atendimento. Legenda "Sala de atendimento"
+      Foto BAIXA (3:2) colunas 6 a 12: recepção. Legenda "Recepção"
+      Foto BAIXA (3:2) colunas 7 a 11 (recuada, quebra o alinhamento): esterilização.
+        Legenda "Bancada de esterilização, onde os instrumentais são embalados e identificados."
+  Todas cover, raio 2px.
+
+----------------------------------------------------------------------
+[G] CASOS CLÍNICOS (espaço reservado)
+----------------------------------------------------------------------
+  h2 "Casos clínicos"
+  "Aqui entram os casos acompanhados pela clínica, publicados somente com termo de consentimento do paciente, como determina o Conselho Federal de Odontologia. Os resultados variam de pessoa para pessoa."
+  Dois retângulos (.reservado): margem superior 32px, gap 20px;
+  a partir de 768px lado a lado (1fr 1fr), largura máxima 880px.
+    Proporção 4:3, fundo --cor-faixa, borda 1px TRACEJADA --cor-texto-suave, raio 2px,
+    texto centralizado 14px --cor-texto-suave: "Espaço para caso real".
+
+----------------------------------------------------------------------
+[H] AVALIAÇÕES (3 cartões de tamanhos e posições diferentes)
+----------------------------------------------------------------------
+  h2 "O que dizem os pacientes"
+  Cartão (figure.aval): fundo branco, borda 1px --cor-linha, raio 2px, padding 24px, sem sombra.
+    Etiqueta: "Exemplo de avaliação" 13px --cor-texto-suave, margem inferior 12px (texto simples, não é pílula)
+    Citação (blockquote): Newsreader itálico 400, 20px, line-height 1.45, margem inferior 16px
+    Autor (figcaption): 14px
+  Celular: empilhados, gap 20px.
+  A partir de 768px: 12 colunas, gap 24px, alinhados pelo topo:
+    Cartão 1: colunas 1 a 6, padding 36px, citação em 26px (o maior)
+      "Fui com medo e saí tranquila. Ela explicou tudo antes de encostar em mim." / Luíza, paciente (exemplo)
+    Cartão 2: colunas 8 a 12, margem superior 72px (desce em relação ao primeiro)
+      "O consultório é silencioso e a recepção respondeu minhas dúvidas pelo WhatsApp no mesmo dia." / Otávio, paciente (exemplo)
+    Cartão 3: colunas 3 a 9 (deslocado), na linha de baixo
+      "Gostei de receber o diagnóstico explicado, sem pressão para decidir." / Bernadete, paciente (exemplo)
+  Sem estrelas, sem nota.
+  Abaixo (margem superior 32px, 15px suave): "No site real, esta seção mostra as avaliações verdadeiras do Google da clínica." + link "Avaliar a clínica no Google" (href="#").
+
+----------------------------------------------------------------------
+[I] PERGUNTAS FREQUENTES .duas .c4-8 (acordeão)
+----------------------------------------------------------------------
+  Esquerda: h2 "Perguntas frequentes". Direita: acordeão.
+  Acordeão (.faq): filete superior 1px; cada item com filete inferior 1px.
+    Cada pergunta é um <h3> (sem estilo próprio) com um <button> dentro:
+      flex, espaço entre, centralizado, gap 24px, largura 100%, altura mínima 56px,
+      padding 18px 0, sem fundo, sem borda, texto à esquerda,
+      Hanken Grotesk 500, 17px, line-height 1.4, cor --cor-texto. Hover: --cor-ancora.
+      Ícone "mais" à direita; aberto, o traço vertical some (vira "menos"), transição 200ms.
+    Resposta (.faq-painel): overflow hidden, altura animada em 200ms.
+      Parágrafo com padding 0 48px 20px 0, --cor-texto-suave.
+  Perguntas e respostas:
+    1 "Quanto tempo dura a primeira consulta?" / "Em geral, cerca de 50 minutos. Se houver urgência, o atendimento é adaptado."
+    2 "Preciso levar exames?" / "Se você tiver radiografias ou exames recentes, leve ou envie pelo WhatsApp. Se não tiver, a dentista avalia o que precisa ser solicitado."
+    3 "Vocês atendem convênios? Quais as formas de pagamento?" / "Essas informações são passadas diretamente pelo WhatsApp ou na recepção."
+    4 "Implante dói?" / "O procedimento é feito com anestesia. Depois, algum desconforto pode acontecer e a dentista orienta como controlá-lo. A experiência varia de pessoa para pessoa."
+    5 "Posso ir com acompanhante?" / "Sim. Pode ficar na recepção ou, se preferir e o procedimento permitir, na sala."
+    6 "Atendem urgência?" / "Sim. Chame no WhatsApp e conte o que está acontecendo. Informamos a melhor forma de atendimento no mesmo horário comercial."
+
+----------------------------------------------------------------------
+[J] COMO CHEGAR (section.faixa) .duas .c5-7
+----------------------------------------------------------------------
+  Esquerda:
+    h2 "Como chegar"
+    Endereço (address.endereco): flex, gap 8px, ícone de pino (margem superior 4px) + texto, sem itálico.
+    Bloco .dados (grid, gap 6px, margem superior 16px):
+      horário / "Estacionamento conveniado na rua de trás. Acesso sem degraus." /
+      telefone (link com ícone, inline-flex, gap 8px, altura mínima 44px)
+    Botão "Agendar pelo WhatsApp".
+  Direita: espaço do mapa (.reservado .mapa): proporção 4:3, fundo --cor-faixa,
+    borda SÓLIDA 1px --cor-linha, texto "Mapa do Google, inserir o iframe da clínica aqui".
+
+
+======================================================================
+8. IMPLANTES.HTML (modelo de página de tratamento)
+======================================================================
+
+Topo (section.cabeca .wrap): padding superior 40px (celular) / 72px (desktop).
+  Migalhas (nav.migalhas, aria-label "Você está em"): ol em flex, 14px, --cor-texto-suave,
+    margem inferior 24px; separador "/" com 8px de cada lado (via ::before);
+    "Início / Tratamentos / Implantes dentários" (último item sem link, aria-current="page").
+  h1 "Implantes dentários"
+  Introdução: 19px, --cor-texto-suave, largura máxima 52ch.
+  Botão "Perguntar sobre implantes no WhatsApp".
+
+Corpo (.wrap .py-c): blocos .duas .c4-8 (h2 à esquerda, conteúdo à direita).
+  Entre blocos: 64px (celular) / 96px (desktop).
+  1 "Para quem pode ser indicado": um parágrafo.
+  2 "Etapas do tratamento" (h2 sticky no desktop): linha do tempo vertical (ol.linha-tempo):
+      filete à esquerda 1px --cor-ancora, margem 24px em cima e 6px à esquerda.
+      Cada etapa: padding 0 0 28px 28px (a última sem padding inferior), máx. 58ch.
+      Nome da etapa: Newsreader 500, 20px, margem inferior 4px. Texto: --cor-texto-suave.
+      Avaliação e exames / Planejamento / Cirurgia / Cicatrização / Prótese / Manutenção
+      (sem círculos, sem números)
+  3 "Cuidados depois da cirurgia": lista com filetes (4 itens).
+  4 "Perguntas sobre implantes": acordeão com 4 perguntas, todas terminando com
+      "A dentista avalia o seu caso na consulta."
+
+Fechamento (section.fecho .faixa .py-b): filete superior 1px, h2 "Quer conversar sobre o seu caso?"
+  (largura máxima 20ch) e botão "Agendar pelo WhatsApp".
+
+
+======================================================================
+9. PRIMEIRA-CONSULTA.HTML
+======================================================================
+
+Topo .cabeca: migalhas "Início / Primeira consulta", h1 "Sua primeira consulta",
+  intro "Saber o que vai acontecer tira boa parte do medo. É assim que funciona na Lume."
+Corpo (.wrap .py-b) em .duas .c7-5:
+  Esquerda (.texto, largura máxima 680px): h2 com margem superior 56px (o primeiro sem margem):
+    "Antes de vir" (lista com filetes, 4 itens)
+    "Na consulta" (parágrafo)
+    "Depois da consulta" (parágrafo)
+    "O que levar" (lista com filetes, 3 itens)
+    "Acompanhante, crianças e acessibilidade" (parágrafo)
+  Direita (sticky no desktop): foto sala-atendimento 3:4 com legenda
+    "A sala onde acontece a primeira consulta."
+Fechamento .fecho .faixa: h2 invisível (só leitor de tela) e botão
+  "Agendar a primeira consulta pelo WhatsApp".
+
+
+======================================================================
+10. SOBRE.HTML
+======================================================================
+
+Topo .cabeca: migalhas, h1 "A clínica e a equipe", intro de 3 frases.
+Foto larga da equipe (.wrap .py-a), 3:2, legenda "Atendimento em dupla na sala 2."
+Equipe (section .wrap .py-c, h2 "Equipe" invisível), layout ALTERNADO (article.pessoa):
+  Celular: foto e depois texto, gap 28px, 72px entre pessoas.
+  Desktop: 12 colunas, gap 24px, centralizado na vertical, 120px entre pessoas.
+    Pessoa 1, Dra. Helena: foto 4:5 nas colunas 1 a 5, texto nas colunas 7 a 11.
+    Pessoa 2, Dr. Rafael (.inv): texto nas colunas 1 a 6, foto 4:5 nas colunas 8 a 12.
+    Pessoa 3, Camila: foto larga 3:2 (recepção) nas colunas 1 a 6, texto nas colunas 7 a 11.
+  Cada pessoa: h3, .cargo, parágrafos, .pequeno com "[preencher...]" nos dentistas.
+Protocolos (section .faixa .py-b, .duas .c5-7): h2 "Protocolos" + "Instrumentais são limpos, embalados e esterilizados em autoclave, com registro de cada ciclo."
+  À direita, foto da esterilização 3:2 com legenda "Bancada de esterilização. Cada pacote recebe data e identificação."
+Fechamento (.py-b): h2 "Venha conhecer o consultório" + botão de WhatsApp.
+
+
+======================================================================
+11. CONTATO.HTML (formulário)
+======================================================================
+
+Topo .cabeca: migalhas e h1 "Contato".
+Corpo (.wrap .py-a) .duas .c5-7:
+  Esquerda: h2 "Onde estamos", endereço com pino, horário, estacionamento e acesso, telefone,
+    botão "Chamar no WhatsApp", espaço do mapa com margem superior 32px.
+  Direita: formulário.
+
+Formulário (form.form#form-contato, novalidate):
+  grid, gap 22px, fundo branco, borda 1px --cor-linha, raio 2px,
+  padding 24px (celular) / 36px (a partir de 768px).
+  h2 "Mande uma mensagem".
+  Campo (.campo): grid, gap 6px. Rótulo SEMPRE visível acima: 500, 15px.
+  Inputs, selects, textarea: fonte herdada, fundo branco, borda 1px --cor-texto-suave,
+    raio 4px, altura mínima 48px, padding 10px 14px, largura 100%.
+    Textarea: altura mínima 120px, redimensiona só na vertical.
+  Campos, na ordem:
+    Nome (obrigatório, autocomplete name)
+    WhatsApp com DDD (obrigatório, type tel, inputmode numeric, placeholder "(16) 90000-0000",
+      máscara automática "(DD) 9XXXX-XXXX")
+    Assunto (select): Primeira consulta, Implantes, Ortodontia, Clareamento, Lentes e facetas,
+      Prevenção e limpeza, Urgência, Outro
+    Melhor horário para retorno (select): Manhã, Tarde, Noite
+    Mensagem (opcional) — "(opcional)" em 400 suave; máx. 300 caracteres;
+      contador "0 de 300 caracteres" abaixo, à direita, 13px suave
+    Checkbox obrigatório (.check: grid 24px | 1fr, gap 12px, 15px; caixa 22x22, cor --cor-ancora):
+      "Concordo com o uso dos meus dados para retorno do contato, conforme a Política de privacidade."
+  Botão "Enviar pelo WhatsApp" (com balão).
+  Aviso (14px suave): "Não envie informações de saúde por aqui. Elas são tratadas na consulta."
+  Status (.status, role="status"): padding 14px 16px, borda 1px --cor-ancora, raio 4px, fundo --cor-fundo.
+
+  Erros: campo inválido ganha borda 2px #A3261B e aria-invalid="true".
+    Mensagem abaixo (.erro): flex, gap 6px, 14px, #A3261B, ícone "mais" girado 45° (16x16) + texto:
+      Nome: "Informe o seu nome."
+      WhatsApp: "Informe o WhatsApp com DDD, por exemplo (16) 90000-0000."
+      Consentimento: "Marque a concordância para podermos responder."
+    O foco vai para o primeiro campo inválido. Depois do primeiro erro, o campo é revalidado ao sair dele.
+  Sucesso: monta a mensagem (nome, WhatsApp, assunto, horário, mensagem), abre o wa.me da clínica
+    em nova aba e mostra: "Sua mensagem foi montada e o WhatsApp foi aberto em outra aba. Se não abriu, toque aqui para enviar." (link)
+
+
+======================================================================
+12. PRIVACIDADE.HTML
+======================================================================
+
+Topo .cabeca: migalhas, h1 "Política de privacidade", intro de uma frase.
+Corpo .texto (máx. 680px), h2 com 56px acima:
+  Quem é responsável pelos dados / Quais dados coletamos / Para que usamos / Base legal /
+  Com quem compartilhamos / Por quanto tempo guardamos / Seus direitos / Cookies / Atualizações
+Campos a preencher entre colchetes.
+Fecha com uma caixa .status: "Modelo para demonstração. Em um site real, o texto deve ser revisado por um profissional jurídico."
+
+
+======================================================================
+13. IMAGENS
+======================================================================
+
+Todas em WebP, qualidade 78, com width e height no HTML, srcset com 2 tamanhos,
+loading="lazy" e decoding="async" (exceto o hero: fetchpriority="high", sem lazy).
+Fotos reais do Unsplash (licença livre); links em assets/img/CREDITOS.txt.
+
+  Arquivo                        Tamanho     Proporção  Uso                        alt
+  hero-atendimento-640/1200      640x800 / 1200x1500  4:5  hero no desktop          "Dentista conversando com paciente na sala de atendimento"
+  hero-atendimento-m-640/1200    640x480 / 1200x900   4:3  hero no celular          (mesmo alt)
+  sala-atendimento-480/900       480x640 / 900x1200   3:4  seção C, galeria, primeira consulta  "Sala de atendimento com luz natural"
+  recepcao-640/1200              640x427 / 1200x800   3:2  galeria, Camila          "Recepção da clínica"
+  esterilizacao-640/1200         640x427 / 1200x800   3:2  galeria, protocolos      "Bancada de esterilização de instrumentais"
+  doutora-helena-480/960         480x600 / 960x1200   4:5  seção E, sobre           "Dra. Helena Prado"
+  doutor-rafael-480/960          480x600 / 960x1200   4:5  sobre                    "Dr. Rafael Moura"
+  equipe-640/1200                640x427 / 1200x800   3:2  sobre (topo)             "Equipe da clínica"
+  og-lume.jpg                    1200x630             —    compartilhamento         —
+  favicon.svg                    64x64, quadrado #0F4A4E com raio 6, letra "L" branca em Newsreader/Georgia 44px
+
+Atributo sizes usado:
+  hero desktop 42vw, celular 100vw; retratos "(min-width: 1024px) 480px, 100vw";
+  galeria "(min-width: 768px) 40vw/55vw, 100vw".
+
+Imagem OG: metade esquerda (560px) em #0F4A4E com "Lume" (serifada, 96pt branco),
+"Odontologia" (26pt branco) e "Ribeirão Preto, SP" (20pt #D5DCDC); metade direita com a foto do hero.
+
+Estilo das fotos: luz natural, documental, pessoas ocupadas e não posando.
+Nunca: close de dentes branquíssimos, aperto de mão, braços cruzados olhando para a câmera, fundo de estúdio.
+
+
+======================================================================
+14. COMPORTAMENTO EM JAVASCRIPT (main.js)
+======================================================================
+
+1 Dados do config: todo elemento com data-c="chave" recebe CLINICA[chave] como texto.
+  Chaves usadas: marca, complemento, endereco, horario, horarioCurto, cidade, responsavel,
+  cro, especialidade, telefone, email, cnpj.
+2 Links de WhatsApp: elementos com data-wa="mensagem" recebem
+  href = https://wa.me/NUMERO?text=MENSAGEM_CODIFICADA ({nome} vira o nome da clínica).
+  Se forem botões (.btn), recebem o ícone de balão à esquerda.
+  data-tel recebe "tel:+5516900000000"; data-email recebe "mailto:".
+3 Faixa demo e linha "Criado por" só com mostrarFaixaDemo = true.
+4 JSON-LD Dentist gerado a partir do config e inserido no <head>.
+5 Medição: clique em qualquer elemento com data-evento faz
+  window.dataLayer.push({event: data-evento, origem: data-origem}).
+  Origens: cabecalho, menu, hero, tratamentos-*, como-chegar, rodape, barra-fixa,
+  implantes-topo, implantes-fechamento, primeira-consulta, sobre-fechamento, contato, formulario, faixa-demo.
+  Nenhum script de terceiros. GTM/GA4 vai na função medir(), chamada só após "Aceitar".
+6 Menu mobile: abre e fecha, Esc fecha, foco vai para o botão fechar ao abrir e volta ao botão do menu ao fechar,
+  clicar em um link fecha o menu.
+7 Barra fixa: IntersectionObserver no .hero ou .cabeca; some com foco em campo de digitação.
+8 Acordeão: botões com aria-expanded e aria-controls; os painéis vêm abertos no HTML
+  (funciona sem JS) e o JS os esconde ao carregar; animação de altura 0 → scrollHeight em 200ms.
+9 Formulário: máscara de telefone, contador, validação e envio pelo WhatsApp (seção 11).
+10 Cookies: lê e grava localStorage com try/catch; mostra o aviso só sem escolha salva.
+
+
+======================================================================
+15. SEO, HEAD E DADOS ESTRUTURADOS
+======================================================================
+
+Em todas as páginas, nesta ordem:
+  <html lang="pt-BR">, charset utf-8,
+  viewport "width=device-width, initial-scale=1, viewport-fit=cover",
+  comentário "REMOVER em site real" + <meta name="robots" content="noindex, nofollow">,
+  title e meta description únicos (140 a 155 caracteres, com a cidade),
+  canonical, color-scheme light, theme-color #0F4A4E,
+  Open Graph (type, locale pt_BR, site_name, title, description, url, image 1200x630),
+  twitter:card summary_large_image, favicon SVG, preconnect e preload das fontes, CSS,
+  comentário indicando onde colar GTM/GA4, JSON-LD da página.
+
+  Títulos:
+    index:  "Lume Odontologia | Dentista em Ribeirão Preto, SP"
+    implantes: "Implantes dentários em Ribeirão Preto, SP | Lume Odontologia"
+    primeira-consulta: "Primeira consulta no dentista em Ribeirão Preto | Lume"
+    sobre: "A clínica e a equipe | Lume Odontologia, Ribeirão Preto"
+    contato: "Contato e como chegar | Lume Odontologia, Ribeirão Preto"
+    privacidade: "Política de privacidade | Lume Odontologia"
+
+  JSON-LD: Dentist em todas (via JS); FAQPage na index e em implantes (só perguntas visíveis);
+  BreadcrumbList nas internas. Um h1 por página. sitemap.xml e robots.txt de exemplo.
+
+
+======================================================================
+16. ACESSIBILIDADE
+======================================================================
+
+- Link "Pular para o conteúdo" para main#conteudo.
+- Hierarquia h1 > h2 > h3 correta; h2 invisíveis (.sr) onde a seção não tem título visível.
+- Cada section tem aria-labelledby apontando para o seu título.
+- Alvos de toque de no mínimo 44px (botões 48px, barra 52px, links do rodapé com padding 8px).
+- Foco visível em tudo. Teclado funciona no menu, acordeão e formulário.
+- Formulário com label real, aria-describedby ligando campo e erro, erro em texto e ícone (não só cor).
+- Links repetidos ("Perguntar pelo WhatsApp") com complemento invisível que diz o assunto.
+- Apenas tema claro (color-scheme light). html scroll-padding-top 96px para âncoras não ficarem atrás do cabeçalho.
+
+
+======================================================================
+17. MOVIMENTO
+======================================================================
+
+Só estes, todos respondendo ao usuário:
+  hover de botão 150ms (fundo) | hover de link (sublinhado de 1px para 2px, sem transição)
+  acordeão 200ms (altura e ícone) | barra fixa do celular 200ms (translateY)
+Nenhuma animação de entrada ao rolar, nenhum parallax, pulso ou brilho.
+prefers-reduced-motion: reduce desliga todas as transições.
+
+
+======================================================================
+18. O QUE NUNCA USAR (para manter o visual)
+======================================================================
+
+Gradientes, blobs, glows, glassmorphism/backdrop-filter, sombras coloridas, modo escuro.
+Fontes Inter, Geist, Space Grotesk, Instrument Serif, Plus Jakarta Sans, Roboto.
+Títulos em caixa alta com espaçamento largo, badges acima do título, faixas de estatísticas.
+Hero centralizado, três cartões iguais com ícone redondo, círculos numerados, setas nos botões,
+ícones de biblioteca, emojis, botão flutuante de WhatsApp.
+Preços, "grátis", parcelamento, promoções, promessas de resultado, "sem dor", superlativos.
+Travessão como pontuação.

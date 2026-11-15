@@ -1,0 +1,6 @@
+# Arquivos locais do Claude Code e do sistema
+.claude/
+Thumbs.db
+desktop.ini
+.DS_Store
+node_modules/

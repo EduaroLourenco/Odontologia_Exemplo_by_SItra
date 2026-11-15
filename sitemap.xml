@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Exemplo: troque www.exemplo.com.br pelo domínio real. Só páginas públicas. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.exemplo.com.br/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://www.exemplo.com.br/tratamentos.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://www.exemplo.com.br/implantes.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://www.exemplo.com.br/ortodontia.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://www.exemplo.com.br/clareamento.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://www.exemplo.com.br/lentes.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://www.exemplo.com.br/prevencao.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://www.exemplo.com.br/urgencia.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://www.exemplo.com.br/agendamento.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://www.exemplo.com.br/primeira-consulta.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://www.exemplo.com.br/sobre.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://www.exemplo.com.br/contato.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://www.exemplo.com.br/cuidados.html</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://www.exemplo.com.br/privacidade.html</loc><lastmod>2026-11-13</lastmod></url>
+</urlset>
