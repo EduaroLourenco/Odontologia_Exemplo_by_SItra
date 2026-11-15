@@ -517,12 +517,16 @@
       var pal = $("input[name=paleta]:checked", fp);
       var p = { nome: fp.nome.value.trim().slice(0, 40), complemento: fp.complemento.value.trim().slice(0, 30), cidade: fp.cidade.value.trim().slice(0, 40), paleta: pal ? pal.value : "petroleo" };
       ls.set("lume-personalizado", JSON.stringify(p));
+      try { sessionStorage.setItem("lume-personal-aplicado", "1"); } catch (x) {}
       location.reload();
     });
     $("#restaurar-demo").addEventListener("click", function () { ls.del("lume-personalizado"); location.reload(); });
   }
   if (salvo && (salvo.nome || salvo.paleta !== "petroleo")) {
-    setTimeout(function () { L.toast("Você está vendo a versão personalizada.", "Restaurar", function () { ls.del("lume-personalizado"); location.reload(); }, 4000); }, 900);
+    var av = $("#aviso-personal"); if (av) av.hidden = false;
+    /* Toast só uma vez, logo após aplicar; depois o aviso fica dentro do painel */
+    var acabou = false; try { acabou = sessionStorage.getItem("lume-personal-aplicado"); sessionStorage.removeItem("lume-personal-aplicado"); } catch (x) {}
+    if (acabou) setTimeout(function () { L.toast("Personalização aplicada ✓", "", null, 2200); }, 600);
   }
 
   /* ---------- Tour guiado ---------- */

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Vídeo: versão do dentista</title><link rel="stylesheet" href="motor.css"></head>
+<body><div id="palco"></div>
+<script>
+window.ROTEIRO = { dur: 43, cenas: [
+  { tipo: "abertura", a: 0, b: 3.4, fundo: "#E7E4FB", chip: "Para dentistas", titulo: "Seu consultório com cara de app", sub: "Como apresentar o site exemplo 👇" },
+  { tipo: "celular", a: 3.4, b: 8.2, fundo: "#F6F1E7", passo: "1", titulo: "Um site que vira o seu", sub: "Tudo fictício, pronto para trocar",
+    telas: [{ img: "d01-para", at: 3.5, trans: "pop" }, { img: "d02-telas", at: 5.8, trans: "rolar" }],
+    adesivos: [{ at: 4.3, ate: 5.7, y: 1300, lado: "dir", emoji: "🦷", texto: "Clínica de exemplo" }, { at: 6.4, y: 850, lado: "esq", emoji: "📱", texto: "Feito para o celular" }] },
+  { tipo: "celular", a: 8.2, b: 12.2, fundo: "#DDEFEA", passo: "2", titulo: "Faça o tour guiado", sub: "4 paradas em 30 segundos",
+    telas: [{ img: "d03-tour", at: 8.3, trans: "deslizar", toques: [[.76, .975, 10.8]] }],
+    adesivos: [{ at: 9.0, y: 760, lado: "dir", emoji: "🧭", texto: "Mostra cada recurso" }] },
+  { tipo: "celular", a: 12.2, b: 24.4, fundo: "#F3E4E7", passo: "3", titulo: "Personalize na hora ✨", sub: "Nome, cidade e cor da clínica",
+    telas: [
+      { img: "d04-demo", at: 12.3, trans: "deslizar" },
+      { img: "d05-personalizar", at: 14.5, trans: "rolar", digitar: ["Sorriso Leve", 15.2, 8, 38], toques: [[.68, .75, 17.2], [.5, .87, 18.0]] },
+      { img: "d06-home-perso", at: 18.6, trans: "onda", origem: [50, 87] },
+      { img: "d07-trat-perso", at: 21.0, trans: "rolar" },
+      { img: "d08-ag-perso", at: 22.6, trans: "deslizar" }],
+    adesivos: [{ at: 12.8, ate: 14.4, y: 1350, lado: "esq", emoji: "👀", texto: "“Ver com a minha clínica”" }, { at: 15.0, ate: 17.0, y: 640, lado: "dir", emoji: "⌨️", texto: "Digita o nome" }, { at: 17.1, ate: 18.5, y: 1450, lado: "esq", emoji: "🎨", texto: "Escolhe a cor" }, { at: 19.2, ate: 21.0, y: 1500, lado: "dir", emoji: "🪄", texto: "O site inteiro muda!" }, { at: 22.9, y: 900, lado: "esq", emoji: "🔁", texto: "Em todas as páginas" }] },
+  { tipo: "celular", a: 24.4, b: 28.8, fundo: "#DDEFEA", passo: "4", titulo: "Paciente acompanha tudo", sub: "Consultas, plano e documentos",
+    telas: [{ img: "d09-pac-perso", at: 24.5, trans: "deslizar" }],
+    adesivos: [{ at: 25.3, y: 1400, lado: "dir", emoji: "📈", texto: "Fideliza o paciente" }] },
+  { tipo: "lista", a: 28.8, b: 34.4, fundo: "#F6F1E7", passo: "👆", titulo: "Teste em 3 toques", sub: "Mande o link e peça para o dentista:",
+    itens: ["Abrir o link no celular", "Tocar em “Ver com a minha clínica”", "Entrar na Área do paciente"] },
+  { tipo: "celular", a: 34.4, b: 38.6, fundo: "#E7E4FB", passo: "5", titulo: "Gostou? Fale com a Sitra", sub: "Fazemos o site real do consultório",
+    telas: [{ img: "d10-sitra", at: 34.5, trans: "deslizar" }],
+    adesivos: [{ at: 35.3, y: 1300, lado: "esq", emoji: "💬", texto: "Botão direto no site" }] },
+  { tipo: "fechamento", a: 38.6, b: 43, fundo: "#F6F1E7", titulo: "Seu site com cara de app", sub: "Agendamento, área do paciente e a sua marca",
+    linhas: ["WhatsApp (16) 99444-7044", "Site exemplo: Lume Odontologia"] }
+]};
+</script>
+<script src="motor.js"></script>
+</body></html>

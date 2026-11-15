@@ -66,6 +66,22 @@ node ferramentas/gerar.js
 - **Tour guiado** de 5 passos: aparece como convite na primeira visita à home, e também em "Saiba mais" e na página "Para dentistas".
 - **Instalar como app** (PWA): manifest, ícones e service worker. No Android aparece "Instalar"; no iPhone, Compartilhar > Adicionar à Tela de Início.
 
+## Vídeos de apresentação (40 s, formato vertical)
+
+`assets/video/lume-paciente.mp4` (versão do paciente) e `assets/video/lume-dentista.mp4` (versão do dentista), 1080x1920, prontos para WhatsApp, Reels e Status. Também aparecem na página "Para dentistas".
+
+São animações feitas com as telas reais do site no celular, com a marca da Sitra como marca d'água. Para refazer depois de mudar o site:
+
+```bash
+node ferramentas/video/capturar.js ferramentas/video/telas
+```
+
+```bash
+node ferramentas/video/renderizar.js paciente assets/video/lume-paciente.mp4
+```
+
+O primeiro comando precisa do site rodando em http://localhost:5500. O segundo precisa do Chrome e do ffmpeg (variável `FFMPEG` ou `ffmpeg` no PATH). O roteiro de cada vídeo (textos, tempos, toques) fica em `ferramentas/video/paciente.html` e `dentista.html`.
+
 ## Configuração (`assets/js/config.js`)
 
 | Campo | Efeito |

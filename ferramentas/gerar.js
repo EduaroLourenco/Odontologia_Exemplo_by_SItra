@@ -84,12 +84,12 @@ const crumbLd = itens => ({ "@context": "https://schema.org", "@type": "Breadcru
 
 /* ---------------- Dados dos tratamentos ---------------- */
 const TRAT = [
-  { id: "implantes", nome: "Implantes dentários", curto: "Implantes", ico: "implante", foto: "raio-x", cat: "reabilitacao", resumo: "Reposição de dentes ausentes com planejamento digital e acompanhamento depois da cirurgia." },
-  { id: "ortodontia", nome: "Ortodontia e alinhadores", curto: "Ortodontia", ico: "alinhador", foto: "alinhador", cat: "estetica criancas", resumo: "Aparelho fixo ou alinhadores transparentes, conforme o que a avaliação indicar." },
-  { id: "clareamento", nome: "Clareamento dental", curto: "Clareamento", ico: "brilho", foto: "clareamento", cat: "estetica", resumo: "No consultório ou em casa com supervisão, depois de avaliar dentes e gengivas." },
-  { id: "lentes", nome: "Lentes e facetas", curto: "Lentes e facetas", ico: "faceta", foto: "lentes", cat: "estetica", resumo: "Ajustes de forma, cor e alinhamento quando há indicação clínica, com ensaio antes." },
-  { id: "prevencao", nome: "Prevenção e limpeza", curto: "Prevenção", ico: "escova", foto: "escovas", cat: "prevencao criancas", resumo: "Revisões, limpeza profissional e orientação de higiene para toda a família." },
-  { id: "urgencia", nome: "Urgência odontológica", curto: "Urgência", ico: "alerta", foto: "urgencia", cat: "urgencia", resumo: "Dor, dente quebrado ou inchaço. Veja o que fazer agora e fale com a recepção." },
+  { id: "implantes", nome: "Implantes dentários", curto: "Implantes", ico: "implante", foto: "raio-x", cat: "reabilitacao", resumo: "Repõe dentes perdidos, com planejamento digital." },
+  { id: "ortodontia", nome: "Ortodontia e alinhadores", curto: "Ortodontia", ico: "alinhador", foto: "alinhador", cat: "estetica criancas", resumo: "Aparelho fixo ou alinhador transparente." },
+  { id: "clareamento", nome: "Clareamento dental", curto: "Clareamento", ico: "brilho", foto: "clareamento", cat: "estetica", resumo: "No consultório ou em casa, com supervisão." },
+  { id: "lentes", nome: "Lentes e facetas", curto: "Lentes e facetas", ico: "faceta", foto: "lentes", cat: "estetica", resumo: "Forma e cor ajustadas, com ensaio antes." },
+  { id: "prevencao", nome: "Prevenção e limpeza", curto: "Prevenção", ico: "escova", foto: "escovas", cat: "prevencao criancas", resumo: "Revisão e limpeza para toda a família." },
+  { id: "urgencia", nome: "Urgência odontológica", curto: "Urgência", ico: "alerta", foto: "urgencia", cat: "urgencia", resumo: "Dor ou dente quebrado? Veja o que fazer." },
 ];
 const cartaoTrat = (t, lazy = true) => `<a class="cartao-trat" href="${t.id}.html">
             <span class="foto">${img(t.foto, [640, 1200], 1200, 900, "", "(min-width: 1024px) 400px, 80vw", lazy ? "" : 'decoding="async"').replace('alt=""', 'alt="" style="view-transition-name: vt-' + t.id + '"')}${bolha(t.ico)}</span>
@@ -227,12 +227,14 @@ const sheetsComuns = `
       <div class="campos-form nota">
         <button class="btn" type="button" data-abrir-sheet="sheet-personalizar">Ver com a minha clínica</button>
         <button class="btn btn-contorno" type="button" data-tour-iniciar>Fazer o tour de 30 segundos</button>
+        <a class="btn btn-contorno" href="para-dentistas.html#videos">Ver o vídeo de 40 segundos</a>
         <a class="btn btn-contorno" href="para-dentistas.html">O que o dentista recebe</a>
         <a class="btn btn-contorno" href="#" data-agencia-link hidden>Falar com a <span data-c="nomeAgencia">Sitra</span></a>
         <button class="btn btn-contorno" type="button" data-instalar hidden>${I.celular}Instalar como app</button>
       </div>`)}
   ${sheet("sheet-personalizar", "Ver com a minha clínica", `
-      <p>Digite o nome do consultório e escolha uma cor. O site inteiro muda na hora. Fica salvo só neste navegador.</p>
+      <p class="aviso-personal" id="aviso-personal" hidden>${I.check}<span>Versão personalizada ativa neste navegador.</span></p>
+      <p>Digite o nome e escolha a cor. O site inteiro muda na hora.</p>
       <form id="form-personalizar" class="campos-form">
         <div class="campos-2">
           <div class="campo"><label for="p-nome">Nome da clínica</label><input id="p-nome" name="nome" type="text" maxlength="40" placeholder="Ex.: Sorriso Leve" autocomplete="organization"></div>
@@ -243,7 +245,7 @@ const sheetsComuns = `
           <div class="paletas">${paletas.map(([v, c, n], i) => `<label><input type="radio" name="paleta" value="${v}"${i === 0 ? " checked" : ""}><span class="amostra" style="background:${c}"></span><small>${n}</small></label>`).join("")}</div>
         </fieldset>
         <button class="btn" type="submit">Aplicar no site</button>
-        <button class="link-btn" type="button" id="restaurar-demo">Voltar para a Lume (demonstração)</button>
+        <button class="link-btn" type="button" id="restaurar-demo">Voltar ao original (Lume)</button>
       </form>`)}`;
 
 const cabecaHead = (title, desc, url) => `<!doctype html>
@@ -347,8 +349,6 @@ const faqHome = [
   ["Quanto tempo dura a primeira consulta?", "Em geral, cerca de 50 minutos. Se houver urgência, o atendimento é adaptado."],
   ["Preciso levar exames?", "Se você tiver radiografias ou exames recentes, leve no dia. Se não tiver, a dentista avalia o que precisa ser solicitado."],
   ["Vocês atendem convênios? Quais as formas de pagamento?", "A lista de convênios está na página de contato e deve ser confirmada com a recepção. Formas de pagamento são informadas diretamente pela recepção."],
-  ["Implante dói?", "O procedimento é feito com anestesia. Depois, algum desconforto pode acontecer e a dentista orienta como controlá-lo. A experiência varia de pessoa para pessoa."],
-  ["Posso ir com acompanhante?", "Sim. Pode ficar na recepção ou, se preferir e o procedimento permitir, na sala."],
   ["Atendem urgência?", "Sim, dentro do horário de funcionamento. Veja a página de urgência ou faça a solicitação marcando Urgência."],
 ];
 const mapa = `<div class="reservado mapa" data-mapa>Localização ilustrativa, configurar endereço. Nenhum mapa real foi associado à clínica nesta demonstração.</div>`;
@@ -381,7 +381,7 @@ page({
       <div class="hero3-cartao">
         <p class="sobretitulo">Odontologia em <span data-c="cidade">Ribeirão Preto, SP</span></p>
         <h1 id="t-hero">Seu sorriso, <em>no seu tempo.</em></h1>
-        <p>Consulta sem pressa, diagnóstico explicado e plano por escrito. Você entende cada etapa antes de decidir.</p>
+        <p>Consulta sem pressa e plano explicado por escrito.</p>
         <div class="hero3-acoes">
           ${btnAgendar("hero", "Agendar avaliação", "", "btn-grande")}
           <a class="btn btn-contorno btn-grande" href="login.html">${I.usuario}Sou paciente</a>
@@ -402,7 +402,7 @@ page({
     </section>
 
     <section class="s3" aria-labelledby="t-trat" data-revelar>
-      ${secaoCarrossel("t-trat", "Tratamentos", "O que cuidamos por aqui", "Cada indicação depende de uma avaliação clínica.", "Ver todos", "tratamentos.html", TRAT.map(t => cartaoTrat(t)), "", ' data-tour="3" data-tour-titulo="Tratamentos com foto" data-tour-texto="Cartões que deslizam, como num app. Cada tratamento tem a própria página, boa para o Google e para o paciente."')}
+      ${secaoCarrossel("t-trat", "Tratamentos", "O que cuidamos por aqui", "", "Ver todos", "tratamentos.html", TRAT.map(t => cartaoTrat(t)), "", ' data-tour="3" data-tour-titulo="Tratamentos com foto" data-tour-texto="Cartões que deslizam, como num app. Cada tratamento tem a própria página, boa para o Google e para o paciente."')}
     </section>
 
     <section class="s3-g" aria-labelledby="t-dif">
@@ -410,10 +410,10 @@ page({
         <div class="secao-topo"><div><p class="sobretitulo">Por que a Lume</p><h2 id="t-dif">Feito para você entender e ficar tranquilo</h2></div></div>
         <div class="diferenciais" data-revelar>
           <div class="dif dif-foto">${img("sala-atendimento", [480, 900], 900, 1200, "Sala de atendimento com janela e luz natural", "(min-width: 1024px) 480px, 100vw")}<span class="legenda-foto">Salas com luz natural. Imagem ilustrativa.</span></div>
-          <div class="dif">${bolha("relogio")}<h3>Hora marcada de verdade</h3><p>Consultas com tempo reservado para conversar. Sem sala de espera cheia.</p></div>
-          <div class="dif">${bolha("doc")}<h3>Plano por escrito</h3><p>Você leva o diagnóstico, as opções e as etapas, no papel e na área do paciente.</p></div>
-          <div class="dif">${bolha("usuario")}<h3>A mesma equipe</h3><p>Quem avalia é quem acompanha o tratamento até o fim.</p></div>
-          <div class="dif">${bolha("acesso")}<h3>Acesso sem degraus</h3><p>Entrada no nível da rua e banheiro adaptado (dado de exemplo).</p></div>
+          <div class="dif">${bolha("relogio")}<h3>Hora marcada de verdade</h3><p>Tempo reservado para conversar.</p></div>
+          <div class="dif">${bolha("doc")}<h3>Plano por escrito</h3><p>Diagnóstico e etapas no papel e no app.</p></div>
+          <div class="dif">${bolha("usuario")}<h3>A mesma equipe</h3><p>Quem avalia acompanha até o fim.</p></div>
+          <div class="dif">${bolha("acesso")}<h3>Acesso sem degraus</h3><p>Entrada no nível da rua (exemplo).</p></div>
         </div>
       </div>
     </section>
@@ -424,11 +424,10 @@ page({
         <div>
           <p class="sobretitulo">Atendimento sem pressa</p>
           <h2 id="t-medo">Tem medo de dentista? A gente vai devagar.</h2>
-          <p>Muita gente adia a consulta por medo ou por já ter passado por um atendimento corrido. Aqui a primeira consulta serve para ouvir você.</p>
+          <p>A primeira consulta serve para ouvir você.</p>
           <ul>
             <li>${I.check}<span>Explicamos cada etapa antes de começar.</span></li>
             <li>${I.check}<span>Você pode pedir uma pausa a qualquer momento.</span></li>
-            <li>${I.check}<span>Falamos sobre o que te deixa inseguro antes do primeiro procedimento.</span></li>
           </ul>
           <a class="btn btn-luz btn-grande" href="primeira-consulta.html">Ver como é a primeira consulta</a>
         </div>
@@ -436,7 +435,7 @@ page({
     </section>
 
     <section class="s3-g" aria-labelledby="t-equipe" data-revelar>
-      ${secaoCarrossel("t-equipe", "Equipe", "Quem vai cuidar de você", "Personagens fictícios desta demonstração.", "Conhecer a clínica", "sobre.html", [
+      ${secaoCarrossel("t-equipe", "Equipe", "Quem vai cuidar de você", "Personagens fictícios.", "Conhecer a clínica", "sobre.html", [
         `<a class="cartao-pessoa" href="sobre.html">${img("doutora-helena", [480, 960], 960, 1200, "Dentista em atendimento, imagem que representa a Dra. Helena Prado", "(min-width: 1024px) 300px, 64vw")}<span class="legenda"><b>Dra. Helena Prado</b><small>Implantodontia · CRO de exemplo</small></span></a>`,
         `<a class="cartao-pessoa" href="sobre.html">${img("doutor-rafael", [480, 960], 960, 1200, "Dentista explicando o tratamento a uma paciente, imagem que representa o Dr. Rafael Mota", "(min-width: 1024px) 300px, 64vw")}<span class="legenda"><b>Dr. Rafael Mota</b><small>Ortodontia · CRO de exemplo</small></span></a>`,
         `<a class="cartao-pessoa" href="sobre.html">${img("recepcao-v", [480, 900], 900, 1200, "Recepção da clínica", "(min-width: 1024px) 300px, 64vw")}<span class="legenda"><b>Camila Nogueira</b><small>Recepção e agendamentos</small></span></a>`,
@@ -449,7 +448,7 @@ page({
         <div>
           <p class="sobretitulo">Conheça antes de vir</p>
           <h2 id="t-tour">Um minuto dentro da clínica</h2>
-          <p>Recepção, salas e esterilização. No site real, este espaço mostra um vídeo curto gravado no consultório.</p>
+          <p>Espaço para um vídeo curto do consultório.</p>
           <div class="acoes"><a class="link" href="sobre.html">Ver a clínica e a equipe</a></div>
         </div>
         <button class="video-capa" type="button" data-abrir-sheet="sheet-video">
@@ -464,16 +463,16 @@ page({
       <div class="wrap">
         <div class="secao-topo"><div><p class="sobretitulo">Primeira consulta</p><h2 id="t-consulta">Sem surpresa, do começo ao fim</h2></div><a class="ver-todos" href="primeira-consulta.html">Ver detalhes</a></div>
         <div class="passos-visual" data-revelar>
-          <div class="passo-v">${bolha("chat")}<p class="quando nota">Antes</p><h3>Você conta o que precisa</h3><p>Pelo pré-agendamento ou com a recepção. Separe exames recentes, se tiver.</p></div>
-          <div class="passo-v">${bolha("relogio")}<p class="quando nota">Na consulta, cerca de 50 min</p><h3>Conversa e exame</h3><p>Radiografias se forem necessárias. Sem procedimento no primeiro dia, salvo urgência.</p></div>
-          <div class="passo-v">${bolha("doc")}<p class="quando nota">Depois</p><h3>Plano explicado</h3><p>Diagnóstico e opções por escrito. Você decide no seu tempo.</p></div>
+          <div class="passo-v">${bolha("chat")}<p class="quando nota">Antes</p><h3>Você conta o que precisa</h3><p>Pelo app ou com a recepção.</p></div>
+          <div class="passo-v">${bolha("relogio")}<p class="quando nota">Na consulta, cerca de 50 min</p><h3>Conversa e exame</h3><p>Radiografias, se necessárias.</p></div>
+          <div class="passo-v">${bolha("doc")}<p class="quando nota">Depois</p><h3>Plano explicado</h3><p>Opções por escrito. Você decide.</p></div>
         </div>
       </div>
     </section>
 
     <section class="faixa-menta s3-g" aria-labelledby="t-clinica">
       <div class="wrap">
-        <div class="secao-topo"><div><p class="sobretitulo">Estrutura</p><h2 id="t-clinica">Um consultório claro e tranquilo</h2><p>Toque para ver em tela cheia. Imagens ilustrativas.</p></div></div>
+        <div class="secao-topo"><div><p class="sobretitulo">Estrutura</p><h2 id="t-clinica">Um consultório claro e tranquilo</h2><p>Imagens ilustrativas.</p></div></div>
         <div class="mosaico" data-revelar>
           <button type="button" class="g1" data-lb="0" aria-label="Ampliar: sala de atendimento">${img("sala-atendimento", [480, 900], 900, 1200, "", "(min-width: 1024px) 620px, 100vw")}<span class="rot">Sala de atendimento</span></button>
           <button type="button" data-lb="1" aria-label="Ampliar: recepção">${img("recepcao", [640, 1200], 1200, 800, "", "(min-width: 1024px) 300px, 50vw")}<span class="rot">Recepção</span></button>
@@ -489,7 +488,7 @@ page({
     </section>
 
     <section class="s3" aria-labelledby="t-aval" data-revelar>
-      ${secaoCarrossel("t-aval", "Avaliações", "O que dizem os pacientes", "Exemplos fictícios. No site real, entram as avaliações do Google.", "", "", [
+      ${secaoCarrossel("t-aval", "Avaliações", "O que dizem os pacientes", "Exemplos fictícios.", "", "", [
         ["Luíza", "Fui com medo e saí tranquila. Ela explicou tudo antes de encostar em mim."],
         ["Otávio", "O consultório é silencioso e a recepção respondeu minhas dúvidas no mesmo dia."],
         ["Bernadete", "Gostei de receber o diagnóstico explicado, sem pressão para decidir."],
@@ -499,7 +498,7 @@ page({
 
     <section class="s3" aria-labelledby="t-casos">
       <div class="wrap duas c5-7">
-        <div><h2 id="t-casos">Casos clínicos</h2><p>Casos acompanhados pela clínica entram aqui somente com termo de consentimento do paciente, como determina o Conselho Federal de Odontologia. Os resultados variam de pessoa para pessoa.</p></div>
+        <div><h2 id="t-casos">Casos clínicos</h2><p>Só com consentimento do paciente (CFO). Resultados variam.</p></div>
         <div class="casos" style="margin-top:0"><div class="reservado">Espaço para caso real, com consentimento</div><div class="reservado">Espaço para caso real, com consentimento</div></div>
       </div>
     </section>
@@ -523,7 +522,7 @@ page({
       <div class="lb-trilho">${[["sala-atendimento-900", "Sala de atendimento"], ["recepcao-1200", "Recepção"], ["esterilizacao-1200", "Bancada de esterilização"], ["sala-2-900", "Consultório"], ["raio-x-1200", "Planejamento com tomografia"]].map(([f, c]) => `<figure class="lb-item"><img src="assets/img/${f}.webp" alt="${c}, imagem ilustrativa" loading="lazy"><figcaption>${c}. Imagem ilustrativa.</figcaption></figure>`).join("")}</div>
       <button type="button" class="lb-nav ant" aria-label="Foto anterior">${I.esq}</button><button type="button" class="lb-nav prox" aria-label="Próxima foto">${I.dir}</button>
     </dialog>
-    ${sheet("sheet-video", "Tour pela clínica", `<p>Aqui entra um vídeo curto (cerca de 1 minuto) gravado no consultório real: recepção, salas, esterilização e a equipe trabalhando.</p><p>Nesta demonstração não há vídeo: preferimos não usar imagens de outra clínica como se fossem da Lume.</p><p><a href="sobre.html">Ver fotos da estrutura e a equipe</a></p>`)}`,
+    ${sheet("sheet-video", "Tour pela clínica", `<p>Aqui entra um vídeo de 1 minuto do consultório real. Na demonstração não usamos imagens de outra clínica.</p><p><a href="sobre.html">Ver fotos da estrutura e a equipe</a></p>`)}`,
 });
 
 /* ================= TRATAMENTOS (índice) ================= */
@@ -596,13 +595,12 @@ page({
   desc: "Como funciona o implante dentário na Lume, em Ribeirão Preto: avaliação do osso, planejamento por escrito, cirurgia com anestesia local e manutenção.",
   ld: [crumbLd([["Início", ""], ["Tratamentos", "tratamentos.html"], ["Implantes dentários", "implantes.html"]]), faqLd(faqImpl)],
   scripts: ["comparador.js"],
-  body: `${heroTrat(TRAT[0], "Implantes dentários", "O implante é um pino de titânio colocado no osso para sustentar uma prótese no lugar de um dente ausente. Antes de qualquer indicação, a dentista examina, avalia o osso e explica as opções.", ag("implantes", "Agendar avaliação", "Perguntar sobre implantes no WhatsApp", "Olá, gostaria de saber mais sobre implantes dentários.", "implantes-topo", "btn btn-grande"))}
+  body: `${heroTrat(TRAT[0], "Implantes dentários", "Um pino de titânio no osso que sustenta o dente novo. Tudo começa pela avaliação.", ag("implantes", "Agendar avaliação", "Perguntar sobre implantes no WhatsApp", "Olá, gostaria de saber mais sobre implantes dentários.", "implantes-topo", "btn btn-grande"))}
 
     <section class="s3" aria-labelledby="t-ind">
       <div class="wrap duas c4-8">
         <h2 id="t-ind">Para quem pode ser indicado</h2>
         <div>
-          <p>Para quem perdeu um ou mais dentes e tem gengiva saudável e osso suficiente, ou que possam ser tratados antes. A indicação sai da avaliação, não de uma regra geral.</p>
           <ul class="filetes"><li>Repõe um dente sem desgastar os vizinhos.</li><li>Pode sustentar uma coroa, uma ponte ou uma prótese maior.</li><li>Exige cuidado diário e revisões, como um dente natural.</li></ul>
         </div>
       </div>
@@ -614,10 +612,10 @@ page({
         <div class="palco">
           <figure class="palco-fig" data-etapa="1">${implanteEtapas}<figcaption class="rotulo-etapa" aria-live="polite">Avaliação e planejamento</figcaption></figure>
           <div class="palco-passos">
-            <div class="palco-passo ativo" data-etapa="1"><span class="n">1</span><h3>Avaliação e planejamento</h3><p>Exame clínico, radiografias e, quando necessário, tomografia. A dentista define posição e tipo do implante e explica o plano por escrito.</p></div>
-            <div class="palco-passo" data-etapa="2"><span class="n">2</span><h3>Cirurgia</h3><p>Com anestesia local, o implante é colocado no osso. A duração depende do caso.</p></div>
-            <div class="palco-passo" data-etapa="3"><span class="n">3</span><h3>Cicatrização</h3><p>O osso se integra ao implante. O tempo varia e é definido pela dentista, com revisões no caminho.</p></div>
-            <div class="palco-passo" data-etapa="4"><span class="n">4</span><h3>Coroa e manutenção</h3><p>Depois da cicatrização entra a coroa definitiva. Higiene diária e revisões mantêm o implante saudável.</p></div>
+            <div class="palco-passo ativo" data-etapa="1"><span class="n">1</span><h3>Avaliação e planejamento</h3><p>Exames e plano por escrito.</p></div>
+            <div class="palco-passo" data-etapa="2"><span class="n">2</span><h3>Cirurgia</h3><p>Anestesia local e implante no osso.</p></div>
+            <div class="palco-passo" data-etapa="3"><span class="n">3</span><h3>Cicatrização</h3><p>O osso se integra ao implante.</p></div>
+            <div class="palco-passo" data-etapa="4"><span class="n">4</span><h3>Coroa e manutenção</h3><p>Entra a coroa definitiva. Revisões mantêm tudo saudável.</p></div>
           </div>
         </div>
       </div>
@@ -628,7 +626,7 @@ page({
         <div>
           <p class="sobretitulo">Comparador</p>
           <h2 id="t-cmp">Antes e depois, em ilustração</h2>
-          <p>Arraste a divisória para comparar um sorriso com um dente ausente e o mesmo sorriso com o espaço preenchido.</p>
+          <p>Arraste a divisória para comparar.</p>
           <p class="nota-demo">${I.info}<span><strong>Exemplo ilustrativo.</strong> Desenho criado para explicar o tratamento. Não é um caso real nem promessa de resultado.</span></p>
         </div>
         <div>
@@ -648,10 +646,10 @@ page({
       <div class="wrap">
         <div class="secao-topo"><div><p class="sobretitulo">Guia</p><h2 id="t-guia">O que esperar</h2></div></div>
         <div class="diferenciais">
-          <div class="dif">${bolha("relogio")}<h3>Duração da cirurgia</h3><p>Varia com o número de implantes e a condição do osso. A estimativa é dada no planejamento.</p></div>
-          <div class="dif">${bolha("escudo")}<h3>Anestesia</h3><p>Local, na região tratada. Você fica acordado e pode pedir pausa.</p></div>
-          <div class="dif">${bolha("cal")}<h3>Retorno</h3><p>Uma revisão é marcada depois da cirurgia para acompanhar a cicatrização.</p></div>
-          <div class="dif">${bolha("escova")}<h3>Manutenção</h3><p>Higiene diária com escova e fio ou escova interdental, e revisões periódicas.</p></div>
+          <div class="dif">${bolha("relogio")}<h3>Duração da cirurgia</h3><p>Estimada no planejamento.</p></div>
+          <div class="dif">${bolha("escudo")}<h3>Anestesia</h3><p>Local. Você pode pedir pausa.</p></div>
+          <div class="dif">${bolha("cal")}<h3>Retorno</h3><p>Revisão marcada após a cirurgia.</p></div>
+          <div class="dif">${bolha("escova")}<h3>Manutenção</h3><p>Higiene diária e revisões.</p></div>
         </div>
         <div class="duas c4-8 nota" style="margin-top:40px">
           <h2 style="font-size:1.625rem">Cuidados depois da cirurgia</h2>
@@ -670,15 +668,15 @@ ${fechoTrat("implantes", "Olá, gostaria de saber mais sobre implantes dentário
 /* ================= Tratamentos genéricos ================= */
 const GEN = {
   ortodontia: {
-    titulo: "Ortodontia e alinhadores", intro: "Aparelho fixo ou alinhadores transparentes corrigem a posição dos dentes e a mordida. O tipo de aparelho e o tempo de tratamento dependem da avaliação com o Dr. Rafael Mota.",
+    titulo: "Ortodontia e alinhadores", intro: "Aparelho fixo ou alinhador para alinhar dentes e mordida.",
     para: ["Dentes tortos, apinhados ou com espaços.", "Mordida que não encaixa bem.", "Adultos que nunca trataram ou que voltaram a ter desalinhamento.", "Crianças a partir dos 7 anos, para avaliação preventiva."],
-    passos: [["chat", "Avaliação", "Fotos, radiografias e escaneamento dos dentes."], ["doc", "Plano", "Opções explicadas com modelos na mão, com prós e contras de cada uma."], ["alinhador", "Início", "Instalação do aparelho ou entrega dos alinhadores, com orientação de uso."], ["cal", "Acompanhamento", "Manutenções periódicas e, no final, contenção para manter o resultado."]],
+    passos: [["chat", "Avaliação", "Fotos, radiografias e escaneamento dos dentes."], ["doc", "Plano", "Opções com prós e contras."], ["alinhador", "Início", "Aparelho instalado, com orientação."], ["cal", "Acompanhamento", "Manutenções e contenção no final."]],
     opcoes: { titulo: "Fixo ou alinhador?", foto: ["aparelhos", "Modelos de arcada com aparelho fixo e com dentes alinhados"], itens: [["Aparelho fixo", "Braquetes colados nos dentes e ajustados nas manutenções. Atende a maioria dos casos."], ["Alinhadores transparentes", "Placas removíveis trocadas em sequência. Precisam ser usadas a maior parte do dia para funcionar."]] },
     faq: [["Qual a idade certa para a primeira avaliação?", "Por volta dos 7 anos, para acompanhar o crescimento. Adultos também podem tratar em qualquer idade."], ["Alinhador serve para todos os casos?", "Nem todos. A avaliação mostra se o alinhador resolve o seu caso ou se o aparelho fixo é mais indicado."], ["O aparelho incomoda?", "Pode haver desconforto nos primeiros dias e depois de ajustes, que costuma passar. Se continuar, avise a clínica."]],
     msg: "Olá, gostaria de saber mais sobre ortodontia.",
   },
   clareamento: {
-    titulo: "Clareamento dental", intro: "O clareamento deixa a cor dos dentes naturais mais clara com gel de uso odontológico. Antes, a dentista avalia dentes e gengivas e registra a cor inicial.",
+    titulo: "Clareamento dental", intro: "Dentes naturais mais claros, com avaliação antes.",
     para: ["Dentes amarelados pelo tempo, café, chá ou vinho.", "Quem tem dentes e gengivas saudáveis, ou tratados antes.", "Restaurações, coroas e lentes não mudam de cor: isso é avaliado antes.", "Gestantes e lactantes devem aguardar."],
     passos: [["chat", "Avaliação", "Exame, limpeza se necessária e registro da cor inicial."], ["brilho", "Clareamento", "No consultório, em sessões, ou em casa com moldeira feita para você."], ["relogio", "Acompanhamento", "Revisão da cor e ajuste do tratamento, se preciso."]],
     opcoes: { titulo: "No consultório ou em casa?", foto: ["clareamento", "Dentista examinando paciente na cadeira, imagem ilustrativa"], itens: [["No consultório", "Sessões na clínica, com a dentista aplicando e acompanhando o gel."], ["Em casa, supervisionado", "Moldeira personalizada e gel em casa, com orientação e revisões."]] },
@@ -686,17 +684,17 @@ const GEN = {
     msg: "Olá, gostaria de saber mais sobre clareamento dental.",
   },
   lentes: {
-    titulo: "Lentes e facetas", intro: "Lâminas finas de cerâmica ou resina coladas na frente dos dentes para ajustar forma, cor ou pequenos desalinhamentos, quando há indicação clínica.",
+    titulo: "Lentes e facetas", intro: "Lâminas finas que ajustam forma e cor dos dentes.",
     para: ["Dentes com forma ou tamanho desiguais.", "Manchas que o clareamento não resolve.", "Pequenos espaços entre os dentes.", "Quem tem gengiva saudável e não range os dentes sem proteção."],
-    passos: [["chat", "Avaliação", "Fotos, escaneamento e conversa sobre o que você quer mudar."], ["faceta", "Ensaio", "Um ensaio em resina aplicado provisoriamente para você ver antes de decidir."], ["doc", "Confecção", "Preparo, quando necessário, e moldagem ou escaneamento."], ["check", "Cimentação", "As lentes são coladas e ajustadas. Depois, revisões periódicas."]],
+    passos: [["chat", "Avaliação", "Fotos, escaneamento e conversa sobre o que você quer mudar."], ["faceta", "Ensaio", "Você vê o resultado antes de decidir."], ["doc", "Confecção", "Preparo, quando necessário, e moldagem ou escaneamento."], ["check", "Cimentação", "As lentes são coladas e ajustadas. Depois, revisões periódicas."]],
     opcoes: { titulo: "Cerâmica ou resina?", foto: ["lentes", "Dentes artificiais usados como referência de forma e cor"], itens: [["Cerâmica", "Feita em laboratório, a partir de moldagem ou escaneamento."], ["Resina", "Aplicada direto no consultório, camada por camada."]] },
     faq: [["Precisa desgastar o dente?", "Depende do caso. Às vezes o desgaste é mínimo ou nenhum. A dentista explica antes de qualquer decisão."], ["Posso ver como fica antes?", "Sim, com o ensaio em resina aplicado provisoriamente na boca."], ["Quanto tempo duram?", "Dependem de cuidados e hábitos. Revisões periódicas ajudam a manter."]],
     msg: "Olá, gostaria de saber mais sobre lentes e facetas.",
   },
   prevencao: {
-    titulo: "Prevenção e limpeza", intro: "Revisões, limpeza profissional e orientação de higiene para evitar cáries e problemas de gengiva antes que causem dor.",
+    titulo: "Prevenção e limpeza", intro: "Revisão e limpeza para evitar cárie e dor.",
     para: ["Todas as idades, em revisões periódicas.", "Crianças, desde o nascimento dos primeiros dentes.", "Quem usa aparelho, implante ou prótese.", "Gestantes, com acompanhamento durante a gravidez."],
-    passos: [["chat", "Conversa e exame", "Como está a sua rotina e o que mudou desde a última visita."], ["escova", "Limpeza", "Remoção de placa e tártaro e polimento."], ["folha", "Orientação", "Escovação e fio do jeito certo para a sua boca."], ["cal", "Próxima revisão", "O intervalo é definido pela dentista conforme o seu caso."]],
+    passos: [["chat", "Conversa e exame", "Como está a sua rotina."], ["escova", "Limpeza", "Remoção de placa e tártaro e polimento."], ["folha", "Orientação", "Escovação e fio do jeito certo para a sua boca."], ["cal", "Próxima revisão", "O intervalo é definido pela dentista conforme o seu caso."]],
     opcoes: { titulo: "Crianças também", foto: ["crianca", "Dentista atendendo uma criança na cadeira, imagem ilustrativa"], itens: [["Primeira visita", "A partir do nascimento dos primeiros dentes, para orientar a família."], ["Acompanhamento", "Revisões periódicas, orientação de escovação e alimentação."]] },
     faq: [["De quanto em quanto tempo devo ir?", "Em geral a cada 6 meses, mas a dentista define o intervalo conforme o seu caso."], ["A limpeza dói?", "Costuma ser tranquila. Se houver sensibilidade, avise para ajustar."], ["Criança precisa ir ao dentista mesmo sem sentir nada?", "Sim. As visitas de rotina ajudam a prevenir problemas e acostumam a criança com o consultório."]],
     msg: "Olá, gostaria de agendar uma limpeza e revisão.",
@@ -708,11 +706,11 @@ Object.keys(GEN).forEach(id => {
     file: id + ".html", atual: "tratamentos",
     title: `${g.titulo} em Ribeirão Preto | Lume Odontologia`,
     desc: `${g.titulo} na Lume Odontologia, em Ribeirão Preto: para quem é indicado, como funciona, perguntas frequentes e pré-agendamento pelo celular.`.slice(0, 158),
-    ld: [crumbLd([["Início", ""], ["Tratamentos", "tratamentos.html"], [g.titulo, id + ".html"]]), faqLd(g.faq)],
+    ld: [crumbLd([["Início", ""], ["Tratamentos", "tratamentos.html"], [g.titulo, id + ".html"]]), faqLd(g.faq.slice(0, 2))],
     body: `${heroTrat(t, g.titulo, g.intro, ag(id, "Agendar avaliação", "Perguntar pelo WhatsApp", g.msg, id + "-topo", "btn btn-grande"))}
 
     <section class="s3" aria-labelledby="t-para">
-      <div class="wrap duas c4-8"><h2 id="t-para">Para quem é indicado</h2><ul class="filetes">${g.para.map(p => `<li>${p}</li>`).join("")}</ul></div>
+      <div class="wrap duas c4-8"><h2 id="t-para">Para quem é indicado</h2><ul class="filetes">${g.para.slice(0, 3).map(p => `<li>${p}</li>`).join("")}</ul></div>
     </section>
 
     <section class="faixa-menta s3-g" aria-labelledby="t-como">
@@ -730,7 +728,7 @@ Object.keys(GEN).forEach(id => {
     </section>
 
     <section class="faixa-areia s3-g" aria-labelledby="t-faqg">
-      <div class="wrap duas c4-8"><h2 id="t-faqg">Perguntas frequentes</h2>${faqHtml("fq-" + id, g.faq)}</div>
+      <div class="wrap duas c4-8"><h2 id="t-faqg">Perguntas frequentes</h2>${faqHtml("fq-" + id, g.faq.slice(0, 2))}</div>
     </section>
 ${relacionados(id)}
 ${fechoTrat(id, g.msg)}`,
@@ -927,8 +925,8 @@ page({
       <div class="wrap">
         <div class="secao-topo"><div><p class="sobretitulo">Do começo ao fim</p><h2 id="t-linha">Antes, durante e depois</h2></div></div>
         <div class="passos-visual" data-revelar>
-          <div class="passo-v">${bolha("chat")}<p class="quando nota">Antes de vir</p><h3>Prepare-se sem pressa</h3><p>Confirme o horário com a recepção, separe exames recentes e anote os medicamentos que usa.</p></div>
-          <div class="passo-v">${bolha("relogio")}<p class="quando nota">Na consulta, cerca de 50 min</p><h3>Conversa e exame</h3><p>Começa com uma conversa. Depois, exame clínico e radiografias se necessárias. Se algo incomodar, é só avisar.</p></div>
+          <div class="passo-v">${bolha("chat")}<p class="quando nota">Antes de vir</p><h3>Prepare-se sem pressa</h3><p>Separe exames e a lista de remédios.</p></div>
+          <div class="passo-v">${bolha("relogio")}<p class="quando nota">Na consulta, cerca de 50 min</p><h3>Conversa e exame</h3><p>Conversa, exame e radiografias se preciso.</p></div>
           <div class="passo-v">${bolha("doc")}<p class="quando nota">Depois</p><h3>Plano e decisão</h3><p>A dentista apresenta o diagnóstico e as opções por escrito. Você decide no seu tempo.</p></div>
         </div>
       </div>
@@ -982,7 +980,7 @@ page({
     </section>
 
     <section class="wrap s3-g" aria-labelledby="t-equipe">
-      <div class="secao-topo"><div><p class="sobretitulo">Equipe</p><h2 id="t-equipe">Quem cuida de você</h2><p>Personagens fictícios desta demonstração. Registros profissionais marcados como exemplo.</p></div></div>
+      <div class="secao-topo"><div><p class="sobretitulo">Equipe</p><h2 id="t-equipe">Quem cuida de você</h2><p>Personagens fictícios.</p></div></div>
       <article class="pessoa" data-revelar>
         <figure>${img("doutora-helena", [480, 960], 960, 1200, "Dentista em atendimento, imagem que representa a Dra. Helena Prado", "(min-width: 1024px) 480px, 100vw")}</figure>
         <div>
@@ -1014,7 +1012,7 @@ page({
 
     <section class="faixa-areia s3-g" aria-labelledby="t-video">
       <div class="wrap duas c5-7">
-        <div><p class="sobretitulo">Vídeo</p><h2 id="t-video">Conheça a Dra. Helena</h2><p>No site real, um vídeo curto com a dentista explicando como trabalha aumenta muito a confiança de quem nunca veio.</p></div>
+        <div><p class="sobretitulo">Vídeo</p><h2 id="t-video">Conheça a Dra. Helena</h2><p>Espaço para um vídeo curto da dentista.</p></div>
         <button class="video-capa" type="button" data-abrir-sheet="sheet-video-dra">
           ${img("helena-2", [640, 1200], 1200, 900, "", "(min-width: 1024px) 700px, 100vw")}
           <span class="play" aria-hidden="true"><span><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></svg></span></span>
@@ -1115,6 +1113,7 @@ const artigos = [
   ["aparelho", "alinhador", "Cuidados com aparelho e alinhador", ["Escove depois das refeições, com atenção aos braquetes.", "Alinhadores: tire para comer e escove os dentes antes de recolocar.", "Evite alimentos muito duros ou grudentos com aparelho fixo.", "Leve o estojo do alinhador quando sair de casa."]],
   ["quando", "cal", "Quando procurar o dentista", ["Em revisões de rotina, no intervalo combinado com a dentista.", "Se houver dor, sangramento frequente na gengiva ou mau hálito persistente.", "Se um dente quebrar, mudar de cor ou ficar mole.", "Em urgências, veja a página de urgência."]],
 ];
+artigos.forEach(a => { a[3] = a[3].slice(0, 3); });
 page({
   file: "cuidados.html", atual: "",
   title: "Cuide do seu sorriso: dicas de saúde bucal | Lume Odontologia",
@@ -1153,6 +1152,13 @@ page({
       <h1 id="t-pd">Um site com cara de aplicativo para o seu consultório</h1>
       <p>A Lume é uma clínica fictícia criada para mostrar o que o seu site pode ter. Tudo o que você vê aqui é adaptado com o nome, as cores, as fotos e os contatos da sua clínica.</p>
       <div class="acoes"><button class="btn btn-grande" type="button" data-abrir-sheet="sheet-personalizar">Ver com a minha clínica</button><button class="btn btn-contorno btn-grande" type="button" data-tour-iniciar>Fazer o tour</button></div>
+    </section>
+
+    <section class="s3" id="videos" aria-labelledby="t-videos">
+      <div class="wrap">
+        <div class="secao-topo"><div><p class="sobretitulo">Em 40 segundos</p><h2 id="t-videos">Veja o site funcionando</h2></div></div>
+        <div class="videos">${[["lume-paciente", "Versão do paciente", "Agendar, acompanhar o tratamento e a ficha de saúde"], ["lume-dentista", "Versão do dentista", "Como apresentar e personalizar com a sua clínica"]].map(([f, t, d]) => `<figure class="video-item"><video src="assets/video/${f}.mp4" poster="assets/video/${f}.jpg" controls playsinline preload="none" width="1080" height="1920"></video><figcaption><b>${t}</b><span>${d}</span></figcaption></figure>`).join("")}</div>
+      </div>
     </section>
 
     <section class="s3" aria-labelledby="t-telas">

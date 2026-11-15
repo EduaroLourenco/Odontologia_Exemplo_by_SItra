@@ -1,6 +1,6 @@
 /* Service worker: permite instalar o site como app e abrir as páginas públicas sem internet.
    Páginas da área do paciente nunca vão para o cache. Ao publicar mudanças, troque VERSAO. */
-var VERSAO = "lume-v3-3";
+var VERSAO = "lume-v3-4";
 var BASICO = [
   "./", "index.html", "tratamentos.html", "implantes.html", "ortodontia.html", "clareamento.html",
   "lentes.html", "prevencao.html", "urgencia.html", "primeira-consulta.html", "sobre.html",
@@ -21,7 +21,7 @@ self.addEventListener("activate", function (e) {
 self.addEventListener("fetch", function (e) {
   var req = e.request, url = new URL(req.url);
   if (req.method !== "GET" || url.origin !== location.origin) return;
-  if (PRIVADAS.test(url.pathname)) return; /* sempre da rede */
+  if (PRIVADAS.test(url.pathname) || /\.mp4$/.test(url.pathname)) return; /* sempre da rede (vídeos usam pedidos parciais) */
   if (req.mode === "navigate" || /\.(css|js|webmanifest)$/.test(url.pathname)) {
     /* Páginas, CSS e JS: rede primeiro, cache como reserva, offline.html por último */
     e.respondWith(fetch(req).then(function (r) {

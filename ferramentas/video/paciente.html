@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Vídeo: versão do paciente</title><link rel="stylesheet" href="motor.css"></head>
+<body><div id="palco"></div>
+<script>
+window.ROTEIRO = { dur: 44, cenas: [
+  { tipo: "abertura", a: 0, b: 3.4, fundo: "#DDEFEA", chip: "Site exemplo · Lume Odontologia", titulo: "O dentista no seu bolso", sub: "Veja como o paciente usa o site 👇" },
+  { tipo: "celular", a: 3.4, b: 7.6, fundo: "#F6F1E7", passo: "1", titulo: "Abre como um app", sub: "Atalhos com um toque",
+    telas: [{ img: "p01-home", at: 3.5, trans: "pop" }, { img: "p02-atalhos", at: 5.5, trans: "rolar" }],
+    adesivos: [{ at: 4.3, ate: 5.5, y: 900, lado: "esq", emoji: "📲", texto: "Instala na tela inicial" }, { at: 6.2, y: 1250, lado: "dir", emoji: "👆", texto: "Tudo a um toque" }] },
+  { tipo: "celular", a: 7.6, b: 17, fundo: "#DDEFEA", passo: "2", titulo: "Agenda em 4 passos", sub: "Sem ligar, sem esperar",
+    telas: [
+      { img: "p04-ag-esp", at: 7.7, trans: "deslizar", toques: [[.26, .77, 9.0]] },
+      { img: "p05-ag-dia", at: 9.6, trans: "rolar", toques: [[.31, .40, 10.4], [.73, .62, 11.1]] },
+      { img: "p06-ag-hora", at: 11.6, trans: "deslizar", toques: [[.27, .47, 12.4]] },
+      { img: "p07-ag-dados", at: 13.0, trans: "deslizar" },
+      { img: "p08-ag-ok", at: 14.6, trans: "pop", confete: 14.7 }],
+    adesivos: [{ at: 8.2, ate: 9.5, y: 700, lado: "dir", emoji: "🦷", texto: "Escolhe o motivo" }, { at: 10.0, ate: 11.5, y: 1500, lado: "esq", emoji: "📆", texto: "Dia e horário" }, { at: 13.3, ate: 14.5, y: 1350, lado: "dir", emoji: "✍️", texto: "Nome e WhatsApp" }, { at: 15.3, y: 1450, lado: "esq", emoji: "🎉", texto: "Pronto! A clínica confirma" }] },
+  { tipo: "celular", a: 17, b: 21, fundo: "#F6F1E7", passo: "3", titulo: "Entende o tratamento", sub: "Passo a passo animado",
+    telas: [{ img: "p03-implante", at: 17.1, trans: "deslizar" }],
+    adesivos: [{ at: 18.0, y: 1150, lado: "dir", emoji: "💡", texto: "Explica antes de decidir" }] },
+  { tipo: "celular", a: 21, b: 33, fundo: "#E7E4FB", passo: "4", titulo: "Acompanha a evolução", sub: "Área do paciente",
+    telas: [
+      { img: "p09-login", at: 21.1, trans: "deslizar", toques: [[.5, .62, 22.4]] },
+      { img: "p10-paciente", at: 23.0, trans: "deslizar" },
+      { img: "p11-plano", at: 25.6, trans: "rolar" },
+      { img: "p12-mensagens", at: 28.4, trans: "rolar" },
+      { img: "p13-docs", at: 30.6, trans: "rolar" }],
+    adesivos: [{ at: 21.6, ate: 22.9, y: 760, lado: "esq", emoji: "🔐", texto: "Login do paciente" }, { at: 23.6, ate: 25.5, y: 1500, lado: "dir", emoji: "⏳", texto: "Contagem para a consulta" }, { at: 26.3, ate: 28.3, y: 800, lado: "esq", emoji: "✅", texto: "Etapa 4 de 5 do plano" }, { at: 28.9, ate: 30.5, y: 1300, lado: "dir", emoji: "💬", texto: "Recados da clínica" }, { at: 31.1, y: 900, lado: "esq", emoji: "📄", texto: "Documentos e recibos" }] },
+  { tipo: "celular", a: 33, b: 36.6, fundo: "#DDEFEA", passo: "5", titulo: "Ficha de saúde online", sub: "Preenche antes de ir",
+    telas: [{ img: "p14-anamnese", at: 33.1, trans: "deslizar" }],
+    adesivos: [{ at: 33.9, y: 1250, lado: "dir", emoji: "⏱️", texto: "Ganha tempo na consulta" }] },
+  { tipo: "celular", a: 36.6, b: 39.6, fundo: "#FBE9E4", passo: "6", titulo: "Urgência? Um toque", sub: "O que fazer agora",
+    telas: [{ img: "p15-urgencia", at: 36.7, trans: "deslizar" }],
+    adesivos: [{ at: 37.4, y: 1150, lado: "esq", emoji: "🚨", texto: "Fala com a clínica" }] },
+  { tipo: "fechamento", a: 39.6, b: 44, fundo: "#F6F1E7", titulo: "Teste você também!", sub: "Abra o link e entre como paciente 👆",
+    linhas: ["Site com cara de app para dentistas", "WhatsApp (16) 99444-7044"] }
+]};
+</script>
+<script src="motor.js"></script>
+</body></html>

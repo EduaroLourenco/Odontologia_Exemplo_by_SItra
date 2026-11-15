@@ -159,6 +159,7 @@
       <div class="campos-form nota">
         <button class="btn" type="button" data-abrir-sheet="sheet-personalizar">Ver com a minha clínica</button>
         <button class="btn btn-contorno" type="button" data-tour-iniciar>Fazer o tour de 30 segundos</button>
+        <a class="btn btn-contorno" href="para-dentistas.html#videos">Ver o vídeo de 40 segundos</a>
         <a class="btn btn-contorno" href="para-dentistas.html">O que o dentista recebe</a>
         <a class="btn btn-contorno" href="#" data-agencia-link hidden>Falar com a <span data-c="nomeAgencia">Sitra</span></a>
         <button class="btn btn-contorno" type="button" data-instalar hidden><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M11 17.5h2"/></svg>Instalar como app</button>
@@ -169,7 +170,8 @@
     <button class="sheet-alca" type="button" aria-label="Fechar painel"><span></span></button>
     <div class="sheet-topo"><h2 id="sheet-personalizar-t">Ver com a minha clínica</h2><button class="sheet-fechar" type="button" data-fechar aria-label="Fechar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path class="v" d="M12 5v14"/></svg></button></div>
     <div class="sheet-corpo">
-      <p>Digite o nome do consultório e escolha uma cor. O site inteiro muda na hora. Fica salvo só neste navegador.</p>
+      <p class="aviso-personal" id="aviso-personal" hidden><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Versão personalizada ativa neste navegador.</span></p>
+      <p>Digite o nome e escolha a cor. O site inteiro muda na hora.</p>
       <form id="form-personalizar" class="campos-form">
         <div class="campos-2">
           <div class="campo"><label for="p-nome">Nome da clínica</label><input id="p-nome" name="nome" type="text" maxlength="40" placeholder="Ex.: Sorriso Leve" autocomplete="organization"></div>
@@ -180,7 +182,7 @@
           <div class="paletas"><label><input type="radio" name="paleta" value="petroleo" checked><span class="amostra" style="background:#0F4A4E"></span><small>Petróleo</small></label><label><input type="radio" name="paleta" value="marinho"><span class="amostra" style="background:#1F3A5F"></span><small>Marinho</small></label><label><input type="radio" name="paleta" value="salvia"><span class="amostra" style="background:#3D5C48"></span><small>Sálvia</small></label><label><input type="radio" name="paleta" value="vinho"><span class="amostra" style="background:#6B2737"></span><small>Vinho</small></label><label><input type="radio" name="paleta" value="grafite"><span class="amostra" style="background:#2F3A40"></span><small>Grafite</small></label></div>
         </fieldset>
         <button class="btn" type="submit">Aplicar no site</button>
-        <button class="link-btn" type="button" id="restaurar-demo">Voltar para a Lume (demonstração)</button>
+        <button class="link-btn" type="button" id="restaurar-demo">Voltar ao original (Lume)</button>
       </form></div>
   </dialog>
 
