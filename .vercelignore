@@ -1,0 +1,6 @@
+# Pastas e documentos de trabalho: ficam no GitHub, mas não vão para o site publicado
+capturas/
+ferramentas/
+*.md
+ESPECIFICACAO-FRONT.txt
+.claude/

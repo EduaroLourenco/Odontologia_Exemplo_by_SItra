@@ -21,6 +21,14 @@ python -m http.server 5500
 
 Depois abra http://localhost:5500. No celular, na mesma rede, use o IP do computador.
 
+## Publicar na Vercel
+
+1. Na Vercel, "Add New → Project" e importe este repositório.
+2. Framework Preset: **Other**. Build Command: vazio. Output Directory: `.` (raiz).
+3. Deploy. Cada envio para a branch `main` publica uma nova versão.
+
+O `vercel.json` define cabeçalhos de segurança, impede que o `sw.js` fique preso em cache (atualizações chegam na hora) e guarda as imagens por 7 dias. Ele também envia `X-Robots-Tag: noindex` porque o conteúdo é fictício: **remova essa linha** quando o site for de uma clínica real. O `.vercelignore` deixa `capturas/`, `ferramentas/` e os documentos `.md` fora do site publicado.
+
 ## Editar as páginas
 
 O cabeçalho, o rodapé, a navegação inferior e os painéis são iguais em todas as páginas, então ficam num gerador, em vez de copiados 20 vezes:
