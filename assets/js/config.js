@@ -34,7 +34,7 @@ window.CLINICA = {
   fusoHorario: "America/Sao_Paulo",
 
   responsavel: "Dra. Helena Prado",
-  cro: "CRO-SP 00000 (exemplo, não válido)",
+  cro: "CRO-SP 00000 (exemplo)",
   especialidade: "Implantodontia",
   equipe: [
     { nome: "Dra. Helena Prado", funcao: "Cirurgiã-dentista, Implantodontia", registro: "CRO-SP 00000 (exemplo, não válido)" },

@@ -1,0 +1,112 @@
+VÍDEO ÚNICO DE APRESENTAÇÃO: "SEU CONSULTÓRIO COM CARA DE APP"
+==============================================================
+
+Para quem: dentistas que podem contratar o site (enviado pela Sitra no WhatsApp,
+Instagram, Reels e Status).
+Objetivo: em 80 segundos, mostrar passo a passo tudo o que o site faz, primeiro do
+lado do paciente, depois do lado do dentista, e terminar com o convite para falar
+com a Sitra.
+
+Formato: vertical 1080x1920, 30 qps, 80 s, sem áudio (as legendas contam a história;
+dá para pôr uma música em alta no próprio Instagram/WhatsApp na hora de postar).
+Arquivo: assets/video/lume-apresentacao.mp4 (+ capa lume-apresentacao.jpg).
+Roteiro técnico: ferramentas/video/apresentacao.html.
+
+Linguagem visual (a mesma dos dois vídeos anteriores, alinhada ao site novo):
+- Celular simulado no centro mostrando as telas REAIS do site (capturadas em 390 px).
+- Título grande no topo de cada cena, com número do passo em selo bronze.
+- Adesivos com emoji que "pulam" ao lado do celular explicando cada detalhe.
+- Toques animados (círculo bronze) onde o usuário tocaria.
+- Transições: deslizar (troca de página), rolar (mesma página), onda (o site muda de cor).
+- Confete no agendamento concluído.
+- Barra de progresso estilo stories no topo; marca d'água "By Sitra" embaixo.
+- Cores: areia/marfim nos fundos, petróleo nos textos, bronze nos destaques
+  (o roxo antigo do cursor de digitação e do botão final foi trocado por petróleo).
+
+
+CENA A CENA
+-----------
+
+00,0 – 03,6  ABERTURA
+  Selo: "Site exemplo · Lume Odontologia"
+  Título: "Seu consultório com cara de app"
+  Apoio: "Veja tudo o que o site faz 👇"
+  Ícones pulando: 📅 🦷 📲
+
+PARTE 1: O QUE O PACIENTE VÊ
+
+03,6 – 08,2  PASSO 1 · "Abre como um app"  (apoio: "Rápido, direto no celular")
+  Telas: home (entra com "pop") → atalhos (rola)
+  Adesivos: 📲 "Instala na tela inicial" · 👆 "Atalhos a um toque"
+
+08,2 – 12,6  PASSO 2 · "Mostra cada tratamento"  (apoio: "Com filtro e explicação")
+  Telas: Tratamentos com filtro (toque em "Estética") → Implantes, passo a passo animado
+  Adesivos: 🔎 "Filtra por necessidade" · 💡 "Explica antes de decidir"
+
+12,6 – 22,0  PASSO 3 · "Agenda em 4 passos"  (apoio: "Sem ligar, sem esperar")
+  Telas: motivo (toque) → dia (toques) → horário (toque) → nome e WhatsApp → sucesso + confete
+  Adesivos: 🦷 "Escolhe o motivo" · 📆 "Dia e horário" · ✍️ "Nome e WhatsApp"
+            🎉 "Pronto! A clínica confirma"
+
+22,0 – 25,8  PASSO 4 · "Ficha de saúde online"  (apoio: "Preenche antes de ir")
+  Tela: anamnese digital
+  Adesivo: ⏱️ "Ganha tempo na consulta"
+
+25,8 – 37,8  PASSO 5 · "Acompanha o tratamento"  (apoio: "Área do paciente")
+  Telas: login (toque em Entrar) → painel → plano de tratamento → recados → documentos
+  Adesivos: 🔐 "Login do paciente" · ⏳ "Contagem para a consulta"
+            ✅ "Etapa 4 de 5 do plano" · 💬 "Recados da clínica" · 📄 "Documentos e recibos"
+
+37,8 – 41,0  PASSO 6 · "Urgência? Um toque"  (apoio: "O que fazer agora")
+  Tela: urgência
+  Adesivo: 🚨 "Fala com a clínica"
+
+PARTE 2: O QUE O DENTISTA GANHA
+
+41,0 – 45,0  VIRADA (cartão de lista, o celular sai de cena)
+  Selo: ✨  Título: "Agora, a parte do dentista"  Apoio: "Pronto para apresentar e vender"
+  Itens: 1 Tour guiado pelo site · 2 Sua marca em segundos · 3 Paciente fiel, agenda cheia
+
+45,0 – 49,0  PASSO 7 · "Tour guiado"  (apoio: "4 paradas em 30 segundos")
+  Tela: tour aberto na home (toque em "Próximo")
+  Adesivo: 🧭 "Mostra cada recurso"
+
+49,0 – 61,2  PASSO 8 · "Personalize na hora ✨"  (apoio: "Nome, cidade e cor da clínica")
+  Telas: "Saiba mais" → painel de personalização (digita "Sorriso Leve", toca na cor
+         vinho e em Aplicar) → home já com a nova marca (efeito onda) → tratamentos
+         → agendamento com a nova cor
+  Adesivos: 👀 "Ver com a minha clínica" · ⌨️ "Digita o nome" · 🎨 "Escolhe a cor"
+            🪄 "O site inteiro muda!" · 🔁 "Em todas as páginas"
+
+61,2 – 65,6  PASSO 9 · "Paciente vê a sua marca"  (apoio: "Até na área do paciente")
+  Tela: área do paciente personalizada
+  Adesivo: 📈 "Fideliza o paciente"
+
+65,6 – 71,2  TESTE (cartão de lista)
+  Selo: 👆  Título: "Teste em 3 toques"  Apoio: "Abra o link e veja você mesmo:"
+  Itens: 1 Abrir o link no celular · 2 Tocar em "Ver com a minha clínica"
+         · 3 Entrar na Área do paciente
+
+71,2 – 75,4  PASSO 10 · "Gostou? Fale com a Sitra"  (apoio: "Fazemos o site real do consultório")
+  Tela: página "Para dentistas", bloco de contato
+  Adesivo: 💬 "Botão direto no site"
+
+75,4 – 80,0  FECHAMENTO
+  Título: "Seu site com cara de app"
+  Apoio: "Agendamento, área do paciente e a sua marca"
+  Cartão com o logo da Sitra + botão "💬 Fale com a Sitra"
+  Linhas: "WhatsApp (16) 99444-7044" · "Site exemplo: Lume Odontologia"
+
+
+NO SITE
+-------
+A seção "Veja o site funcionando" da página Para dentistas passa a ter um único vídeo
+(antes eram dois: paciente e dentista). O botão do painel "Saiba mais" passa a dizer
+"Ver o vídeo de 1 minuto". Os arquivos lume-paciente e lume-dentista saem do site.
+
+
+COMO REFAZER
+------------
+1. Site rodando em http://localhost:5500
+2. node ferramentas/video/capturar.js ferramentas/video/telas
+3. node ferramentas/video/renderizar.js apresentacao assets/video/lume-apresentacao.mp4

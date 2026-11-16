@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Vídeo: apresentação do site</title><link rel="stylesheet" href="motor.css"></head>
+<body><div id="palco"></div>
+<script>
+/* Roteiro detalhado em ROTEIRO-APRESENTACAO.txt. Tempos em segundos. */
+window.ROTEIRO = { dur: 80, cenas: [
+  { tipo: "abertura", a: 0, b: 3.6, fundo: "#ECE7DF", chip: "Site exemplo · Lume Odontologia", titulo: "Seu consultório com cara de app", sub: "Veja tudo o que o site faz 👇" },
+
+  /* Parte 1: paciente */
+  { tipo: "celular", a: 3.6, b: 8.2, fundo: "#F6F1E7", passo: "1", titulo: "Abre como um app", sub: "Rápido, direto no celular",
+    telas: [{ img: "p01-home", at: 3.7, trans: "pop" }, { img: "p02-atalhos", at: 5.8, trans: "rolar" }],
+    adesivos: [{ at: 4.5, ate: 5.8, y: 900, lado: "esq", emoji: "📲", texto: "Instala na tela inicial" }, { at: 6.4, y: 1250, lado: "dir", emoji: "👆", texto: "Atalhos a um toque" }] },
+  { tipo: "celular", a: 8.2, b: 12.6, fundo: "#ECE7DF", passo: "2", titulo: "Mostra cada tratamento", sub: "Com filtro e explicação",
+    telas: [{ img: "p16-tratamentos", at: 8.3, trans: "deslizar", toques: [[.26, .56, 9.6]] }, { img: "p03-implante", at: 10.4, trans: "deslizar" }],
+    adesivos: [{ at: 8.8, ate: 10.3, y: 1500, lado: "dir", emoji: "🔎", texto: "Filtra por necessidade" }, { at: 10.9, y: 900, lado: "esq", emoji: "💡", texto: "Explica antes de decidir" }] },
+  { tipo: "celular", a: 12.6, b: 22, fundo: "#F6F1E7", passo: "3", titulo: "Agenda em 4 passos", sub: "Sem ligar, sem esperar",
+    telas: [
+      { img: "p04-ag-esp", at: 12.7, trans: "deslizar", toques: [[.24, .87, 14.0]] },
+      { img: "p05-ag-dia", at: 14.6, trans: "rolar", toques: [[.30, .43, 15.4], [.70, .68, 16.1]] },
+      { img: "p06-ag-hora", at: 16.6, trans: "deslizar", toques: [[.19, .53, 17.4]] },
+      { img: "p07-ag-dados", at: 18.0, trans: "deslizar" },
+      { img: "p08-ag-ok", at: 19.6, trans: "pop", confete: 19.7 }],
+    adesivos: [{ at: 13.2, ate: 14.5, y: 700, lado: "dir", emoji: "🦷", texto: "Escolhe o motivo" }, { at: 15.0, ate: 16.5, y: 1500, lado: "esq", emoji: "📆", texto: "Dia e horário" }, { at: 18.3, ate: 19.5, y: 1350, lado: "dir", emoji: "✍️", texto: "Nome e WhatsApp" }, { at: 20.3, y: 1450, lado: "esq", emoji: "🎉", texto: "Pronto! A clínica confirma" }] },
+  { tipo: "celular", a: 22, b: 25.8, fundo: "#ECE7DF", passo: "4", titulo: "Ficha de saúde online", sub: "Preenche antes de ir",
+    telas: [{ img: "p14-anamnese", at: 22.1, trans: "deslizar" }],
+    adesivos: [{ at: 22.9, y: 1250, lado: "dir", emoji: "⏱️", texto: "Ganha tempo na consulta" }] },
+  { tipo: "celular", a: 25.8, b: 37.8, fundo: "#F6F1E7", passo: "5", titulo: "Acompanha o tratamento", sub: "Área do paciente",
+    telas: [
+      { img: "p09-login", at: 25.9, trans: "deslizar", toques: [[.5, .62, 27.2]] },
+      { img: "p10-paciente", at: 27.8, trans: "deslizar" },
+      { img: "p11-plano", at: 30.4, trans: "rolar" },
+      { img: "p12-mensagens", at: 33.2, trans: "rolar" },
+      { img: "p13-docs", at: 35.4, trans: "rolar" }],
+    adesivos: [{ at: 26.4, ate: 27.7, y: 760, lado: "esq", emoji: "🔐", texto: "Login do paciente" }, { at: 28.4, ate: 30.3, y: 1500, lado: "dir", emoji: "⏳", texto: "Contagem para a consulta" }, { at: 31.1, ate: 33.1, y: 800, lado: "esq", emoji: "✅", texto: "Etapa 4 de 5 do plano" }, { at: 33.7, ate: 35.3, y: 1300, lado: "dir", emoji: "💬", texto: "Recados da clínica" }, { at: 35.9, y: 900, lado: "esq", emoji: "📄", texto: "Documentos e recibos" }] },
+  { tipo: "celular", a: 37.8, b: 41, fundo: "#ECE7DF", passo: "6", titulo: "Urgência? Um toque", sub: "O que fazer agora",
+    telas: [{ img: "p15-urgencia", at: 37.9, trans: "deslizar" }],
+    adesivos: [{ at: 38.6, y: 1150, lado: "esq", emoji: "🚨", texto: "Fala com a clínica" }] },
+
+  /* Parte 2: dentista */
+  { tipo: "lista", a: 41, b: 45, fundo: "#E9E4DC", passo: "✨", titulo: "Agora, a parte do dentista", sub: "Pronto para apresentar e vender",
+    itens: ["Tour guiado pelo site", "Sua marca em segundos", "Paciente fiel, agenda cheia"] },
+  { tipo: "celular", a: 45, b: 49, fundo: "#F6F1E7", passo: "7", titulo: "Tour guiado", sub: "4 paradas em 30 segundos",
+    telas: [{ img: "d03-tour", at: 45.1, trans: "deslizar", toques: [[.73, .84, 47.4]] }],
+    adesivos: [{ at: 45.8, y: 640, lado: "dir", emoji: "🧭", texto: "Mostra cada recurso" }] },
+  { tipo: "celular", a: 49, b: 61.2, fundo: "#ECE7DF", passo: "8", titulo: "Personalize na hora ✨", sub: "Nome, cidade e cor da clínica",
+    telas: [
+      { img: "d04-demo", at: 49.1, trans: "deslizar" },
+      { img: "d05-personalizar", at: 51.3, trans: "rolar", digitar: ["Sorriso Leve", 52.0, 6, 41.5], toques: [[.68, .75, 54.0], [.5, .87, 54.8]] },
+      { img: "d06-home-perso", at: 55.4, trans: "onda", origem: [50, 87] },
+      { img: "d07-trat-perso", at: 57.8, trans: "rolar" },
+      { img: "d08-ag-perso", at: 59.4, trans: "deslizar" }],
+    adesivos: [{ at: 49.6, ate: 51.2, y: 1350, lado: "esq", emoji: "👀", texto: "“Ver com a minha clínica”" }, { at: 51.8, ate: 53.8, y: 640, lado: "dir", emoji: "⌨️", texto: "Digita o nome" }, { at: 53.9, ate: 55.3, y: 1450, lado: "esq", emoji: "🎨", texto: "Escolhe a cor" }, { at: 56.0, ate: 57.8, y: 1500, lado: "dir", emoji: "🪄", texto: "O site inteiro muda!" }, { at: 59.7, y: 900, lado: "esq", emoji: "🔁", texto: "Em todas as páginas" }] },
+  { tipo: "celular", a: 61.2, b: 65.6, fundo: "#F6F1E7", passo: "9", titulo: "Paciente vê a sua marca", sub: "Até na área do paciente",
+    telas: [{ img: "d09-pac-perso", at: 61.3, trans: "deslizar" }],
+    adesivos: [{ at: 62.1, y: 1400, lado: "dir", emoji: "📈", texto: "Fideliza o paciente" }] },
+  { tipo: "lista", a: 65.6, b: 71.2, fundo: "#E9E4DC", passo: "👆", titulo: "Teste em 3 toques", sub: "Abra o link e veja você mesmo:",
+    itens: ["Abrir o link no celular", "Tocar em “Ver com a minha clínica”", "Entrar na Área do paciente"] },
+  { tipo: "celular", a: 71.2, b: 75.4, fundo: "#ECE7DF", passo: "10", titulo: "Gostou? Fale com a Sitra", sub: "Fazemos o site real do consultório",
+    telas: [{ img: "d10-sitra", at: 71.3, trans: "deslizar" }],
+    adesivos: [{ at: 72.1, y: 1300, lado: "esq", emoji: "💬", texto: "Botão direto no site" }] },
+  { tipo: "fechamento", a: 75.4, b: 80, fundo: "#F6F1E7", titulo: "Seu site com cara de app", sub: "Agendamento, área do paciente e a sua marca",
+    linhas: ["WhatsApp (16) 99444-7044", "Site exemplo: Lume Odontologia"] }
+]};
+</script>
+<script src="motor.js"></script>
+</body></html>

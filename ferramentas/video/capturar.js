@@ -1,5 +1,5 @@
-// Captura as telas mobile (390x844 @2x) com interações reais, para os vídeos.
-// uso: node cenas.js <saida>
+// Captura as telas mobile (390x844 @2x) com interações reais, para o vídeo.
+// uso: node capturar.js <saida>
 const { spawn } = require("child_process");
 const fs = require("fs"), path = require("path"), os = require("os");
 const OUT = process.argv[2]; fs.mkdirSync(OUT, { recursive: true });
@@ -15,7 +15,7 @@ const valor = (sel, v) => `(function(){var e=document.querySelector(${JSON.strin
 // [nomeArquivo, url|null, [js...], esperaMs]
 const CENAS = [
   ["p01-home", "index.html", [], 1800],
-  ["p02-atalhos", null, [rolar(".rapidas")], 900],
+  ["p02-atalhos", null, [rolar(".h4-atalhos")], 900],
   ["p03-implante", "implantes.html", [rolar(".palco")], 1400],
   ["p04-ag-esp", "agendamento.html", [], 1500],
   ["p05-ag-dia", null, [clicar("#opcoes-esp input[name=especialidade]"), clicar('[data-passo="proximo"]'), clicar("#faixa-dias button:not([disabled]):nth-of-type(2)")], 900],
@@ -29,6 +29,7 @@ const CENAS = [
   ["p13-docs", null, [rolar("#arquivos")], 900],
   ["p14-anamnese", "anamnese.html", [], 1500],
   ["p15-urgencia", "urgencia.html", [], 1400],
+  ["p16-tratamentos", "tratamentos.html", [], 1400],
   ["d01-para", "para-dentistas.html", [], 1600],
   ["d02-telas", null, [rolar(".telas-demo")], 900],
   ["d03-tour", "index.html", [clicar("[data-tour-iniciar]")], 1400],

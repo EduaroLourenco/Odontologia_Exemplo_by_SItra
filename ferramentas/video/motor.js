@@ -65,7 +65,7 @@
   }); });
 
   /* Confete */
-  var CORES = ["#F2C14E", "#0F4A4E", "#5046E5", "#E86A5A", "#7FC8B5", "#ffffff"];
+  var CORES = ["#C9A97A", "#0E2E30", "#A8875A", "#E8DCC8", "#5A1F2B", "#ffffff"];
   var confetes = [];
   cenas.forEach(function (c) { (c.telas || []).forEach(function (s) { if (!s.confete) return;
     for (var i = 0; i < 70; i++) {

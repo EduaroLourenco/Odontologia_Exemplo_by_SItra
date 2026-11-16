@@ -1,6 +1,6 @@
-// Renderiza paciente.html / dentista.html em MP4 (1080x1920, 30 fps) com Chrome headless + ffmpeg.
-// uso: node renderizar.js <paciente|dentista> <saida.mp4>          (vídeo)
-//      node renderizar.js <paciente|dentista> <pasta> 1.5 9 20       (quadros soltos em JPG, para conferir)
+// Renderiza apresentacao.html em MP4 (1080x1920, 30 fps) com Chrome headless + ffmpeg.
+// uso: node renderizar.js apresentacao <saida.mp4>          (vídeo)
+//      node renderizar.js apresentacao <pasta> 1.5 9 20       (quadros soltos em JPG, para conferir)
 // ffmpeg: variável FFMPEG ou ffmpeg no PATH (ex.: npx ffmpeg-static).
 const { spawn } = require("child_process");
 const fs = require("fs"), path = require("path"), os = require("os");

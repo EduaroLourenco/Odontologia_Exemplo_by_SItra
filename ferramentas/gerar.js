@@ -42,7 +42,7 @@ const I = {
   crianca: svg('<circle cx="12" cy="7" r="3"/><path d="M7 21v-5a5 5 0 0 1 10 0v5M9.5 7h.01M14.5 7h.01"/>'),
   copo: svg('<path d="M7 4h10l-1.3 15a1.5 1.5 0 0 1-1.5 1.4H9.8a1.5 1.5 0 0 1-1.5-1.4z"/><path d="M7.5 9h9"/>'),
 };
-const SIMB = `<svg class="simbolo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--cor-ancora)"/><path d="M8 16c3 7.5 13 7.5 16 0" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><circle cx="22" cy="9.2" r="2.8" fill="#F2C14E"/></svg>`;
+const SIMB = `<svg class="simbolo" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M9.5 16.5c2.6 5.2 10.4 5.2 13 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="21.5" cy="11" r="1.6" fill="currentColor"/></svg>`;
 const bolha = (ico, extra = "") => `<span class="ico-bolha${extra}">${I[ico]}</span>`;
 
 const img = (nome, tams, w, h, alt, sizes, extra = "") =>
@@ -64,7 +64,7 @@ const ctrl = `<div class="carrossel-ctrl"><button type="button" data-ant aria-la
 const secaoCarrossel = (id, sobre, titulo, desc, linkTxt, linkHref, itens, cls = "", tour = "") => `
       <div class="wrap" data-carrossel${tour}>
         <div class="secao-topo">
-          <div>${sobre ? `<p class="sobretitulo">${sobre}</p>` : ""}<h2 id="${id}">${titulo}</h2>${desc ? `<p>${desc}</p>` : ""}</div>
+          <div>${sobre ? `` : ""}<h2 id="${id}">${titulo}</h2>${desc ? `<p>${desc}</p>` : ""}</div>
           <div class="carrossel-ctrl">${linkTxt ? `<a class="ver-todos" href="${linkHref}">${linkTxt}</a>` : ""}<button type="button" data-ant aria-label="Anterior">${I.esq}</button><button type="button" data-prox aria-label="Próximo">${I.dir}</button></div>
         </div>
         <div class="carrossel ${cls}" role="list" aria-labelledby="${id}">${itens.map(i => `<div role="listitem">${i}</div>`).join("")}</div>
@@ -84,12 +84,12 @@ const crumbLd = itens => ({ "@context": "https://schema.org", "@type": "Breadcru
 
 /* ---------------- Dados dos tratamentos ---------------- */
 const TRAT = [
-  { id: "implantes", nome: "Implantes dentários", curto: "Implantes", ico: "implante", foto: "raio-x", cat: "reabilitacao", resumo: "Repõe dentes perdidos, com planejamento digital." },
+  { id: "implantes", nome: "Implantes dentários", curto: "Implantes", ico: "implante", foto: "explica", cat: "reabilitacao", resumo: "Repõe dentes perdidos, com planejamento digital." },
   { id: "ortodontia", nome: "Ortodontia e alinhadores", curto: "Ortodontia", ico: "alinhador", foto: "alinhador", cat: "estetica criancas", resumo: "Aparelho fixo ou alinhador transparente." },
-  { id: "clareamento", nome: "Clareamento dental", curto: "Clareamento", ico: "brilho", foto: "clareamento", cat: "estetica", resumo: "No consultório ou em casa, com supervisão." },
+  { id: "clareamento", nome: "Clareamento dental", curto: "Clareamento", ico: "brilho", foto: "sorriso", cat: "estetica", resumo: "No consultório ou em casa, com supervisão." },
   { id: "lentes", nome: "Lentes e facetas", curto: "Lentes e facetas", ico: "faceta", foto: "lentes", cat: "estetica", resumo: "Forma e cor ajustadas, com ensaio antes." },
   { id: "prevencao", nome: "Prevenção e limpeza", curto: "Prevenção", ico: "escova", foto: "escovas", cat: "prevencao criancas", resumo: "Revisão e limpeza para toda a família." },
-  { id: "urgencia", nome: "Urgência odontológica", curto: "Urgência", ico: "alerta", foto: "urgencia", cat: "urgencia", resumo: "Dor ou dente quebrado? Veja o que fazer." },
+  { id: "urgencia", nome: "Urgência odontológica", curto: "Urgência", ico: "alerta", foto: "consulta", cat: "urgencia", resumo: "Dor ou dente quebrado? Veja o que fazer." },
 ];
 const cartaoTrat = (t, lazy = true) => `<a class="cartao-trat" href="${t.id}.html">
             <span class="foto">${img(t.foto, [640, 1200], 1200, 900, "", "(min-width: 1024px) 400px, 80vw", lazy ? "" : 'decoding="async"').replace('alt=""', 'alt="" style="view-transition-name: vt-' + t.id + '"')}${bolha(t.ico)}</span>
@@ -218,7 +218,7 @@ const sheet = (id, titulo, corpo) => `
     <div class="sheet-topo"><h2 id="${id}-t">${titulo}</h2><button class="sheet-fechar" type="button" data-fechar aria-label="Fechar">${I.mais}</button></div>
     <div class="sheet-corpo">${corpo}</div>
   </dialog>`;
-const paletas = [["petroleo", "#0F4A4E", "Petróleo"], ["marinho", "#1F3A5F", "Marinho"], ["salvia", "#3D5C48", "Sálvia"], ["vinho", "#6B2737", "Vinho"], ["grafite", "#2F3A40", "Grafite"]];
+const paletas = [["petroleo", "#0E2E30", "Petróleo"], ["marinho", "#1B2A41", "Marinho"], ["chocolate", "#2B211C", "Chocolate"], ["vinho", "#5A1F2B", "Vinho"], ["grafite", "#26292B", "Grafite"]];
 const sheetsComuns = `
   ${sheet("sheet-demo", "Este é um site de demonstração", `
       <p class="credito-agencia nota-sheet" data-agencia hidden></p>
@@ -227,7 +227,7 @@ const sheetsComuns = `
       <div class="campos-form nota">
         <button class="btn" type="button" data-abrir-sheet="sheet-personalizar">Ver com a minha clínica</button>
         <button class="btn btn-contorno" type="button" data-tour-iniciar>Fazer o tour de 30 segundos</button>
-        <a class="btn btn-contorno" href="para-dentistas.html#videos">Ver o vídeo de 40 segundos</a>
+        <a class="btn btn-contorno" href="para-dentistas.html#videos">Ver o vídeo de 1 minuto</a>
         <a class="btn btn-contorno" href="para-dentistas.html">O que o dentista recebe</a>
         <a class="btn btn-contorno" href="#" data-agencia-link hidden>Falar com a <span data-c="nomeAgencia">Sitra</span></a>
         <button class="btn btn-contorno" type="button" data-instalar hidden>${I.celular}Instalar como app</button>
@@ -259,7 +259,7 @@ const cabecaHead = (title, desc, url) => `<!doctype html>
   <meta name="description" content="${desc}">
   <link rel="canonical" href="${url}">
   <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#0F4A4E">
+  <meta name="theme-color" content="#0E2E30">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="Lume Odontologia">
@@ -280,7 +280,7 @@ const cabecaHead = (title, desc, url) => `<!doctype html>
   <link rel="preload" href="https://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjA.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..500;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="assets/css/style.css">
-  <script>/* antes de pintar: animações e paleta personalizada */(function(d){var h=d.documentElement;if(!matchMedia("(prefers-reduced-motion: reduce)").matches)h.classList.add("js-anim");try{var p=JSON.parse(localStorage.getItem("lume-personalizado"));var c={marinho:["#1F3A5F","#152A45","#E1E8F2"],salvia:["#3D5C48","#2B4334","#E2ECE4"],vinho:["#6B2737","#4E1B27","#F3E4E7"],grafite:["#2F3A40","#1F272B","#E6EAEC"]}[p&&p.paleta];if(c){h.style.setProperty("--cor-ancora",c[0]);h.style.setProperty("--cor-ancora-escura",c[1]);h.style.setProperty("--cor-menta",c[2]);}}catch(e){}})(document);</script>
+  <script>/* antes de pintar: animações e paleta personalizada */(function(d){var h=d.documentElement;if(!matchMedia("(prefers-reduced-motion: reduce)").matches)h.classList.add("js-anim");try{var p=JSON.parse(localStorage.getItem("lume-personalizado"));var c={marinho:["#1B2A41","#111C2C","#E8E6E1"],chocolate:["#2B211C","#1C1512","#EDE6DD"],vinho:["#5A1F2B","#3E141D","#EFE5E2"],grafite:["#26292B","#17191A","#E9E8E5"]}[p&&p.paleta];if(c){h.style.setProperty("--cor-ancora",c[0]);h.style.setProperty("--cor-ancora-escura",c[1]);h.style.setProperty("--cor-menta",c[2]);}}catch(e){}})(document);</script>
   <!-- GTM/GA4 do cliente: colar dentro da função medir() em assets/js/main.js (só roda após o aceite de cookies) -->`;
 
 function page({ file, title, desc, atual = "", body, ld = [], scripts = [], portal = false, pagina = "", faixa, semNav = false }) {
@@ -370,159 +370,96 @@ page({
   file: "index.html", pagina: "inicio",
   title: "Lume Odontologia | Dentista em Ribeirão Preto, SP",
   desc: "Consultório odontológico em Ribeirão Preto, SP: implantes, ortodontia, clareamento e prevenção, com diagnóstico explicado e agendamento pelo celular.",
-  ld: [faqLd(faqHome)],
   body: `
-    <section class="hero3" aria-labelledby="t-hero">
-      <figure class="hero3-foto">
-        <img src="assets/img/hero-atendimento-m2-800.webp" srcset="assets/img/hero-atendimento-640.webp 640w, assets/img/hero-atendimento-m2-800.webp 800w, assets/img/hero-atendimento-1200.webp 1200w" sizes="(min-width: 1024px) 50vw, 100vw" width="800" height="1000" alt="Dentista conversando com paciente idosa antes do atendimento, imagem ilustrativa" fetchpriority="high">
-        <span class="selo-flutuante">Atendimento com hora marcada</span>
-        <div class="cartao-flutuante" aria-hidden="true">${bolha("doc", " luz")}<span><b>Plano por escrito</b><small>Você entende antes de decidir</small></span></div>
-      </figure>
-      <div class="hero3-cartao">
-        <p class="sobretitulo">Odontologia em <span data-c="cidade">Ribeirão Preto, SP</span></p>
-        <h1 id="t-hero">Seu sorriso, <em>no seu tempo.</em></h1>
-        <p>Consulta sem pressa e plano explicado por escrito.</p>
-        <div class="hero3-acoes">
-          ${btnAgendar("hero", "Agendar avaliação", "", "btn-grande")}
-          <a class="btn btn-contorno btn-grande" href="login.html">${I.usuario}Sou paciente</a>
+    <section class="h4-hero" aria-labelledby="t-hero">
+      <img class="h4-hero-foto" src="assets/img/consulta-1600.webp" srcset="assets/img/consulta-800.webp 800w, assets/img/consulta-1600.webp 1600w" sizes="100vw" width="1600" height="1000" alt="Dentista conversando com uma paciente na cadeira, imagem ilustrativa" fetchpriority="high">
+      <div class="wrap h4-hero-txt">
+        <p class="local">Odontologia em <span data-c="cidade">Ribeirão Preto, SP</span></p>
+        <h1 id="t-hero">Odontologia<br>sem pressa.</h1>
+        <p class="h4-lead">Diagnóstico explicado e plano por escrito.</p>
+        <div class="h4-acoes" data-tour="1" data-tour-titulo="Agendar em um toque" data-tour-texto="O paciente agenda pelo celular ou entra na área dele, sem procurar.">
+          ${btnAgendar("hero", "Agendar avaliação", "", "btn-claro")}
+          <a class="h4-link claro" href="login.html">Sou paciente</a>
         </div>
-        <p class="hero3-linha"><span>${I.relogio}<span data-c="horarioCurto">Seg a sex, 8h às 19h · Sáb, 8h às 13h</span></span><span>${I.escudo}<span><span data-c="responsavel">Dra. Helena Prado</span>, <span data-c="cro">CRO-SP 00000 (exemplo, não válido)</span></span></span></p>
+        <p class="h4-confianca"><span data-c="responsavel">Dra. Helena Prado</span> · Responsável técnica</p>
       </div>
     </section>
 
-    <section class="s3" aria-label="Atalhos">
-      <div class="wrap">
-        <div class="rapidas" data-tour="1" data-tour-titulo="Atalhos como num app" data-tour-texto="O paciente resolve o que precisa com um toque: agendar, urgência, primeira consulta ou área do paciente.">
-          <a class="rapida destaque" href="agendamento.html" data-evento="clique_agendar" data-origem="atalho">${bolha("cal")}<span><b>Agendar</b><small>Em 4 passos, pelo celular</small></span></a>
-          <a class="rapida" href="urgencia.html">${bolha("alerta", " luz")}<span><b>Urgência</b><small>O que fazer agora</small></span></a>
-          <a class="rapida" href="primeira-consulta.html">${bolha("coracao")}<span><b>Primeira consulta</b><small>Como funciona</small></span></a>
-          <a class="rapida" href="login.html">${bolha("usuario")}<span><b>Área do paciente</b><small>Consultas e documentos</small></span></a>
-        </div>
+    <nav class="h4-atalhos" aria-label="Atalhos">
+      <a href="agendamento.html" data-evento="clique_agendar" data-origem="atalho">Agendar avaliação${I.seta}</a>
+      <a href="urgencia.html">Urgência${I.seta}</a>
+      <a href="login.html">Área do paciente${I.seta}</a>
+    </nav>
+
+    <section class="h4-sec" aria-labelledby="t-trat">
+      <div class="wrap" data-tour="3" data-tour-titulo="Uma página por tratamento" data-tour-texto="Cada tratamento tem a própria página, boa para o Google e para o paciente entender antes de agendar.">
+        <div class="h4-cab"><h2 id="t-trat">Tratamentos</h2><a class="h4-link" href="tratamentos.html">Ver todos</a></div>
+        <ol class="h4-lista">${TRAT.map((t, i) => `
+          <li><a href="${t.id}.html"><span class="n">0${i + 1}</span><span class="nome">${t.nome}</span><span class="miniatura">${img(t.foto, [640], 1200, 900, "", "160px")}</span>${I.seta}</a></li>`).join("")}
+        </ol>
       </div>
     </section>
 
-    <section class="s3" aria-labelledby="t-trat" data-revelar>
-      ${secaoCarrossel("t-trat", "Tratamentos", "O que cuidamos por aqui", "", "Ver todos", "tratamentos.html", TRAT.map(t => cartaoTrat(t)), "", ' data-tour="3" data-tour-titulo="Tratamentos com foto" data-tour-texto="Cartões que deslizam, como num app. Cada tratamento tem a própria página, boa para o Google e para o paciente."')}
-    </section>
+    <figure class="h4-faixa">${img("ambiente", [800, 1800], 1800, 900, "Recepção clara e silenciosa, imagem ilustrativa", "100vw")}</figure>
 
-    <section class="s3-g" aria-labelledby="t-dif">
-      <div class="wrap">
-        <div class="secao-topo"><div><p class="sobretitulo">Por que a Lume</p><h2 id="t-dif">Feito para você entender e ficar tranquilo</h2></div></div>
-        <div class="diferenciais" data-revelar>
-          <div class="dif dif-foto">${img("sala-atendimento", [480, 900], 900, 1200, "Sala de atendimento com janela e luz natural", "(min-width: 1024px) 480px, 100vw")}<span class="legenda-foto">Salas com luz natural. Imagem ilustrativa.</span></div>
-          <div class="dif">${bolha("relogio")}<h3>Hora marcada de verdade</h3><p>Tempo reservado para conversar.</p></div>
-          <div class="dif">${bolha("doc")}<h3>Plano por escrito</h3><p>Diagnóstico e etapas no papel e no app.</p></div>
-          <div class="dif">${bolha("usuario")}<h3>A mesma equipe</h3><p>Quem avalia acompanha até o fim.</p></div>
-          <div class="dif">${bolha("acesso")}<h3>Acesso sem degraus</h3><p>Entrada no nível da rua (exemplo).</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="faixa-cor s3-g" aria-labelledby="t-medo">
-      <div class="wrap medo" data-revelar>
-        <figure>${img("helena-2", [640, 1200], 1200, 900, "Dentista mostrando o espelho para a paciente durante o atendimento, imagem ilustrativa", "(min-width: 1024px) 560px, 100vw")}</figure>
+    <section class="h4-escuro" aria-labelledby="t-dif">
+      <div class="wrap h4-dif">
         <div>
-          <p class="sobretitulo">Atendimento sem pressa</p>
-          <h2 id="t-medo">Tem medo de dentista? A gente vai devagar.</h2>
-          <p>A primeira consulta serve para ouvir você.</p>
-          <ul>
-            <li>${I.check}<span>Explicamos cada etapa antes de começar.</span></li>
-            <li>${I.check}<span>Você pode pedir uma pausa a qualquer momento.</span></li>
-          </ul>
-          <a class="btn btn-luz btn-grande" href="primeira-consulta.html">Ver como é a primeira consulta</a>
+          <h2 id="t-dif">Você entende antes de decidir.</h2>
+          <ol class="h4-num">
+            <li><span>01</span><p><b>Hora marcada</b>Sem sala de espera cheia.</p></li>
+            <li><span>02</span><p><b>Plano por escrito</b>No papel e no app.</p></li>
+            <li><span>03</span><p><b>No seu ritmo</b>Pausa quando você quiser.</p></li>
+          </ol>
+          <a class="h4-link claro" href="primeira-consulta.html">Como é a primeira consulta</a>
         </div>
+        <figure>${img("explica", [640, 1200], 1200, 1500, "Dentista explicando o exame na tela para a paciente, imagem ilustrativa", "(min-width: 1024px) 40vw, 100vw")}</figure>
       </div>
     </section>
 
-    <section class="s3-g" aria-labelledby="t-equipe" data-revelar>
-      ${secaoCarrossel("t-equipe", "Equipe", "Quem vai cuidar de você", "Personagens fictícios.", "Conhecer a clínica", "sobre.html", [
-        `<a class="cartao-pessoa" href="sobre.html">${img("doutora-helena", [480, 960], 960, 1200, "Dentista em atendimento, imagem que representa a Dra. Helena Prado", "(min-width: 1024px) 300px, 64vw")}<span class="legenda"><b>Dra. Helena Prado</b><small>Implantodontia · CRO de exemplo</small></span></a>`,
-        `<a class="cartao-pessoa" href="sobre.html">${img("doutor-rafael", [480, 960], 960, 1200, "Dentista explicando o tratamento a uma paciente, imagem que representa o Dr. Rafael Mota", "(min-width: 1024px) 300px, 64vw")}<span class="legenda"><b>Dr. Rafael Mota</b><small>Ortodontia · CRO de exemplo</small></span></a>`,
-        `<a class="cartao-pessoa" href="sobre.html">${img("recepcao-v", [480, 900], 900, 1200, "Recepção da clínica", "(min-width: 1024px) 300px, 64vw")}<span class="legenda"><b>Camila Nogueira</b><small>Recepção e agendamentos</small></span></a>`,
-        `<a class="cartao-pessoa" href="sobre.html">${img("crianca", [640, 1200], 1200, 900, "Dentista atendendo uma criança na cadeira, imagem ilustrativa", "(min-width: 1024px) 300px, 64vw")}<span class="legenda"><b>Crianças</b><small>Atendimento a partir dos primeiros dentes</small></span></a>`,
-      ], "estreito")}
-    </section>
-
-    <section class="faixa-areia s3-g" aria-labelledby="t-tour">
-      <div class="wrap duas c5-7" data-revelar>
+    <section class="h4-sec" aria-labelledby="t-dra">
+      <div class="wrap h4-dra">
+        <figure>${img("dra-helena", [900], 900, 1125, "Retrato da dentista responsável, imagem ilustrativa", "(min-width: 1024px) 40vw, 100vw")}</figure>
         <div>
-          <p class="sobretitulo">Conheça antes de vir</p>
-          <h2 id="t-tour">Um minuto dentro da clínica</h2>
-          <p>Espaço para um vídeo curto do consultório.</p>
-          <div class="acoes"><a class="link" href="sobre.html">Ver a clínica e a equipe</a></div>
-        </div>
-        <button class="video-capa" type="button" data-abrir-sheet="sheet-video">
-          ${img("sala-2", [480, 900], 900, 1200, "", "(min-width: 1024px) 700px, 100vw")}
-          <span class="play" aria-hidden="true"><span><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></svg></span></span>
-          <span class="rotulo-video">Tour pela clínica<small>Espaço para o vídeo real · 1 min</small></span>
-        </button>
-      </div>
-    </section>
-
-    <section class="s3-g" aria-labelledby="t-consulta">
-      <div class="wrap">
-        <div class="secao-topo"><div><p class="sobretitulo">Primeira consulta</p><h2 id="t-consulta">Sem surpresa, do começo ao fim</h2></div><a class="ver-todos" href="primeira-consulta.html">Ver detalhes</a></div>
-        <div class="passos-visual" data-revelar>
-          <div class="passo-v">${bolha("chat")}<p class="quando nota">Antes</p><h3>Você conta o que precisa</h3><p>Pelo app ou com a recepção.</p></div>
-          <div class="passo-v">${bolha("relogio")}<p class="quando nota">Na consulta, cerca de 50 min</p><h3>Conversa e exame</h3><p>Radiografias, se necessárias.</p></div>
-          <div class="passo-v">${bolha("doc")}<p class="quando nota">Depois</p><h3>Plano explicado</h3><p>Opções por escrito. Você decide.</p></div>
+          <blockquote>“O paciente precisa entender o plano antes de aceitá-lo.”</blockquote>
+          <h2 id="t-dra" data-c="responsavel">Dra. Helena Prado</h2>
+          <p class="h4-meta">Implantodontia · <span data-c="cro">CRO-SP 00000</span></p>
+          <a class="h4-link" href="sobre.html">Conhecer a equipe</a>
         </div>
       </div>
     </section>
 
-    <section class="faixa-menta s3-g" aria-labelledby="t-clinica">
-      <div class="wrap">
-        <div class="secao-topo"><div><p class="sobretitulo">Estrutura</p><h2 id="t-clinica">Um consultório claro e tranquilo</h2><p>Imagens ilustrativas.</p></div></div>
-        <div class="mosaico" data-revelar>
-          <button type="button" class="g1" data-lb="0" aria-label="Ampliar: sala de atendimento">${img("sala-atendimento", [480, 900], 900, 1200, "", "(min-width: 1024px) 620px, 100vw")}<span class="rot">Sala de atendimento</span></button>
-          <button type="button" data-lb="1" aria-label="Ampliar: recepção">${img("recepcao", [640, 1200], 1200, 800, "", "(min-width: 1024px) 300px, 50vw")}<span class="rot">Recepção</span></button>
-          <button type="button" data-lb="2" aria-label="Ampliar: esterilização">${img("esterilizacao", [640, 1200], 1200, 800, "", "(min-width: 1024px) 300px, 50vw")}<span class="rot">Esterilização</span></button>
-          <button type="button" data-lb="3" aria-label="Ampliar: consultório">${img("sala-2", [480, 900], 900, 1200, "", "(min-width: 1024px) 300px, 50vw")}<span class="rot">Consultório</span></button>
-          <button type="button" data-lb="4" aria-label="Ampliar: planejamento">${img("raio-x", [640, 1200], 1200, 900, "", "(min-width: 1024px) 300px, 50vw")}<span class="rot">Planejamento</span></button>
+    <section class="h4-sec h4-marfim" aria-labelledby="t-app">
+      <div class="wrap h4-app">
+        <div>
+          <h2 id="t-app">Seu tratamento no celular.</h2>
+          <ul class="h4-linhas"><li>Próxima consulta</li><li>Evolução do tratamento</li><li>Documentos e recibos</li></ul>
+          <a class="btn" href="login.html">Ver a área do paciente</a>
         </div>
+        <figure class="h4-celular"><img src="assets/img/telas/paciente.jpg" width="390" height="844" alt="Tela da área do paciente no celular" loading="lazy"></figure>
       </div>
     </section>
 
-    <section class="s3-g" aria-labelledby="t-dicas" data-revelar>
-      ${secaoCarrossel("t-dicas", "Cuide do seu sorriso", "Dicas para o dia a dia", "", "Ver todas", "cuidados.html", dicas.map(([id, ico, t, d]) => `<a class="dica-cartao" href="cuidados.html#${id}">${bolha(ico)}<b>${t}</b><span>${d}</span><span class="mais">Ler ${I.seta}</span></a>`), "estreito")}
-    </section>
-
-    <section class="s3" aria-labelledby="t-aval" data-revelar>
-      ${secaoCarrossel("t-aval", "Avaliações", "O que dizem os pacientes", "Exemplos fictícios.", "", "", [
-        ["Luíza", "Fui com medo e saí tranquila. Ela explicou tudo antes de encostar em mim."],
-        ["Otávio", "O consultório é silencioso e a recepção respondeu minhas dúvidas no mesmo dia."],
-        ["Bernadete", "Gostei de receber o diagnóstico explicado, sem pressão para decidir."],
-        ["Caio", "Agendei pelo celular em dois minutos e recebi a confirmação da recepção."],
-      ].map(([n, t]) => `<figure class="aval3"><span class="etiqueta-demo">Exemplo de avaliação</span><blockquote>${t}</blockquote><figcaption class="quem"><span class="ini" aria-hidden="true">${n[0]}</span><span>${n}, paciente (exemplo)</span></figcaption></figure>`))}
-    </section>
-
-    <section class="s3" aria-labelledby="t-casos">
-      <div class="wrap duas c5-7">
-        <div><h2 id="t-casos">Casos clínicos</h2><p>Só com consentimento do paciente (CFO). Resultados variam.</p></div>
-        <div class="casos" style="margin-top:0"><div class="reservado">Espaço para caso real, com consentimento</div><div class="reservado">Espaço para caso real, com consentimento</div></div>
+    <section class="h4-sec" aria-labelledby="t-aval">
+      <div class="wrap h4-aval" data-carrossel>
+        <div class="h4-cab"><h2 id="t-aval">Quem já veio</h2><div class="carrossel-ctrl"><button type="button" data-ant aria-label="Anterior">${I.esq}</button><button type="button" data-prox aria-label="Próximo">${I.dir}</button></div></div>
+        <div class="carrossel h4-citacoes" role="list" aria-labelledby="t-aval">${[
+          ["Luíza", "Fui com medo e saí tranquila. Ela explicou tudo antes de começar."],
+          ["Otávio", "Consultório silencioso e resposta da recepção no mesmo dia."],
+          ["Bernadete", "Recebi o diagnóstico explicado, sem pressão para decidir."],
+          ["Caio", "Agendei pelo celular em dois minutos."],
+        ].map(([n, t]) => `<figure class="h4-cit" role="listitem"><blockquote>“${t}”</blockquote><figcaption>${n}</figcaption></figure>`).join("")}</div>
+        <p class="h4-nota">Avaliações de exemplo. No site real, entram as do Google.</p>
       </div>
     </section>
 
-    <section class="s3-g" aria-labelledby="t-faq">
-      <div class="wrap duas c4-8">
-        <div><p class="sobretitulo">Dúvidas</p><h2 id="t-faq">Perguntas frequentes</h2></div>
-        ${faqHtml("faq", faqHome)}
-      </div>
-    </section>
-
-    <section class="faixa-menta s3-g" aria-labelledby="t-chegar">
+    <section class="h4-escuro h4-fim" aria-labelledby="t-chegar">
       <div class="wrap">
-        <div class="secao-topo"><div><p class="sobretitulo">Contato</p><h2 id="t-chegar">Fale com a gente</h2><p><span data-c="endereco">Endereço demonstrativo, Ribeirão Preto, SP</span> · <span data-c="horarioCurto">Seg a sex, 8h às 19h · Sáb, 8h às 13h</span></p></div></div>
-        ${canais("home")}
+        <h2 id="t-chegar">Agende sua avaliação.</h2>
+        <p><span data-c="endereco">Endereço demonstrativo, Ribeirão Preto, SP</span> · <span data-c="horarioCurto">Seg a sex, 8h às 19h · Sáb, 8h às 13h</span></p>
+        <div class="h4-acoes">${btnAgendar("final", "Agendar avaliação", "", "btn-claro")}<a class="h4-link claro" href="contato.html">Outros contatos</a></div>
       </div>
-    </section>
-
-    <dialog class="lightbox" id="lightbox" aria-label="Galeria da clínica">
-      <div class="lb-barra"><span class="lb-cont">1 de 5</span><button type="button" data-fechar aria-label="Fechar galeria">${I.mais}</button></div>
-      <div class="lb-trilho">${[["sala-atendimento-900", "Sala de atendimento"], ["recepcao-1200", "Recepção"], ["esterilizacao-1200", "Bancada de esterilização"], ["sala-2-900", "Consultório"], ["raio-x-1200", "Planejamento com tomografia"]].map(([f, c]) => `<figure class="lb-item"><img src="assets/img/${f}.webp" alt="${c}, imagem ilustrativa" loading="lazy"><figcaption>${c}. Imagem ilustrativa.</figcaption></figure>`).join("")}</div>
-      <button type="button" class="lb-nav ant" aria-label="Foto anterior">${I.esq}</button><button type="button" class="lb-nav prox" aria-label="Próxima foto">${I.dir}</button>
-    </dialog>
-    ${sheet("sheet-video", "Tour pela clínica", `<p>Aqui entra um vídeo de 1 minuto do consultório real. Na demonstração não usamos imagens de outra clínica.</p><p><a href="sobre.html">Ver fotos da estrutura e a equipe</a></p>`)}`,
+    </section>`,
 });
 
 /* ================= TRATAMENTOS (índice) ================= */
@@ -567,7 +504,6 @@ const heroTrat = (t, titulo, intro, cta) => `
     <section class="hero hero-int" aria-labelledby="t-h">
       <div class="hero-texto wrap">
         ${migalhas([["Início", "index.html"], ["Tratamentos", "tratamentos.html"], [titulo, ""]])}
-        <p class="sobretitulo">Tratamento</p>
         <h1 id="t-h">${titulo}</h1>
         <p>${intro}</p>
         <div class="acoes">${cta}</div>
@@ -608,7 +544,7 @@ page({
 
     <section class="faixa-menta s3-g" aria-labelledby="t-palco">
       <div class="wrap">
-        <div class="secao-topo"><div><p class="sobretitulo">Passo a passo</p><h2 id="t-palco">Como o implante é feito</h2><p>Role a página ou toque em cada etapa.</p></div></div>
+        <div class="secao-topo"><div><h2 id="t-palco">Como o implante é feito</h2><p>Role a página ou toque em cada etapa.</p></div></div>
         <div class="palco">
           <figure class="palco-fig" data-etapa="1">${implanteEtapas}<figcaption class="rotulo-etapa" aria-live="polite">Avaliação e planejamento</figcaption></figure>
           <div class="palco-passos">
@@ -624,7 +560,6 @@ page({
     <section class="s3-g" aria-labelledby="t-cmp">
       <div class="wrap duas c4-8">
         <div>
-          <p class="sobretitulo">Comparador</p>
           <h2 id="t-cmp">Antes e depois, em ilustração</h2>
           <p>Arraste a divisória para comparar.</p>
           <p class="nota-demo">${I.info}<span><strong>Exemplo ilustrativo.</strong> Desenho criado para explicar o tratamento. Não é um caso real nem promessa de resultado.</span></p>
@@ -644,7 +579,7 @@ page({
 
     <section class="faixa-areia s3-g" aria-labelledby="t-guia">
       <div class="wrap">
-        <div class="secao-topo"><div><p class="sobretitulo">Guia</p><h2 id="t-guia">O que esperar</h2></div></div>
+        <div class="secao-topo"><div><h2 id="t-guia">O que esperar</h2></div></div>
         <div class="diferenciais">
           <div class="dif">${bolha("relogio")}<h3>Duração da cirurgia</h3><p>Estimada no planejamento.</p></div>
           <div class="dif">${bolha("escudo")}<h3>Anestesia</h3><p>Local. Você pode pedir pausa.</p></div>
@@ -679,7 +614,7 @@ const GEN = {
     titulo: "Clareamento dental", intro: "Dentes naturais mais claros, com avaliação antes.",
     para: ["Dentes amarelados pelo tempo, café, chá ou vinho.", "Quem tem dentes e gengivas saudáveis, ou tratados antes.", "Restaurações, coroas e lentes não mudam de cor: isso é avaliado antes.", "Gestantes e lactantes devem aguardar."],
     passos: [["chat", "Avaliação", "Exame, limpeza se necessária e registro da cor inicial."], ["brilho", "Clareamento", "No consultório, em sessões, ou em casa com moldeira feita para você."], ["relogio", "Acompanhamento", "Revisão da cor e ajuste do tratamento, se preciso."]],
-    opcoes: { titulo: "No consultório ou em casa?", foto: ["clareamento", "Dentista examinando paciente na cadeira, imagem ilustrativa"], itens: [["No consultório", "Sessões na clínica, com a dentista aplicando e acompanhando o gel."], ["Em casa, supervisionado", "Moldeira personalizada e gel em casa, com orientação e revisões."]] },
+    opcoes: { titulo: "No consultório ou em casa?", foto: ["sorriso", "Sorriso de uma paciente, imagem ilustrativa"], itens: [["No consultório", "Sessões na clínica, com a dentista aplicando e acompanhando o gel."], ["Em casa, supervisionado", "Moldeira personalizada e gel em casa, com orientação e revisões."]] },
     faq: [["O clareamento estraga o esmalte?", "Feito com indicação e acompanhamento, segue protocolos que respeitam o esmalte. A dentista explica os cuidados antes de começar."], ["Dá sensibilidade?", "Pode dar sensibilidade temporária durante o tratamento. Avise a clínica para ajustar."], ["Quanto tempo dura?", "Varia com hábitos como café, vinho e cigarro. A dentista orienta sobre manutenção."]],
     msg: "Olá, gostaria de saber mais sobre clareamento dental.",
   },
@@ -715,7 +650,7 @@ Object.keys(GEN).forEach(id => {
 
     <section class="faixa-menta s3-g" aria-labelledby="t-como">
       <div class="wrap">
-        <div class="secao-topo"><div><p class="sobretitulo">Passo a passo</p><h2 id="t-como">Como funciona</h2></div></div>
+        <div class="secao-topo"><div><h2 id="t-como">Como funciona</h2></div></div>
         <div class="passos-visual" data-revelar style="${g.passos.length === 4 ? "--n:4" : ""}">${g.passos.map(([ico, h, p], i) => `<div class="passo-v">${bolha(ico)}<p class="quando nota">Etapa ${i + 1}</p><h3>${h}</h3><p>${p}</p></div>`).join("")}</div>
       </div>
     </section>
@@ -749,7 +684,7 @@ page({
 
     <section class="s3" aria-labelledby="t-agora">
       <div class="wrap">
-        <div class="secao-topo"><div><p class="sobretitulo">Primeiros cuidados</p><h2 id="t-agora">O que fazer agora</h2><p>Orientações gerais. Não substituem a avaliação.</p></div></div>
+        <div class="secao-topo"><div><h2 id="t-agora">O que fazer agora</h2><p>Orientações gerais. Não substituem a avaliação.</p></div></div>
         <div class="urg-cartoes">
           <div class="urg"><h3>${bolha("alerta", " luz")}Dor de dente forte</h3><ol><li>Escove e passe fio com cuidado na região.</li><li>Evite alimentos muito quentes, gelados ou doces.</li><li>Não coloque remédio sobre o dente ou a gengiva.</li><li>Fale com a clínica para ser avaliado.</li></ol></div>
           <div class="urg"><h3>${bolha("dente")}Dente quebrado ou lascado</h3><ol><li>Guarde o pedaço, se encontrar.</li><li>Enxágue a boca com água.</li><li>Evite mastigar do lado afetado.</li><li>Procure atendimento no mesmo dia, se possível.</li></ol></div>
@@ -918,12 +853,12 @@ page({
         <p>Saber o que vai acontecer tira boa parte do medo. É assim que funciona na Lume.</p>
         <div class="acoes">${btnAgendar("primeira-topo", "Agendar a primeira consulta", "avaliacao", "btn-grande")}</div>
       </div>
-      <figure class="hero-foto">${img("helena-2", [640, 1200], 1200, 900, "Dentista mostrando o espelho para a paciente, imagem ilustrativa", "(min-width: 1024px) 50vw, 100vw", 'fetchpriority="high"')}<figcaption class="wrap">Imagem ilustrativa.</figcaption></figure>
+      <figure class="hero-foto">${img("consulta", [640, 1200], 1200, 900, "Dentista conversando com a paciente, imagem ilustrativa", "(min-width: 1024px) 50vw, 100vw", 'fetchpriority="high"')}<figcaption class="wrap">Imagem ilustrativa.</figcaption></figure>
     </section>
 
     <section class="s3-g" aria-labelledby="t-linha">
       <div class="wrap">
-        <div class="secao-topo"><div><p class="sobretitulo">Do começo ao fim</p><h2 id="t-linha">Antes, durante e depois</h2></div></div>
+        <div class="secao-topo"><div><h2 id="t-linha">Antes, durante e depois</h2></div></div>
         <div class="passos-visual" data-revelar>
           <div class="passo-v">${bolha("chat")}<p class="quando nota">Antes de vir</p><h3>Prepare-se sem pressa</h3><p>Separe exames e a lista de remédios.</p></div>
           <div class="passo-v">${bolha("relogio")}<p class="quando nota">Na consulta, cerca de 50 min</p><h3>Conversa e exame</h3><p>Conversa, exame e radiografias se preciso.</p></div>
@@ -954,7 +889,6 @@ page({
     <section class="faixa-cor s3-g" aria-labelledby="t-pre">
       <div class="wrap duas c7-5">
         <div>
-          <p class="sobretitulo">Pré-atendimento digital</p>
           <h2 id="t-pre">Adiante a anamnese pelo celular</h2>
           <p>Depois do agendamento, a clínica pode enviar um link para você contar o seu histórico de saúde antes de vir. Ajuda a preparar a consulta, mas não substitui a avaliação presencial.</p>
         </div>
@@ -976,13 +910,13 @@ page({
         <h1 id="t-sobre">A clínica e a equipe</h1>
         <p>A Lume é um consultório pequeno de propósito. Poucos pacientes por dia significa tempo para explicar. A equipe é a mesma em todas as consultas.</p>
       </div>
-      <figure class="hero-foto">${img("equipe", [640, 1200], 1200, 800, "Dois profissionais de máscara em um atendimento odontológico, imagem ilustrativa", "(min-width: 1024px) 50vw, 100vw", 'fetchpriority="high"')}<figcaption class="wrap">Imagem ilustrativa: as pessoas da foto não são a equipe da Lume.</figcaption></figure>
+      <figure class="hero-foto">${img("ambiente", [640, 1200], 1200, 800, "Recepção clara da clínica, imagem ilustrativa", "(min-width: 1024px) 50vw, 100vw", 'fetchpriority="high"')}<figcaption class="wrap">Imagem ilustrativa.</figcaption></figure>
     </section>
 
     <section class="wrap s3-g" aria-labelledby="t-equipe">
-      <div class="secao-topo"><div><p class="sobretitulo">Equipe</p><h2 id="t-equipe">Quem cuida de você</h2><p>Personagens fictícios.</p></div></div>
+      <div class="secao-topo"><div><h2 id="t-equipe">Quem cuida de você</h2><p>Personagens fictícios.</p></div></div>
       <article class="pessoa" data-revelar>
-        <figure>${img("doutora-helena", [480, 960], 960, 1200, "Dentista em atendimento, imagem que representa a Dra. Helena Prado", "(min-width: 1024px) 480px, 100vw")}</figure>
+        <figure>${img("dra-helena", [480, 960], 960, 1200, "Retrato que representa a Dra. Helena Prado", "(min-width: 1024px) 480px, 100vw")}</figure>
         <div>
           <h3>Dra. Helena Prado</h3>
           <p class="cargo">Responsável técnica. Cirurgiã-dentista, especialista em Implantodontia. <span data-c="cro">CRO-SP 00000 (exemplo, não válido)</span>.</p>
@@ -1001,7 +935,7 @@ page({
         </div>
       </article>
       <article class="pessoa" data-revelar>
-        <figure class="larga">${img("recepcao", [640, 1200], 1200, 800, "Recepção da clínica com sofá e planta", "(min-width: 1024px) 600px, 100vw")}</figure>
+        <figure class="larga">${img("consulta", [640, 1200], 1200, 900, "Consultório com luz natural", "(min-width: 1024px) 600px, 100vw")}</figure>
         <div>
           <h3>Camila Nogueira</h3>
           <p class="cargo">Coordenação e recepção.</p>
@@ -1012,9 +946,9 @@ page({
 
     <section class="faixa-areia s3-g" aria-labelledby="t-video">
       <div class="wrap duas c5-7">
-        <div><p class="sobretitulo">Vídeo</p><h2 id="t-video">Conheça a Dra. Helena</h2><p>Espaço para um vídeo curto da dentista.</p></div>
+        <div><h2 id="t-video">Conheça a Dra. Helena</h2><p>Espaço para um vídeo curto da dentista.</p></div>
         <button class="video-capa" type="button" data-abrir-sheet="sheet-video-dra">
-          ${img("helena-2", [640, 1200], 1200, 900, "", "(min-width: 1024px) 700px, 100vw")}
+          ${img("explica", [640, 1200], 1200, 900, "", "(min-width: 1024px) 700px, 100vw")}
           <span class="play" aria-hidden="true"><span><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></svg></span></span>
           <span class="rotulo-video">Apresentação da dentista<small>Espaço para o vídeo real · 1 min</small></span>
         </button>
@@ -1023,7 +957,7 @@ page({
 
     <section class="s3-g" aria-labelledby="t-prot">
       <div class="wrap">
-        <div class="secao-topo"><div><p class="sobretitulo">Biossegurança</p><h2 id="t-prot">Como cuidamos dos instrumentais</h2></div></div>
+        <div class="secao-topo"><div><h2 id="t-prot">Como cuidamos dos instrumentais</h2></div></div>
         <div class="medo" style="align-items:start">
           <figure>${img("esterilizacao", [640, 1200], 1200, 800, "Instrumentais sobre a bancada de esterilização, imagem ilustrativa", "(min-width: 1024px) 560px, 100vw")}</figure>
           <ol class="palco-passos">
@@ -1148,7 +1082,6 @@ page({
   desc: "O que vem no site para consultórios odontológicos: agendamento pelo celular, área do paciente, anamnese digital, páginas de tratamento e regras do CFO e da LGPD.",
   body: `
     <section class="cabeca wrap" aria-labelledby="t-pd">
-      <p class="sobretitulo">Para dentistas</p>
       <h1 id="t-pd">Um site com cara de aplicativo para o seu consultório</h1>
       <p>A Lume é uma clínica fictícia criada para mostrar o que o seu site pode ter. Tudo o que você vê aqui é adaptado com o nome, as cores, as fotos e os contatos da sua clínica.</p>
       <div class="acoes"><button class="btn btn-grande" type="button" data-abrir-sheet="sheet-personalizar">Ver com a minha clínica</button><button class="btn btn-contorno btn-grande" type="button" data-tour-iniciar>Fazer o tour</button></div>
@@ -1156,8 +1089,8 @@ page({
 
     <section class="s3" id="videos" aria-labelledby="t-videos">
       <div class="wrap">
-        <div class="secao-topo"><div><p class="sobretitulo">Em 40 segundos</p><h2 id="t-videos">Veja o site funcionando</h2></div></div>
-        <div class="videos">${[["lume-paciente", "Versão do paciente", "Agendar, acompanhar o tratamento e a ficha de saúde"], ["lume-dentista", "Versão do dentista", "Como apresentar e personalizar com a sua clínica"]].map(([f, t, d]) => `<figure class="video-item"><video src="assets/video/${f}.mp4" poster="assets/video/${f}.jpg" controls playsinline preload="none" width="1080" height="1920"></video><figcaption><b>${t}</b><span>${d}</span></figcaption></figure>`).join("")}</div>
+        <div class="secao-topo"><div><h2 id="t-videos">Veja o site funcionando</h2></div></div>
+        <div class="videos"><figure class="video-item"><video src="assets/video/lume-apresentacao.mp4" poster="assets/video/lume-apresentacao.jpg" controls playsinline preload="none" width="1080" height="1920"></video><figcaption><b>Tudo o que o site faz, em 1 minuto</b><span>Agendamento, área do paciente, tour e personalização com a sua clínica</span></figcaption></figure></div>
       </div>
     </section>
 
@@ -1170,7 +1103,7 @@ page({
 
     <section class="faixa-menta s3-g" aria-labelledby="t-inc">
       <div class="wrap">
-        <div class="secao-topo"><div><p class="sobretitulo">Incluído</p><h2 id="t-inc">O que vem no site</h2></div></div>
+        <div class="secao-topo"><div><h2 id="t-inc">O que vem no site</h2></div></div>
         <ul class="inclui">
           <li>${bolha("celular")}<span><b>Cara de aplicativo</b><span>Navegação pelo polegar, cartões que deslizam e instalação na tela inicial.</span></span></li>
           <li>${bolha("cal")}<span><b>Agendamento em 4 passos</b><span>Especialidade, dia, horário e dados. Pronto para ligar à sua agenda ou ao WhatsApp.</span></span></li>
@@ -1305,7 +1238,7 @@ page({
     <section class="saudacao wrap" id="inicio" aria-labelledby="t-ola">
       <p class="pequeno">Área do paciente</p>
       <h1 id="t-ola"><span data-saudacao>Olá</span>, <span data-paciente-primeiro>Maria</span></h1>
-      <p>Tudo nesta tela é fictício: é assim que o paciente acompanha o tratamento pelo celular.</p>
+      
       <div class="rapidas nota">
         <a class="rapida destaque" href="agendamento.html?retorno=1">${bolha("cal")}<span><b>Agendar retorno</b><small>Pedir um novo horário</small></span></a>
         <a class="rapida" href="anamnese.html">${bolha("escudo")}<span><b>Anamnese</b><small>Antes da consulta</small></span></a>

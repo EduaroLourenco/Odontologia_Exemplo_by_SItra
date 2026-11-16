@@ -477,8 +477,8 @@
 
   /* ---------- Personalizador: "Ver com a minha clínica" ---------- */
   var PALETAS = {
-    petroleo: ["#0F4A4E", "#0A3639", "#DDEFEA"], marinho: ["#1F3A5F", "#152A45", "#E1E8F2"],
-    salvia: ["#3D5C48", "#2B4334", "#E2ECE4"], vinho: ["#6B2737", "#4E1B27", "#F3E4E7"], grafite: ["#2F3A40", "#1F272B", "#E6EAEC"]
+    petroleo: ["#0E2E30", "#091F21", "#ECE7DF"], marinho: ["#1B2A41", "#111C2C", "#E8E6E1"],
+    chocolate: ["#2B211C", "#1C1512", "#EDE6DD"], vinho: ["#5A1F2B", "#3E141D", "#EFE5E2"], grafite: ["#26292B", "#17191A", "#E9E8E5"]
   };
   function aplicarPersonalizacao(p) {
     if (!p) return;

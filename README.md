@@ -39,14 +39,14 @@ node ferramentas/gerar.js
 
 - Textos e estrutura: `ferramentas/gerar.js` (uma função `page()` por página; os tratamentos ficam nos objetos `TRAT` e `GEN`).
 - Dados trocáveis (nome, contatos, horários, convênios, crédito da agência): `assets/js/config.js`. Não precisa rodar o gerador para isso.
-- Estilos: `assets/css/style.css`. Para trocar a paleta, edite as primeiras variáveis do `:root`.
+- Estilos: `assets/css/style.css`. Para trocar a paleta, edite as variáveis do bloco "VERSÃO 4" no fim do arquivo (petróleo #0E2E30, marfim #F5F2ED, bronze #A8875A).
 - Requer Node 18 ou mais novo. O site publicado não depende de Node.
 
 ## Páginas
 
 | Página | O que faz |
 |---|---|
-| `index.html` | Home de app: foto em tela cheia, atalhos, carrossel de tratamentos, diferenciais, bloco sobre medo de dentista, equipe, vídeo (espaço reservado), primeira consulta, galeria em tela cheia, dicas, avaliações de exemplo, casos (reservado), FAQ, canais |
+| `index.html` | Home em 8 blocos: foto em tela cheia, atalhos (celular), lista de tratamentos, foto do ambiente, diferenciais em fundo escuro, a dentista, área do paciente no celular, avaliações de exemplo e agendar |
 | `tratamentos.html` | Índice com filtro (Estética, Reabilitação, Prevenção, Crianças, Urgência) |
 | `implantes.html` | Passo a passo animado com a rolagem, comparador antes/depois em ilustração, guia, cuidados, FAQ |
 | `ortodontia.html`, `clareamento.html`, `lentes.html`, `prevencao.html` | Modelo de página de tratamento: indicação, passo a passo, opções, FAQ, relacionados |
@@ -62,25 +62,25 @@ node ferramentas/gerar.js
 
 ## Recursos de demonstração para a venda
 
-- **"Ver com a minha clínica"**: botão flutuante no desktop ou "Saiba mais" na faixa de demonstração. O dentista digita o nome do consultório, a cidade e escolhe uma de 5 cores; o site inteiro muda. Fica salvo só no navegador dele, e há um botão para voltar à Lume.
+- **"Ver com a minha clínica"**: "Saiba mais" na faixa de demonstração ou a página "Para dentistas". O dentista digita o nome do consultório, a cidade e escolhe uma de 5 cores; o site inteiro muda. Fica salvo só no navegador dele, e há um botão para voltar à Lume.
 - **Tour guiado** de 5 passos: aparece como convite na primeira visita à home, e também em "Saiba mais" e na página "Para dentistas".
 - **Instalar como app** (PWA): manifest, ícones e service worker. No Android aparece "Instalar"; no iPhone, Compartilhar > Adicionar à Tela de Início.
 
-## Vídeos de apresentação (40 s, formato vertical)
+## Vídeo de apresentação (80 s, formato vertical)
 
-`assets/video/lume-paciente.mp4` (versão do paciente) e `assets/video/lume-dentista.mp4` (versão do dentista), 1080x1920, prontos para WhatsApp, Reels e Status. Também aparecem na página "Para dentistas".
+`assets/video/lume-apresentacao.mp4`, 1080x1920, pronto para WhatsApp, Reels e Status. Mostra passo a passo tudo o que o site faz: primeiro o lado do paciente (app, tratamentos, agendamento, ficha de saúde, área do paciente, urgência), depois o do dentista (tour, personalização, teste em 3 toques), e termina com o contato da Sitra. Também aparece na página "Para dentistas".
 
-São animações feitas com as telas reais do site no celular, com a marca da Sitra como marca d'água. Para refazer depois de mudar o site:
+É uma animação feita com as telas reais do site no celular, com a marca da Sitra como marca d'água. O roteiro cena a cena está em `ferramentas/video/ROTEIRO-APRESENTACAO.txt`. Para refazer depois de mudar o site:
 
 ```bash
 node ferramentas/video/capturar.js ferramentas/video/telas
 ```
 
 ```bash
-node ferramentas/video/renderizar.js paciente assets/video/lume-paciente.mp4
+node ferramentas/video/renderizar.js apresentacao assets/video/lume-apresentacao.mp4
 ```
 
-O primeiro comando precisa do site rodando em http://localhost:5500. O segundo precisa do Chrome e do ffmpeg (variável `FFMPEG` ou `ffmpeg` no PATH). O roteiro de cada vídeo (textos, tempos, toques) fica em `ferramentas/video/paciente.html` e `dentista.html`.
+O primeiro comando precisa do site rodando em http://localhost:5500. O segundo precisa do Chrome e do ffmpeg (variável `FFMPEG` ou `ffmpeg` no PATH). Os textos, tempos e toques ficam em `ferramentas/video/apresentacao.html`.
 
 ## Configuração (`assets/js/config.js`)
 

@@ -1,6 +1,6 @@
 /* Service worker: permite instalar o site como app e abrir as páginas públicas sem internet.
    Páginas da área do paciente nunca vão para o cache. Ao publicar mudanças, troque VERSAO. */
-var VERSAO = "lume-v3-4";
+var VERSAO = "lume-v4-1";
 var BASICO = [
   "./", "index.html", "tratamentos.html", "implantes.html", "ortodontia.html", "clareamento.html",
   "lentes.html", "prevencao.html", "urgencia.html", "primeira-consulta.html", "sobre.html",

@@ -9,7 +9,7 @@
   <meta name="description" content="Entrada da área do paciente da Lume Odontologia. Nesta demonstração, o acesso usa uma paciente fictícia e não há autenticação real.">
   <link rel="canonical" href="https://www.exemplo.com.br/login.html">
   <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#0F4A4E">
+  <meta name="theme-color" content="#0E2E30">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="Lume Odontologia">
@@ -30,7 +30,7 @@
   <link rel="preload" href="https://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjA.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..500;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="assets/css/style.css">
-  <script>/* antes de pintar: animações e paleta personalizada */(function(d){var h=d.documentElement;if(!matchMedia("(prefers-reduced-motion: reduce)").matches)h.classList.add("js-anim");try{var p=JSON.parse(localStorage.getItem("lume-personalizado"));var c={marinho:["#1F3A5F","#152A45","#E1E8F2"],salvia:["#3D5C48","#2B4334","#E2ECE4"],vinho:["#6B2737","#4E1B27","#F3E4E7"],grafite:["#2F3A40","#1F272B","#E6EAEC"]}[p&&p.paleta];if(c){h.style.setProperty("--cor-ancora",c[0]);h.style.setProperty("--cor-ancora-escura",c[1]);h.style.setProperty("--cor-menta",c[2]);}}catch(e){}})(document);</script>
+  <script>/* antes de pintar: animações e paleta personalizada */(function(d){var h=d.documentElement;if(!matchMedia("(prefers-reduced-motion: reduce)").matches)h.classList.add("js-anim");try{var p=JSON.parse(localStorage.getItem("lume-personalizado"));var c={marinho:["#1B2A41","#111C2C","#E8E6E1"],chocolate:["#2B211C","#1C1512","#EDE6DD"],vinho:["#5A1F2B","#3E141D","#EFE5E2"],grafite:["#26292B","#17191A","#E9E8E5"]}[p&&p.paleta];if(c){h.style.setProperty("--cor-ancora",c[0]);h.style.setProperty("--cor-ancora-escura",c[1]);h.style.setProperty("--cor-menta",c[2]);}}catch(e){}})(document);</script>
   <!-- GTM/GA4 do cliente: colar dentro da função medir() em assets/js/main.js (só roda após o aceite de cookies) -->
 
 </head>
@@ -40,7 +40,7 @@
 
   <header class="topo">
     <div class="wrap">
-      <a class="marca" href="index.html"><svg class="simbolo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--cor-ancora)"/><path d="M8 16c3 7.5 13 7.5 16 0" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><circle cx="22" cy="9.2" r="2.8" fill="#F2C14E"/></svg><span class="nome-marca"><b data-c="marca">Lume</b><span class="comp" data-c="complemento">Odontologia</span></span></a>
+      <a class="marca" href="index.html"><svg class="simbolo" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M9.5 16.5c2.6 5.2 10.4 5.2 13 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="21.5" cy="11" r="1.6" fill="currentColor"/></svg><span class="nome-marca"><b data-c="marca">Lume</b><span class="comp" data-c="complemento">Odontologia</span></span></a>
       <nav class="nav" aria-label="Principal">
         <ul><li><a href="tratamentos.html">Tratamentos</a></li><li><a href="primeira-consulta.html">Primeira consulta</a></li><li><a href="sobre.html">A clínica</a></li><li><a href="contato.html">Contato</a></li><li><a class="area" href="login.html" aria-current="page" data-tour="4" data-tour-titulo="Área do paciente" data-tour-texto="O paciente acompanha consultas, documentos e preenche a anamnese antes de vir. Entre com a paciente fictícia para ver.">Área do paciente</a></li><li><a class="btn" data-tour="2" data-tour-titulo="Agendamento em 4 passos" data-tour-texto="Especialidade, dia, horário e dados. O paciente envia a preferência e a recepção confirma." href="agendamento.html" data-evento="clique_agendar" data-origem="cabecalho"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5.5" width="16" height="14.5" rx="2.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></svg>Agendar</a></li></ul>
       </nav>
@@ -49,7 +49,7 @@
     </div>
   </header>
   <div class="painel" id="menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
-    <div class="painel-topo"><a class="marca" href="index.html"><svg class="simbolo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--cor-ancora)"/><path d="M8 16c3 7.5 13 7.5 16 0" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><circle cx="22" cy="9.2" r="2.8" fill="#F2C14E"/></svg><span class="nome-marca"><b data-c="marca">Lume</b><span class="comp" data-c="complemento">Odontologia</span></span></a><button class="menu-btn" type="button"><span class="sr">Fechar menu</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path class="v" d="M12 5v14"/></svg></button></div>
+    <div class="painel-topo"><a class="marca" href="index.html"><svg class="simbolo" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M9.5 16.5c2.6 5.2 10.4 5.2 13 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="21.5" cy="11" r="1.6" fill="currentColor"/></svg><span class="nome-marca"><b data-c="marca">Lume</b><span class="comp" data-c="complemento">Odontologia</span></span></a><button class="menu-btn" type="button"><span class="sr">Fechar menu</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path class="v" d="M12 5v14"/></svg></button></div>
     <ul>
       <li><a href="index.html">Início</a></li>
       <li><a href="tratamentos.html">Tratamentos</a></li>
@@ -100,7 +100,7 @@
     <div class="wrap">
       <div class="colunas">
         <div>
-          <a class="marca" href="index.html"><svg class="simbolo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--cor-ancora)"/><path d="M8 16c3 7.5 13 7.5 16 0" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><circle cx="22" cy="9.2" r="2.8" fill="#F2C14E"/></svg><span class="nome-marca"><b data-c="marca">Lume</b><span class="comp" data-c="complemento">Odontologia</span></span></a>
+          <a class="marca" href="index.html"><svg class="simbolo" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M9.5 16.5c2.6 5.2 10.4 5.2 13 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="21.5" cy="11" r="1.6" fill="currentColor"/></svg><span class="nome-marca"><b data-c="marca">Lume</b><span class="comp" data-c="complemento">Odontologia</span></span></a>
           <p>Responsável técnica: <span data-c="responsavel">Dra. Helena Prado</span>, <span data-c="cro">CRO-SP 00000 (exemplo, não válido)</span>, <span data-c="especialidade">Implantodontia</span>.</p>
           <p>Profissionais, avaliações, pacientes e imagens deste site são ilustrativos.</p>
           <ul class="redes" data-redes hidden></ul>
@@ -158,7 +158,7 @@
       <div class="campos-form nota">
         <button class="btn" type="button" data-abrir-sheet="sheet-personalizar">Ver com a minha clínica</button>
         <button class="btn btn-contorno" type="button" data-tour-iniciar>Fazer o tour de 30 segundos</button>
-        <a class="btn btn-contorno" href="para-dentistas.html#videos">Ver o vídeo de 40 segundos</a>
+        <a class="btn btn-contorno" href="para-dentistas.html#videos">Ver o vídeo de 1 minuto</a>
         <a class="btn btn-contorno" href="para-dentistas.html">O que o dentista recebe</a>
         <a class="btn btn-contorno" href="#" data-agencia-link hidden>Falar com a <span data-c="nomeAgencia">Sitra</span></a>
         <button class="btn btn-contorno" type="button" data-instalar hidden><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M11 17.5h2"/></svg>Instalar como app</button>
@@ -178,7 +178,7 @@
         </div>
         <div class="campo"><label for="p-cidade">Cidade <span class="opc">(opcional)</span></label><input id="p-cidade" name="cidade" type="text" maxlength="40" placeholder="Ex.: Campinas, SP"></div>
         <fieldset class="periodos"><legend>Cor principal</legend>
-          <div class="paletas"><label><input type="radio" name="paleta" value="petroleo" checked><span class="amostra" style="background:#0F4A4E"></span><small>Petróleo</small></label><label><input type="radio" name="paleta" value="marinho"><span class="amostra" style="background:#1F3A5F"></span><small>Marinho</small></label><label><input type="radio" name="paleta" value="salvia"><span class="amostra" style="background:#3D5C48"></span><small>Sálvia</small></label><label><input type="radio" name="paleta" value="vinho"><span class="amostra" style="background:#6B2737"></span><small>Vinho</small></label><label><input type="radio" name="paleta" value="grafite"><span class="amostra" style="background:#2F3A40"></span><small>Grafite</small></label></div>
+          <div class="paletas"><label><input type="radio" name="paleta" value="petroleo" checked><span class="amostra" style="background:#0E2E30"></span><small>Petróleo</small></label><label><input type="radio" name="paleta" value="marinho"><span class="amostra" style="background:#1B2A41"></span><small>Marinho</small></label><label><input type="radio" name="paleta" value="chocolate"><span class="amostra" style="background:#2B211C"></span><small>Chocolate</small></label><label><input type="radio" name="paleta" value="vinho"><span class="amostra" style="background:#5A1F2B"></span><small>Vinho</small></label><label><input type="radio" name="paleta" value="grafite"><span class="amostra" style="background:#26292B"></span><small>Grafite</small></label></div>
         </fieldset>
         <button class="btn" type="submit">Aplicar no site</button>
         <button class="link-btn" type="button" id="restaurar-demo">Voltar ao original (Lume)</button>

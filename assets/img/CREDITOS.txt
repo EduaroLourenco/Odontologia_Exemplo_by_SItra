@@ -40,3 +40,11 @@ hero-atendimento-m2-800.webp  recorte 4:5 da foto do hero
 MARCA E TELAS
 favicon.svg, icone-*.png, apple-touch-icon.png, og-lume.jpg: símbolo (sorriso com ponto de luz) criado para este site.
 telas/*.jpg: capturas do próprio site, usadas na página "Para dentistas".
+
+Versão 4 (visual clean), fotos novas do Unsplash (licença Unsplash, uso livre):
+- consulta-*.webp ........ images.unsplash.com/photo-1777331903190-341a3dd0441b
+- dra-helena-*.webp ...... images.unsplash.com/photo-1706565029539-d09af5896340
+- explica-*.webp ......... images.unsplash.com/photo-1606811841689-23dfddce3e95
+- ambiente-*.webp ........ images.unsplash.com/photo-1648775507324-b48dd3791fa5
+- sorriso-*.webp ......... images.unsplash.com/photo-1489278353717-f64c6ee8a4d2
+As pessoas das fotos não são a equipe da clínica fictícia.

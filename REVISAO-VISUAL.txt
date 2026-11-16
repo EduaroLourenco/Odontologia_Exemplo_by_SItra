@@ -1,0 +1,428 @@
+REVISÃO VISUAL DO SITE LUME ODONTOLOGIA
+De "fofinho" para clean e chique
+Sitra · Digitalização de negócios · 15/11/2026
+
+Este documento revisa o front inteiro e diz o que eu mudaria, seção por seção.
+
+SITUAÇÃO (15/11/2026): APLICADO. Paleta escolhida: Opção A, "Petróleo
+profundo". Feito: base visual (itens 3 e 4), home nova com 8 blocos (item 5),
+fotos novas com a mesma luz (item 3.4), ajustes nas páginas internas, novas
+paletas do personalizador, telas e vídeos refeitos com o visual novo.
+Ficou de fora: topo transparente sobre a foto (o cabeçalho ficou marfim
+sólido), a personalização direto na página "Para dentistas" (continua no
+painel) e o acordeão na página de urgência.
+
+======================================================================
+0. JÁ FEITO NESTA RODADA
+======================================================================
+
+- Removidas as etiquetas com ponto amarelo acima dos títulos ("• Tratamentos",
+  "• Equipe", "• Por que a Lume" etc.). Eram 23 no site. Os títulos agora
+  falam sozinhos.
+- O ponto amarelo também saiu do selo da foto do topo e do botão flutuante
+  "Ver com a minha clínica".
+- A única linha que ficou acima do título é a da cidade, no topo da home
+  ("Odontologia em Ribeirão Preto, SP"), agora como texto simples, sem ponto.
+  Ela é usada pelo personalizador para mostrar a cidade do dentista.
+
+======================================================================
+1. DIAGNÓSTICO: POR QUE O SITE PARECE FOFINHO (E COM CARA DE IA)
+======================================================================
+
+Olhei a home em 1440 px e em 390 px, mais implantes, agendamento, área do
+paciente e "Para dentistas". O problema não são as funções: é a soma de
+pequenos enfeites que, juntos, deixam o site com cara de template e de
+aplicativo infantil.
+
+1.1 Tudo arredondado demais
+    Cartões com cantos de 16 a 24 px, botões em pílula, fotos arredondadas,
+    ícones dentro de quadradinhos coloridos, a folha branca que "sobe" por
+    cima da foto do topo no celular. Cantos muito redondos leem como "app de
+    consumo" ou "infantil", não como clínica de alto padrão.
+
+1.2 Ícone em bolha colorida em todo lugar
+    Atalhos, diferenciais, passos, dicas, guia de implante: sempre o mesmo
+    molde "ícone em quadradinho menta ou amarelo + título + frase curta". É o
+    padrão mais reconhecível de site gerado por IA. Repetido 6 vezes na home.
+
+1.3 Cores demais, e tons pastel
+    Petróleo, menta, areia, amarelo, branco, cinza claro e o fundo petróleo
+    escuro se alternam a cada seção. O amarelo aparece em botão, ponto, chip
+    e ícone. O resultado é uma colcha de retalhos; site chique usa 2 cores de
+    fundo e 1 cor de destaque, no máximo.
+
+1.4 Etiquetas e selos sobrando
+    Além dos sobretítulos (já removidos): selo "Atendimento com hora marcada"
+    flutuando sobre a foto, cartão "Plano por escrito" flutuando sobre a foto,
+    chips amarelos "Exemplo de avaliação", "exemplo, não válido" no CRO, faixa
+    "Demo" no topo, botão flutuante "Ver com a minha clínica". Muito ruído
+    em volta do conteúdo.
+
+1.5 Home longa e com muitas seções
+    São 14 blocos: topo, atalhos, tratamentos, diferenciais, medo de
+    dentista, equipe, vídeo (reservado), primeira consulta, estrutura, dicas,
+    avaliações, casos (reservado), dúvidas e contato. No celular ainda passa
+    de 9.000 px. Vários blocos dizem a mesma coisa ("sem pressa", "explicado",
+    "plano por escrito") de jeitos diferentes.
+
+1.6 Fotos sem unidade
+    Uma enfermeira de jaleco turquesa, uma dentista de touca azul, um homem
+    segurando raio-X, uma sala com cadeira turquesa. Cada foto tem uma cor e
+    uma luz diferentes. Isso "barateia" o site mais do que qualquer outra
+    coisa, porque o olho percebe que é banco de imagens.
+
+1.7 Tipografia tímida
+    A serifada (Newsreader) é boa, mas os títulos estão médios (30 a 44 px) e
+    divididos com palavras em cor diferente ("no seu tempo" em petróleo). Os
+    textos de apoio estão pequenos (13 a 14 px em vários cartões). Site chique
+    usa título grande e respirado e corpo de texto confortável.
+
+1.8 Cara de app: é bom para converter?
+    Pesquisei: não há estudo sério dizendo que barra de abas de aplicativo
+    converte melhor em site de clínica. O que as fontes repetem é: um botão de
+    agendar sempre visível, prova de confiança logo no topo (nota no Google,
+    nome e registro da dentista) e carregamento rápido no celular. A barra
+    inferior atende ao primeiro ponto, então dá para manter, mas mais discreta
+    (ver item 4.2).
+
+======================================================================
+2. REFERÊNCIAS PESQUISADAS
+======================================================================
+
+Abri e analisei estes sites (desktop, 1440 px):
+
+Zen Dental Studio (zen.dentist), São Francisco
+  - Paleta de 3 tons: marfim, areia e marrom-chocolate sólido. Nenhum pastel.
+  - Título serifado grande e fino ("Modern dental care, thoughtfully
+    delivered."), uma frase de apoio e dois botões. Mais nada no topo.
+  - Foto real do consultório em tela cheia, com luz quente e madeira.
+  - Seções numeradas "01, 02, 03" com um rótulo pequeno à esquerda, título
+    grande no meio e uma foto pequena à direita. Linhas finas separam as
+    seções, sem cartões.
+  - Botão "Book now" escuro, sempre no canto do menu.
+  É a referência mais próxima do que eu faria para a Lume.
+
+One Medical (onemedical.com)
+  - Fundo off-white, um título grande, uma frase e um botão escuro.
+  - Uma foto recortada com uma linha curva fina. Muito espaço vazio.
+  - Mostra como saúde pode ser clean sem ficar fria.
+
+Parsley Health (parsleyhealth.com)
+  - Barra superior com uma única chamada ("Verify insurance").
+  - Menu em verde-escuro sólido, título serifado grande em verde-escuro,
+    foto de rosto em tela cheia com fundo bege.
+  - Cores sólidas e poucas: verde-escuro, bege, branco.
+
+Beehive Dental (beehivedental.ca), Ontário
+  - Fundo marrom-escuro no menu, logo em linha fina, botão pêssego sólido.
+  - Topo com foto em tela cheia da recepção e título branco sobre a foto.
+  - Mostra o padrão "clínica boutique": foto do espaço real, pouco texto.
+
+Tend (hellotend.com), referência citada em todas as listas de melhores
+sites odontológicos
+  - O site bloqueou o acesso automático, então usei o que dizem as análises:
+    paleta quente e neutra, formas suaves, fotografia do espaço real,
+    sensação de "hotel boutique" em vez de clínica.
+
+O que essas referências têm em comum (e a Lume não tem hoje):
+  a) 2 ou 3 cores sólidas, sem tons pastel misturados.
+  b) Título grande + 1 frase + 1 botão. Nada de selos no topo.
+  c) Seções separadas por espaço e linhas finas, não por cartões coloridos.
+  d) Poucos ícones (ou nenhum).
+  e) Fotografia com a mesma luz e a mesma paleta do site.
+  f) Botão de agendar sempre à vista.
+
+======================================================================
+3. NOVA DIREÇÃO VISUAL (PROPOSTA)
+======================================================================
+
+3.1 Paleta: duas opções sólidas, escolher uma
+
+  Opção A, "Petróleo profundo" (mantém a identidade atual, mais sóbria)
+    Fundo principal ....... #F5F2ED (marfim)
+    Fundo alternativo ..... #FFFFFF
+    Bloco escuro .......... #0E2E30 (petróleo quase preto)
+    Texto ................. #142022
+    Texto suave ........... #5E6B6C
+    Linhas ................ #DDD7CE
+    Destaque (raro) ....... #A8875A (bronze/champanhe), só em detalhes finos
+
+  Opção B, "Ébano e areia" (mais próxima da Zen, mais luxo)
+    Fundo principal ....... #F3EEE7
+    Bloco escuro .......... #2B211C (chocolate)
+    Texto ................. #1E1A17
+    Destaque .............. #8C6A4A
+
+  Regras para qualquer opção:
+  - Sai o amarelo e sai o menta. Nada de fundos coloridos alternados.
+  - No máximo 2 fundos claros (marfim e branco) e 1 bloco escuro por página.
+  - Botão principal: sólido escuro. Botão secundário: só texto sublinhado ou
+    contorno fino de 1 px.
+  - Sem degradê, sem sombra colorida.
+
+3.2 Tipografia
+  - Manter Newsreader (títulos) e Hanken Grotesk (texto). As duas servem.
+  - Títulos da home: 56 a 88 px no desktop, 40 a 48 px no celular, peso
+    regular (400), entrelinha 1,02, sem palavra em outra cor.
+  - Títulos de seção: 40 a 56 px no desktop, 30 a 34 px no celular.
+  - Corpo: 17 a 18 px no desktop, 16 px no celular, entrelinha 1,6.
+  - Rótulos pequenos (quando necessários): 12 px, caixa alta, espaçamento
+    0,12em, cor de texto suave. Sem ponto, sem cor. Usar raramente, como a
+    Zen usa ("01 · Equipe").
+
+3.3 Formas
+  - Cantos: 0 a 4 px em fotos e cartões; botões com 2 px (retangulares) OU
+    pílula, mas só um estilo no site inteiro. Recomendo retangular.
+  - Trocar cartões por listas com linhas finas (1 px, cor #DDD7CE).
+  - Remover os quadradinhos coloridos dos ícones. Onde o ícone for
+    necessário (agendamento, área do paciente), usar traço fino de 1,5 px,
+    na cor do texto, sem fundo.
+
+3.4 Fotografia
+  - Mesma luz em todas as fotos: quente, natural, pouca saturação.
+  - Evitar jaleco turquesa, touca azul e cadeira turquesa. Preferir branco,
+    madeira, pedra, linho, plantas.
+  - Proporções fixas: 4:5 (retrato) para pessoas, 3:2 para ambientes, 16:9
+    para a faixa de tela cheia.
+  - Aplicar um tratamento único (leve dessaturação e tom quente) via CSS
+    filter ou já na exportação das imagens, para unificar o banco de imagens.
+  - Sem selos ou cartões flutuando sobre as fotos.
+
+3.5 Movimento
+  - Só entradas suaves: opacidade + deslocamento de 12 px, 500 ms.
+  - Revelar fotos com máscara (clip-path) de baixo para cima.
+  - Nada de bounce, nada de escala exagerada.
+
+3.6 Texto
+  - Um título + no máximo uma frase por seção.
+  - Tirar "exemplo" de dentro do conteúdo. A demonstração já é avisada na
+    faixa do topo e no rodapé. Manter só onde a lei pede (CRO de exemplo
+    pode virar "CRO-SP 00000" com uma nota única no rodapé).
+
+======================================================================
+4. COMPONENTES GLOBAIS
+======================================================================
+
+4.1 Cabeçalho
+  Hoje: fundo cinza-claro, logo com símbolo em quadrado verde, 5 links e
+  botão pílula verde.
+  Proposta:
+  - Fundo transparente sobre a foto do topo; vira marfim sólido ao rolar.
+  - Logo só tipográfico ("Lume" em serifa + "Odontologia" em caixa alta
+    pequena) ou símbolo em traço fino, sem o quadrado preenchido.
+  - Links em 15 px; botão "Agendar" retangular escuro.
+  - No celular: logo + "Agendar" + menu. Sem ícone de usuário extra.
+
+4.2 Barra inferior no celular (cara de app)
+  Hoje: 5 abas com ícones, botão central redondo que salta para fora da
+  barra, fundo branco com sombra.
+  Proposta (mantendo a ideia de app):
+  - Barra plana, fundo marfim com linha fina em cima, sem sombra.
+  - 4 itens: Início, Tratamentos, Agendar (destacado só com fundo escuro
+    retangular, sem saltar para fora), Paciente. "Contato" vai para o menu.
+  - Ícones de traço fino, rótulos de 11 px.
+  - Alternativa a testar: barra fixa só com dois botões ("Agendar" e
+    "WhatsApp"), padrão comum em sites de clínica que convertem bem.
+
+4.3 Faixa de demonstração e botão "Ver com a minha clínica"
+  - Faixa do topo: fina (32 px), petróleo escuro, texto curto: "Site de
+    demonstração · By Sitra · Personalizar". Sem chip amarelo "Demo".
+  - Botão flutuante: some do desktop. A personalização fica na faixa do topo
+    e na página "Para dentistas". No celular já é assim.
+
+4.4 Rodapé
+  - Fundo do bloco escuro, 3 colunas: marca + endereço, links, horários.
+  - Crédito "By Sitra" pequeno e elegante na última linha (sem pílula com
+    borda), à direita.
+
+4.5 Botões
+  - Primário: fundo #0E2E30, texto marfim, 52 px de altura, cantos 2 px,
+    texto 15 px peso 600, sem ícone (ou seta fina à direita).
+  - Secundário: texto com sublinhado fino que cresce no hover.
+
+======================================================================
+5. HOME, SEÇÃO POR SEÇÃO (DE 14 PARA 8 BLOCOS)
+======================================================================
+
+Nova ordem proposta:
+
+  1. Topo (tela cheia)
+     - Foto real do consultório ou da dentista ocupando a tela inteira
+       (desktop) ou 70% da altura (celular), com leve escurecimento.
+     - Título em branco, serifado, grande: "Odontologia sem pressa."
+     - Uma frase: "Diagnóstico explicado e plano por escrito."
+     - Botão "Agendar avaliação" + link "Sou paciente".
+     - Uma linha de confiança: "4,9 no Google · Dra. Helena Prado, CRO-SP".
+     - SAI: selo flutuante, cartão flutuante, linha de horário.
+
+  2. Atalhos (só no celular)
+     - Lista de 3 linhas com seta, sem cartões: Agendar, Urgência, Área do
+       paciente. No desktop esse bloco some (o menu já tem tudo).
+
+  3. Tratamentos
+     - Lista editorial: nome do tratamento em serifa grande, uma linha
+       fina entre cada um, seta à direita. Ao passar o mouse, a foto do
+       tratamento aparece ao lado (desktop). No celular, carrossel de fotos
+       retangulares 4:5 com o nome embaixo, sem texto de resumo.
+
+  4. Diferenciais + medo de dentista (fundir os dois)
+     - Fundo escuro sólido. Título: "Você entende antes de decidir."
+     - 3 frases numeradas (01, 02, 03), sem ícones:
+       01 Hora marcada, sem sala cheia.
+       02 Plano por escrito, no papel e no app.
+       03 Pausa quando você quiser.
+     - Uma foto vertical à direita.
+
+  5. A dentista
+     - Retrato grande 4:5 à esquerda, citação curta à direita (2 linhas),
+       nome, especialidade e CRO. Link "Conhecer a equipe".
+     - SAI: carrossel de 4 cartões com foto de equipe e crianças.
+
+  6. O app do paciente (diferencial de venda)
+     - Celular com a tela real da área do paciente (como nos vídeos) e 3
+       linhas: "Próxima consulta", "Evolução do tratamento", "Documentos".
+       Botão "Ver como funciona". É o que diferencia a Lume e hoje está
+       escondido atrás do login.
+
+  7. Avaliações
+     - Uma citação grande por vez, em serifa, com nota do Google e nome.
+       Setas finas. Sem chips amarelos "Exemplo de avaliação" em cada
+       cartão; uma nota única pequena embaixo: "Avaliações de exemplo".
+
+  8. Agendar + contato (fundo escuro)
+     - "Agende sua avaliação" + botão + WhatsApp + endereço e horário em
+       uma linha. Mapa pequeno à direita.
+
+  SAI DA HOME (continua no site, em outras páginas):
+  - Vídeo reservado (vai para "A clínica").
+  - Primeira consulta em 3 passos (vira link no bloco 4).
+  - Mosaico de estrutura (uma única foto de tela cheia entre os blocos 3 e
+    4 substitui o mosaico; a galeria vai para "A clínica").
+  - Dicas (ficam no menu e no rodapé).
+  - Casos clínicos reservados (vão para a página de cada tratamento).
+  - Perguntas frequentes (ficam nas páginas de tratamento e na primeira
+    consulta).
+
+  Meta: home com cerca de 4.500 px no celular (hoje passa de 9.000).
+
+======================================================================
+6. OUTRAS PÁGINAS
+======================================================================
+
+6.1 Tratamentos (índice)
+  - Filtros em texto simples com sublinhado (não pílulas).
+  - Grade de fotos 4:5 com o nome embaixo, sem resumo e sem ícone.
+
+6.2 Página de tratamento (implantes e as outras 4)
+  - Topo: foto 16:9 em tela cheia + título + 1 frase + botão.
+  - "Para quem é": 3 linhas com traço fino, sem ícones.
+  - Passo a passo do implante: manter a animação (é ótima), mas com
+    ilustração em traço fino, cores do site, numeração 01 a 04 e fundo
+    marfim. Tirar o fundo menta.
+  - Comparador antes/depois: manter; moldura reta, sem cantos redondos.
+  - Guia "o que esperar": vira tabela de 2 colunas com linhas finas.
+  - Dúvidas: acordeão com linha fina e sinal "+", sem caixa.
+
+6.3 Agendamento
+  - A função está boa. Visual:
+    - Etapas em linha fina (1 ── 2 ── 3 ── 4) em vez de bolinhas cheias.
+    - Opções de especialidade como lista com rádio fino, não cartões com
+      ícone.
+    - Dias e horários em botões retangulares com borda de 1 px; selecionado
+      fica com fundo escuro.
+    - Resumo à direita (desktop) em coluna fixa com linhas finas.
+    - Tela de sucesso: só check em traço fino, título e protocolo. Sem
+      fundo menta.
+  - Encurtar o texto do topo para uma frase.
+
+6.4 Área do paciente
+  - Visual de painel sóbrio: fundo marfim, cartões brancos com borda de
+    1 px e cantos de 4 px, sem sombra.
+  - Próxima consulta em destaque no bloco escuro, com contagem em números
+    grandes serifados.
+  - Plano de tratamento: linha do tempo horizontal fina com o ponto atual em
+    bronze (único uso da cor de destaque).
+  - Atalhos (Agendar retorno, Anamnese, Documentos, Mensagens) em lista com
+    seta, não em 4 cartões coloridos.
+  - Tirar o texto "Tudo nesta tela é fictício..." do topo (fica na faixa).
+
+6.5 Login e anamnese
+  - Login: tela dividida, foto à esquerda (desktop), formulário à direita.
+    No celular só o formulário, centralizado, sem cartão.
+  - Anamnese: perguntas em blocos com linha fina, botões Sim/Não
+    retangulares, progresso em linha fina no topo.
+
+6.6 Para dentistas (página de venda)
+  - É a página que o dentista vê; precisa parecer agência premium.
+  - Topo escuro com título grande + os dois vídeos lado a lado em moldura
+    de celular.
+  - "O que vem no site": lista de 6 itens em 2 colunas, com números, sem
+    bolhas coloridas (hoje são 9 itens com ícone).
+  - Bloco "Personalize agora" com o campo de nome direto na página (sem
+    abrir painel) e a pré-visualização ao lado.
+  - Contato com a Sitra: botão de WhatsApp grande, logo da Sitra.
+
+6.7 Urgência
+  - Topo com telefone grande e botão de WhatsApp, sem foto.
+  - Os 4 casos em acordeão (um aberto por vez), para encurtar a página.
+  - Alerta de pronto-socorro em faixa com borda à esquerda, sem amarelo.
+
+6.8 A clínica, contato, cuidados, primeira consulta
+  - Mesmo tratamento: título grande, uma frase, linhas finas, fotos com a
+    mesma luz. Galeria da clínica em grade reta de 3 colunas.
+
+======================================================================
+7. O QUE CONTINUA IGUAL (FUNCIONA BEM)
+======================================================================
+
+- Agendamento em 4 passos, calendário, arquivo .ics.
+- Área do paciente, anamnese, documentos imprimíveis.
+- Personalizador (nome, cidade, cor) e tour guiado.
+- PWA (instalar como app), modo offline, vídeos.
+- Regras do CFO e LGPD (sem preço, sem promessa, consentimento).
+O personalizador precisa das novas paletas: trocar as 5 cores atuais por 5
+tons sólidos e sóbrios (petróleo, marinho, chocolate, vinho, grafite) com
+fundo marfim fixo.
+
+======================================================================
+8. ORDEM SUGERIDA DE EXECUÇÃO
+======================================================================
+
+  Etapa 1 · Base visual (maior impacto, menor risco)
+    Paleta, tipografia, cantos, botões, remoção de bolhas de ícone,
+    cabeçalho, barra inferior, rodapé. Muda o site inteiro de uma vez.
+
+  Etapa 2 · Home nova (de 14 para 8 blocos)
+    Topo em tela cheia, lista de tratamentos, bloco escuro de diferenciais,
+    dentista, app do paciente, avaliações, agendar.
+
+  Etapa 3 · Fotos
+    Trocar as imagens que destoam e aplicar o tratamento de cor único.
+
+  Etapa 4 · Páginas internas
+    Tratamentos, agendamento, área do paciente, para dentistas, urgência.
+
+  Etapa 5 · Conferência
+    Capturas em 390, 768, 1024 e 1440 px, teste dos fluxos, novos vídeos
+    com as telas atualizadas.
+
+======================================================================
+9. FONTES
+======================================================================
+
+Sites analisados: zen.dentist, onemedical.com, parsleyhealth.com,
+beehivedental.ca (hellotend.com bloqueou o acesso automático).
+
+Listas e guias consultados:
+- azurodigital.com/dental-website-examples (10 Best Dental Website Designs
+  of 2026)
+- ueni.com/blog/dental-websites (20 Best Dental Website Examples 2026)
+- magier.com/blog/best-dental-website-designs (sobre o Tend)
+- surfacemag.com, artigo sobre o design do Tend
+- red-dot.org/project/tend-49427 (identidade do Tend)
+- geeksforgrowth.com/blog/what-to-include-above-the-fold-on-a-dental-website
+- hip.agency/what-makes-a-high-converting-dental-website
+- webtonic.io/blog/dental-landing-pages-cro-statistics
+
+Observação: os números de conversão desses guias vêm de agências e não de
+estudos independentes. Servem como direção, não como garantia.
